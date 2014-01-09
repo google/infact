@@ -232,8 +232,8 @@ main(int argc, char **argv) {
 /// infact::Animal Animal\endlink\> by having
 /// \code REGISTER_ANIMAL(Cow) \endcode
 /// in <tt>cow.C</tt>. That macro expands to \code
-/// REGISTER_NAMED(Cow, Cow,
-/// Animal) \endcode which tells the \link infact::Factory
+/// REGISTER_NAMED(Cow, Cow, Animal) \endcode
+/// which tells the \link infact::Factory
 /// Factory\endlink\<Animal\> that there is a class
 /// <tt>Cow</tt> whose &ldquo;factory name&rdquo;
 /// (the string that can appear in <i>specification
