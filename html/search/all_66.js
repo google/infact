@@ -2,8 +2,8 @@ var searchData=
 [
   ['factory',['Factory',['../classinfact_1_1_factory.html',1,'infact']]],
   ['factory',['Factory',['../classinfact_1_1_factory.html#aeee238dea345546be513d9e871a3b8af',1,'infact::Factory']]],
-  ['factory_2ec',['factory.C',['../factory_8_c.html',1,'']]],
-  ['factory_2eh',['factory.H',['../factory_8_h.html',1,'']]],
+  ['factory_2ecc',['factory.cc',['../factory_8cc.html',1,'']]],
+  ['factory_2eh',['factory.h',['../factory_8h.html',1,'']]],
   ['factorybase',['FactoryBase',['../classinfact_1_1_factory_base.html',1,'infact']]],
   ['factoryconstructible',['FactoryConstructible',['../classinfact_1_1_factory_constructible.html',1,'infact']]],
   ['factorycontainer',['FactoryContainer',['../classinfact_1_1_factory_container.html',1,'infact']]],

@@ -108,7 +108,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <p>Provides an interpreter for assigning primitives and Factory-constructible objects to named variables, as well as vectors thereof.  
  <a href="classinfact_1_1_interpreter.html#details">More...</a></p>
 
-<p><code>#include &lt;<a class="el" href="interpreter_8_h_source.html">interpreter.H</a>&gt;</code></p>
+<p><code>#include &lt;<a class="el" href="interpreter_8h_source.html">interpreter.h</a>&gt;</code></p>
 
 <p><a href="classinfact_1_1_interpreter-members.html">List of all members.</a></p>
 <table class="memberdecls">
@@ -162,7 +162,7 @@ Public Member Functions</h2></td></tr>
  <span class="comment">// Constructs a vector of Model objects and assigns it to &quot;m_vec&quot;.</span>
  m_vec = {m1, PerceptronModel(name(<span class="stringliteral">&quot;bar&quot;</span>))};
 </pre></div><p>Here's an example of using the interpreter after it has read the three statements from the previous example from a file called <code>"example.infact"</code>: </p>
-<div class="fragment"><pre class="fragment"><span class="preprocessor"> #include &quot;<a class="code" href="interpreter_8_h.html" title="Provides an interpreter for assigning primitives and Factory-constructible objects to named variables...">interpreter.H</a>&quot;</span>
+<div class="fragment"><pre class="fragment"><span class="preprocessor"> #include &quot;<a class="code" href="interpreter_8h.html" title="Provides an interpreter for assigning primitives and Factory-constructible objects to named variables...">interpreter.h</a>&quot;</span>
  <span class="comment">// ...</span>
  <a class="code" href="classinfact_1_1_interpreter.html#ae1eba88a0c9df9e0069f20ef5f44d2db" title="Constructs a new instance with the specified debug level.">Interpreter</a> i;
  i.Eval(<span class="stringliteral">&quot;example.infact&quot;</span>);
@@ -196,7 +196,7 @@ Public Member Functions</h2></td></tr>
 </table>
 <p>The above grammar doesn&rsquo;t contain rules covering C++ style line comments, but they have the same behavior in this language as they do in C++, i.e., everything after the <code>//</code> to the end of the current line is treated as a comment and ignored. There are no C-style comments in this language. </p>
 
-<p>Definition at line <a class="el" href="interpreter_8_h_source.html#l00165">165</a> of file <a class="el" href="interpreter_8_h_source.html">interpreter.H</a>.</p>
+<p>Definition at line <a class="el" href="interpreter_8h_source.html#l00165">165</a> of file <a class="el" href="interpreter_8h_source.html">interpreter.h</a>.</p>
 </div><hr/><h2>Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="ae1eba88a0c9df9e0069f20ef5f44d2db"></a><!-- doxytag: member="infact::Interpreter::Interpreter" ref="ae1eba88a0c9df9e0069f20ef5f44d2db" args="(int debug=0)" -->
 <div class="memitem">
@@ -216,7 +216,7 @@ Public Member Functions</h2></td></tr>
 <p>Constructs a new instance with the specified debug level. </p>
 <p>The wrapped <a class="el" href="classinfact_1_1_environment.html">Environment </a> will also have the specified debug level. </p>
 
-<p>Definition at line <a class="el" href="interpreter_8_h_source.html#l00170">170</a> of file <a class="el" href="interpreter_8_h_source.html">interpreter.H</a>.</p>
+<p>Definition at line <a class="el" href="interpreter_8h_source.html#l00170">170</a> of file <a class="el" href="interpreter_8h_source.html">interpreter.h</a>.</p>
 
 </div>
 </div>
@@ -236,7 +236,7 @@ Public Member Functions</h2></td></tr>
 
 <p>Destroys this interpreter. </p>
 
-<p>Definition at line <a class="el" href="interpreter_8_h_source.html#l00175">175</a> of file <a class="el" href="interpreter_8_h_source.html">interpreter.H</a>.</p>
+<p>Definition at line <a class="el" href="interpreter_8h_source.html#l00175">175</a> of file <a class="el" href="interpreter_8h_source.html">interpreter.h</a>.</p>
 
 </div>
 </div>
@@ -258,7 +258,7 @@ Public Member Functions</h2></td></tr>
 <p>Returns a pointer to the environment of this interpreter. </p>
 <p>Crucially, this method returns a pointer to the <a class="el" href="classinfact_1_1_environment.html" title="An interface for an environment in which variables of various types are mapped to their values...">Environment</a> implementation class, <a class="el" href="classinfact_1_1_environment_impl.html">EnvironmentImpl</a>, so that its templated <a class="el" href="classinfact_1_1_environment_impl.html#a4c7040cdaade112f6cef88cff8c4ee6c">EnvironmentImpl::Get </a> method may be invoked. </p>
 
-<p>Definition at line <a class="el" href="interpreter_8_h_source.html#l00227">227</a> of file <a class="el" href="interpreter_8_h_source.html">interpreter.H</a>.</p>
+<p>Definition at line <a class="el" href="interpreter_8h_source.html#l00227">227</a> of file <a class="el" href="interpreter_8h_source.html">interpreter.h</a>.</p>
 
 </div>
 </div>
@@ -279,7 +279,7 @@ Public Member Functions</h2></td></tr>
 
 <p>Evaluates the statements in the specified text file. </p>
 
-<p>Definition at line <a class="el" href="interpreter_8_h_source.html#l00180">180</a> of file <a class="el" href="interpreter_8_h_source.html">interpreter.H</a>.</p>
+<p>Definition at line <a class="el" href="interpreter_8h_source.html#l00180">180</a> of file <a class="el" href="interpreter_8h_source.html">interpreter.h</a>.</p>
 
 </div>
 </div>
@@ -300,7 +300,7 @@ Public Member Functions</h2></td></tr>
 
 <p>Evaluates the statements in the specified stream. </p>
 
-<p>Definition at line <a class="el" href="interpreter_8_h_source.html#l00193">193</a> of file <a class="el" href="interpreter_8_h_source.html">interpreter.H</a>.</p>
+<p>Definition at line <a class="el" href="interpreter_8h_source.html#l00193">193</a> of file <a class="el" href="interpreter_8h_source.html">interpreter.h</a>.</p>
 
 </div>
 </div>
@@ -321,7 +321,7 @@ Public Member Functions</h2></td></tr>
 
 <p>Evaluates the statements in the specified string. </p>
 
-<p>Definition at line <a class="el" href="interpreter_8_h_source.html#l00187">187</a> of file <a class="el" href="interpreter_8_h_source.html">interpreter.H</a>.</p>
+<p>Definition at line <a class="el" href="interpreter_8h_source.html#l00187">187</a> of file <a class="el" href="interpreter_8h_source.html">interpreter.h</a>.</p>
 
 </div>
 </div>
@@ -368,7 +368,7 @@ template&lt;typename T &gt; </div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="interpreter_8_h_source.html#l00217">217</a> of file <a class="el" href="interpreter_8_h_source.html">interpreter.H</a>.</p>
+<p>Definition at line <a class="el" href="interpreter_8h_source.html#l00217">217</a> of file <a class="el" href="interpreter_8h_source.html">interpreter.h</a>.</p>
 
 </div>
 </div>
@@ -387,7 +387,7 @@ template&lt;typename T &gt; </div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="interpreter_8_h_source.html#l00199">199</a> of file <a class="el" href="interpreter_8_h_source.html">interpreter.H</a>.</p>
+<p>Definition at line <a class="el" href="interpreter_8h_source.html#l00199">199</a> of file <a class="el" href="interpreter_8h_source.html">interpreter.h</a>.</p>
 
 </div>
 </div>
@@ -406,13 +406,13 @@ template&lt;typename T &gt; </div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="interpreter_8_h_source.html#l00203">203</a> of file <a class="el" href="interpreter_8_h_source.html">interpreter.H</a>.</p>
+<p>Definition at line <a class="el" href="interpreter_8h_source.html#l00203">203</a> of file <a class="el" href="interpreter_8h_source.html">interpreter.h</a>.</p>
 
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li><a class="el" href="interpreter_8_h_source.html">interpreter.H</a></li>
-<li><a class="el" href="interpreter_8_c_source.html">interpreter.C</a></li>
+<li><a class="el" href="interpreter_8h_source.html">interpreter.h</a></li>
+<li><a class="el" href="interpreter_8cc_source.html">interpreter.cc</a></li>
 </ul>
 </div><!-- contents -->
 <!-- window showing the filter options -->
@@ -432,7 +432,7 @@ template&lt;typename T &gt; </div>
 
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Jan 8 2014 17:45:40 for InFact by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Jan 9 2014 10:56:23 for InFact by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.7.6.1
 </small></address>
