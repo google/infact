@@ -35,7 +35,7 @@
 #include <iostream>
 #include <memory>
 
-#include "interpreter.H"
+#include "interpreter.h"
 
 using namespace std;
 using namespace infact;
@@ -114,8 +114,8 @@ main(int argc, char **argv) {
 /// FactoryConstructible \endlink class; for convenience, most
 /// concrete \link infact::Factory Factory\endlink-constructible
 /// implementations derive from this class).  You can find some
-/// examples defined in the files \link example.H \endlink and \link
-/// example.C \endlink.
+/// examples defined in the files \link example.h \endlink and \link
+/// example.cc \endlink.
 ///
 /// You can try out typing assignment statements to the interpreter using
 /// the test executable <tt>bin/interpreter-test</tt>, built automatically
@@ -180,7 +180,7 @@ main(int argc, char **argv) {
 /// \endcode
 ///
 /// If <tt>Person</tt> were a \link infact::Factory
-/// Factory\endlink-constructible type in the InFact Framework (and it <b><i>is</i></b>: see \link example.H\endlink),
+/// Factory\endlink-constructible type in the InFact Framework (and it <b><i>is</i></b>: see \link example.h\endlink),
 /// we would be able to specify the following as a <i>specification string</i>
 /// to tell the \link infact::Factory Factory \endlink how to
 /// construct a <tt>Person</tt> instance for Fred:

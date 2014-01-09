@@ -37,7 +37,7 @@
 #include <ctype.h>
 #include <stdexcept>
 
-#include "stream-tokenizer.H"
+#include "stream-tokenizer.h"
 
 namespace infact {
 

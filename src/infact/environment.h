@@ -44,8 +44,8 @@
 #include <sstream>
 #include <vector>
 
-#include "stream-init.H"
-#include "stream-tokenizer.H"
+#include "stream-init.h"
+#include "stream-tokenizer.h"
 
 namespace infact {
 

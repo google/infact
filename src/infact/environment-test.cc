@@ -35,7 +35,7 @@
 #include <iostream>
 #include <memory>
 
-#include "environment-impl.H"
+#include "environment-impl.h"
 
 using namespace std;
 using namespace infact;

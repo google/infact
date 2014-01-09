@@ -33,8 +33,8 @@
 /// Implementation of the Environment class.
 /// \author dbikel@google.com (Dan Bikel)
 
-#include "environment-impl.H"
-#include "factory.H"
+#include "environment-impl.h"
+#include "factory.h"
 
 namespace infact {
 

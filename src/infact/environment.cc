@@ -34,8 +34,8 @@
 /// Environment instance.
 /// \author dbikel@google.com (Dan Bikel)
 
-#include "environment.H"
-#include "environment-impl.H"
+#include "environment.h"
+#include "environment-impl.h"
 
 namespace infact {
 

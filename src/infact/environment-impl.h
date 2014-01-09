@@ -43,7 +43,7 @@
 #include <unordered_set>
 #include <typeinfo>
 
-#include "environment.H"
+#include "environment.h"
 
 namespace infact {
 

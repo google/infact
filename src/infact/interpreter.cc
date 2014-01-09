@@ -35,7 +35,7 @@
 
 #include <sstream>
 
-#include "interpreter.H"
+#include "interpreter.h"
 
 using namespace std;
 

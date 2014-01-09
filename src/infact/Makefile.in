@@ -212,20 +212,20 @@ top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 AM_CPPFLAGS = -I. -Wall
 testdir = ${exec_prefix}/test-bin
-SRCS = stream-tokenizer.C environment.C environment-impl.C factory.C \
-	interpreter.C example.C
+SRCS = stream-tokenizer.cc environment.cc environment-impl.cc factory.cc \
+	interpreter.cc example.cc
 
 lib_LIBRARIES = lib/libinfact.a
 lib_libinfact_a_SOURCES = $(SRCS)
 
 # The following are test executables (similar to unit tescibts).
-bin_stream_tokenizer_test_SOURCES = $(SRCS) stream-tokenizer-test.C
-bin_environment_test_SOURCES = $(SRCS) environment-test.C
-bin_interpreter_test_SOURCES = $(SRCS) interpreter-test.C
+bin_stream_tokenizer_test_SOURCES = $(SRCS) stream-tokenizer-test.cc
+bin_environment_test_SOURCES = $(SRCS) environment-test.cc
+bin_interpreter_test_SOURCES = $(SRCS) interpreter-test.cc
 all: all-am
 
 .SUFFIXES:
-.SUFFIXES: .C .o .obj
+.SUFFIXES: .cc .o .obj
 $(srcdir)/Makefile.in:  $(srcdir)/Makefile.am  $(am__configure_deps)
 	@for dep in $?; do \
 	  case '$(am__configure_deps)' in \
@@ -359,14 +359,14 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/stream-tokenizer-test.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/stream-tokenizer.Po@am__quote@
 
-.C.o:
+.cc.o:
 @am__fastdepCXX_TRUE@	$(CXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
 @am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXXCOMPILE) -c -o $@ $<
 
-.C.obj:
+.cc.obj:
 @am__fastdepCXX_TRUE@	$(CXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ `$(CYGPATH_W) '$<'`
 @am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='$<' object='$@' libtool=no @AMDEPBACKSLASH@

@@ -43,7 +43,7 @@
 #include <unordered_map>
 #include <unordered_set>
 
-#include "environment-impl.H"
+#include "environment-impl.h"
 
 namespace infact {
 
@@ -100,7 +100,7 @@ class EnvironmentImpl;
 /// three statements from the previous example from a file called
 /// <tt>"example.infact"</tt>:
 /// \code
-/// #include "interpreter.H"
+/// #include "interpreter.h"
 /// // ...
 /// Interpreter i;
 /// i.Eval("example.infact");

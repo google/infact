@@ -42,7 +42,7 @@
 
 #include <string>
 
-#include "factory.H"
+#include "factory.h"
 
 namespace infact {
 

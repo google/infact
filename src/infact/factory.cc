@@ -30,44 +30,17 @@
 //
 //
 /// \file
-/// Provides implementations of the various example classes.
+/// Implementation of a generic dynamic object factory.
+/// \author dbikel@google.com (Dan Bikel)
 
-#include "example.H"
-#include "environment-impl.H"
+#include "factory.h"
 
 namespace infact {
 
-// Normally, the various IMPLEMENT_FACTORY declarations would be
-// separate from the various REGISTER_* declarations, which would
-// usually appear in the separate concrete implementations' .C files.
-// For compactness, we have this single .C file, so everything is
-// lumped together.
+int
+FactoryContainer::initialized_ = 0;
 
-IMPLEMENT_FACTORY(Date)
-REGISTER_DATE(DateImpl)
-
-IMPLEMENT_FACTORY(Person)
-REGISTER_PERSON(PersonImpl)
-
-IMPLEMENT_FACTORY(Animal)
-REGISTER_ANIMAL(Cow)
-REGISTER_ANIMAL(Sheep)
-
-IMPLEMENT_FACTORY(PetOwner)
-REGISTER_PET_OWNER(HumanPetOwner)
-
-void Sheep::Init(StreamTokenizer &st, Environment *env) {
-  int env_age;
-  // Note how we need to cast Environment down to EnvironmentImpl,
-  // because only the implementation has the templated \link
-  // EnvironmentImpl::Get \endlink method, because only an
-  // implementation can be aware of the all the \link
-  // Factory\endlink-constructible types.
-  EnvironmentImpl *env_impl = dynamic_cast<EnvironmentImpl *>(env);
-  if (env_impl != nullptr &&
-      env_impl->Get("age", &env_age)) {
-    age_ = env_age * 2;
-  }
-}
+vector<FactoryBase *> *
+FactoryContainer::factories_ = 0;
 
 }  // namespace infact

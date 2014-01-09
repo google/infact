@@ -36,7 +36,7 @@
 
 #include <iostream>
 
-#include "stream-tokenizer.H"
+#include "stream-tokenizer.h"
 
 using namespace infact;
 using namespace std;
