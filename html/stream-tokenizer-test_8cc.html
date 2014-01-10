@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
-<title>InFact: environment-test.C Source File</title>
+<title>InFact: stream-tokenizer-test.cc File Reference</title>
 
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
@@ -76,29 +76,60 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   </div>
 </div>
 <div class="header">
+  <div class="summary">
+<a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
-<div class="title">environment-test.C</div>  </div>
+<div class="title">stream-tokenizer-test.cc File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="environment-test_8_c.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 
-<a name="l00002"></a>00002 
-<a name="l00003"></a>00003 
-<a name="l00004"></a>00004 
-<a name="l00005"></a>00005 <span class="preprocessor">#include &lt;iostream&gt;</span>
-<a name="l00006"></a>00006 <span class="preprocessor">#include &lt;memory&gt;</span>
-<a name="l00007"></a>00007 
-<a name="l00008"></a>00008 <span class="preprocessor">#include &quot;<a class="code" href="environment-impl_8_h.html" title="Provides an environment for variables and their values, either primitive or Factory-constructible obj...">environment-impl.H</a>&quot;</span>
-<a name="l00009"></a>00009 
-<a name="l00010"></a>00010 <span class="keyword">using namespace </span>std;
-<a name="l00011"></a>00011 <span class="keyword">using namespace </span>infact;
-<a name="l00012"></a>00012 
-<a name="l00013"></a>00013 <span class="keywordtype">int</span>
-<a name="l00014"></a><a class="code" href="environment-test_8_c.html#a3c04138a5bfe5d72780bb7e82a18e627">00014</a> <a class="code" href="environment-test_8_c.html#a3c04138a5bfe5d72780bb7e82a18e627">main</a>(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span> **argv) {
-<a name="l00015"></a>00015   <span class="keywordtype">int</span> debug = 1;
-<a name="l00016"></a>00016   <a class="code" href="classinfact_1_1_environment.html" title="An interface for an environment in which variables of various types are mapped to their values...">Environment</a> *env = <span class="keyword">new</span> <a class="code" href="classinfact_1_1_environment_impl.html" title="Provides a set of named variables and their types, as well as the values for those variables...">EnvironmentImpl</a>(debug);
-<a name="l00017"></a>00017   <span class="keyword">delete</span> env;
-<a name="l00018"></a>00018 }
-</pre></div></div><!-- contents -->
+
+<p>Test driver for the <a class="el" href="classinfact_1_1_stream_tokenizer.html">StreamTokenizer </a> class.  
+<a href="#details">More...</a></p>
+<div class="textblock"><code>#include &lt;iostream&gt;</code><br/>
+<code>#include &quot;<a class="el" href="stream-tokenizer_8h_source.html">stream-tokenizer.h</a>&quot;</code><br/>
+</div>
+<p><a href="stream-tokenizer-test_8cc_source.html">Go to the source code of this file.</a></p>
+<table class="memberdecls">
+<tr><td colspan="2"><h2><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stream-tokenizer-test_8cc.html#a3c04138a5bfe5d72780bb7e82a18e627">main</a> (int argc, char **argv)</td></tr>
+</table>
+<hr/><a name="details" id="details"></a><h2>Detailed Description</h2>
+<div class="textblock"><p>Test driver for the <a class="el" href="classinfact_1_1_stream_tokenizer.html">StreamTokenizer </a> class. </p>
+<dl class="author"><dt><b>Author:</b></dt><dd><a href="mailto:dbikel@google.com">dbikel@google.com</a> (Dan Bikel) </dd></dl>
+
+<p>Definition in file <a class="el" href="stream-tokenizer-test_8cc_source.html">stream-tokenizer-test.cc</a>.</p>
+</div><hr/><h2>Function Documentation</h2>
+<a class="anchor" id="a3c04138a5bfe5d72780bb7e82a18e627"></a><!-- doxytag: member="stream&#45;tokenizer&#45;test.cc::main" ref="a3c04138a5bfe5d72780bb7e82a18e627" args="(int argc, char **argv)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int <a class="el" href="stream-tokenizer-test_8cc.html#a3c04138a5bfe5d72780bb7e82a18e627">main</a> </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>argc</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char **&#160;</td>
+          <td class="paramname"><em>argv</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="stream-tokenizer-test_8cc_source.html#l00045">45</a> of file <a class="el" href="stream-tokenizer-test_8cc_source.html">stream-tokenizer-test.cc</a>.</p>
+
+</div>
+</div>
+</div><!-- contents -->
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -116,7 +147,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Jan 8 2014 17:45:39 for InFact by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Jan 10 2014 15:47:30 for InFact by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.7.6.1
 </small></address>
