@@ -5,6 +5,8 @@ var searchData=
   ['environment_2dtest_2ecc',['environment-test.cc',['../environment-test_8cc.html',1,'']]],
   ['environment_2ecc',['environment.cc',['../environment_8cc.html',1,'']]],
   ['environment_2eh',['environment.h',['../environment_8h.html',1,'']]],
+  ['error_2ecc',['error.cc',['../error_8cc.html',1,'']]],
+  ['error_2eh',['error.h',['../error_8h.html',1,'']]],
   ['example_2ecc',['example.cc',['../example_8cc.html',1,'']]],
   ['example_2eh',['example.h',['../example_8h.html',1,'']]]
 ];

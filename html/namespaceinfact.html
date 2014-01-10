@@ -78,6 +78,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
+<a href="#func-members">Functions</a> &#124;
 <a href="#var-members">Variables</a>  </div>
   <div class="headertitle">
 <div class="title">infact Namespace Reference</div>  </div>
@@ -177,6 +178,10 @@ Classes</h2></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">A specialization to initialize <code>string</code> data members.  <a href="classinfact_1_1_initializer_3_01string_01_4.html#details">More...</a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classinfact_1_1_stream_tokenizer.html">StreamTokenizer</a></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">A simple class for tokenizing a stream of tokens for the formally specified language used to construct objects for the InFact framework.  <a href="classinfact_1_1_stream_tokenizer.html#details">More...</a><br/></td></tr>
+<tr><td colspan="2"><h2><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceinfact.html#a746fb382cf3fd6cf656f40669d90372c">Error</a> (const std::string &amp;message)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Reports an error encountered during parsing and/or construction of an object.  <a href="#a746fb382cf3fd6cf656f40669d90372c"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="var-members"></a>
 Variables</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classinfact_1_1_constructor.html">Constructor</a>&lt; <a class="el" href="classinfact_1_1_date.html">Date</a> &gt; *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceinfact.html#a70b4eb720c3a947f73d82ce711be262b">DateImpl_my_protoype</a> = <a class="el" href="classinfact_1_1_factory.html">Factory</a>&lt; <a class="el" href="classinfact_1_1_date.html">Date</a> &gt;::Register(string(&quot;DateImpl&quot;), new <a class="el" href="classinfact_1_1_date_impl_constructor.html">DateImplConstructor</a>())</td></tr>
@@ -185,6 +190,29 @@ Variables</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classinfact_1_1_constructor.html">Constructor</a>&lt; <a class="el" href="classinfact_1_1_animal.html">Animal</a> &gt; *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceinfact.html#ac4e8bbe20afc54a77c73e96f30c842b9">Sheep_my_protoype</a> = <a class="el" href="classinfact_1_1_factory.html">Factory</a>&lt; <a class="el" href="classinfact_1_1_animal.html">Animal</a> &gt;::Register(string(&quot;Sheep&quot;), new <a class="el" href="classinfact_1_1_sheep_constructor.html">SheepConstructor</a>())</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classinfact_1_1_constructor.html">Constructor</a>&lt; <a class="el" href="classinfact_1_1_pet_owner.html">PetOwner</a> &gt; *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceinfact.html#ab7fbb0f2c855cef766c9a7817c149f41">HumanPetOwner_my_protoype</a> = <a class="el" href="classinfact_1_1_factory.html">Factory</a>&lt; <a class="el" href="classinfact_1_1_pet_owner.html">PetOwner</a> &gt;::Register(string(&quot;HumanPetOwner&quot;), new <a class="el" href="classinfact_1_1_human_pet_owner_constructor.html">HumanPetOwnerConstructor</a>())</td></tr>
 </table>
+<hr/><h2>Function Documentation</h2>
+<a class="anchor" id="a746fb382cf3fd6cf656f40669d90372c"></a><!-- doxytag: member="infact::Error" ref="a746fb382cf3fd6cf656f40669d90372c" args="(const std::string &amp;message)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="namespaceinfact.html#a746fb382cf3fd6cf656f40669d90372c">infact::Error</a> </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>message</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Reports an error encountered during parsing and/or construction of an object. </p>
+<p>Optionally throws an exception, according to the value of <a class="el" href="error_8h.html#ad5f153a3ec9cf3f0c9e6a8bffa1777ca">INFACT_THROW_EXCEPTIONS</a>. </p>
+
+<p>Definition at line <a class="el" href="error_8cc_source.html#l00040">40</a> of file <a class="el" href="error_8cc_source.html">error.cc</a>.</p>
+
+</div>
+</div>
 <hr/><h2>Variable Documentation</h2>
 <a class="anchor" id="ad1d86e7b920bf6cccc66aef25423ad50"></a><!-- doxytag: member="infact::Cow_my_protoype" ref="ad1d86e7b920bf6cccc66aef25423ad50" args="" -->
 <div class="memitem">
@@ -279,7 +307,7 @@ Variables</h2></td></tr>
 
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Jan 9 2014 11:00:00 for InFact by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Jan 10 2014 15:35:01 for InFact by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.7.6.1
 </small></address>

@@ -42,8 +42,13 @@
 
 namespace infact {
 
+/// Determines whether the Error function, and therefore the entire InFact
+/// library, throws an exception when an error occurs.
 #define INFACT_THROW_EXCEPTIONS 1
 
+/// Reports an error encountered during parsing and/or construction
+/// of an object.  Optionally throws an exception, according to the value
+/// of \link INFACT_THROW_EXCEPTIONS\endlink.
 void Error(const std::string &message);
 
 }  // namespace infact
