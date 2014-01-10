@@ -45,6 +45,7 @@
 #include <vector>
 #include <stdexcept>
 
+#include "error.h"
 #include "stream-tokenizer.h"
 
 namespace infact {
@@ -96,7 +97,7 @@ class Initializer : public StreamInitializer {
              << "position " << st.PeekTokenStart() << " but found "
              << StreamTokenizer::TypeName(token_type) << " token: \""
              << st.Peek() << "\"";
-      throw std::runtime_error(err_ss.str());
+      Error(err_ss.str());
     }
     Factory<typename T::element_type> factory;
     (*member_) = factory.CreateOrDie(st, env);
@@ -120,7 +121,7 @@ class Initializer<int> : public StreamInitializer {
              << "position " << st.PeekTokenStart() << " but found "
              << StreamTokenizer::TypeName(token_type) << " token: \""
              << st.Peek() << "\"";
-      throw std::runtime_error(err_ss.str());
+      Error(err_ss.str());
     }
     (*member_) = atoi(st.Next().c_str());
   }
@@ -142,7 +143,7 @@ class Initializer<double> : public StreamInitializer {
              << "position " << st.PeekTokenStart() << " but found "
              << StreamTokenizer::TypeName(token_type) << " token: \""
              << st.Peek() << "\"";
-      throw std::runtime_error(err_ss.str());
+      Error(err_ss.str());
     }
     (*member_) = atof(st.Next().c_str());
   }
@@ -164,7 +165,7 @@ class Initializer<bool> : public StreamInitializer {
              << "position " << st.PeekTokenStart() << " but found "
              << StreamTokenizer::TypeName(token_type) << " token: \""
              << st.Peek() << "\"";
-      throw std::runtime_error(err_ss.str());
+      Error(err_ss.str());
     }
     size_t next_tok_start = st.PeekTokenStart();
     string next_tok = st.Next();
@@ -177,7 +178,7 @@ class Initializer<bool> : public StreamInitializer {
       err_ss << "Initializer<bool>: expected either \"true\" or \"false\" "
              << "token at stream position " << next_tok_start << " but found "
              << "token: \"" << next_tok << "\"";
-      throw new std::runtime_error(err_ss.str());
+      Error(err_ss.str());
     }
   }
  private:
@@ -198,7 +199,7 @@ class Initializer<string> : public StreamInitializer {
              << "position " << st.PeekTokenStart() << " but found "
              << StreamTokenizer::TypeName(token_type) << " token: \""
              << st.Peek() << "\"";
-      throw std::runtime_error(err_ss.str());
+      Error(err_ss.str());
     }
     (*member_) = st.Next();
   }

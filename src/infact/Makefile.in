@@ -77,9 +77,9 @@ LIBRARIES = $(lib_LIBRARIES)
 ARFLAGS = cru
 lib_libinfact_a_AR = $(AR) $(ARFLAGS)
 lib_libinfact_a_LIBADD =
-am__objects_1 = stream-tokenizer.$(OBJEXT) environment.$(OBJEXT) \
-	environment-impl.$(OBJEXT) factory.$(OBJEXT) \
-	interpreter.$(OBJEXT) example.$(OBJEXT)
+am__objects_1 = error.$(OBJEXT) stream-tokenizer.$(OBJEXT) \
+	environment.$(OBJEXT) environment-impl.$(OBJEXT) \
+	factory.$(OBJEXT) interpreter.$(OBJEXT) example.$(OBJEXT)
 am_lib_libinfact_a_OBJECTS = $(am__objects_1)
 lib_libinfact_a_OBJECTS = $(am_lib_libinfact_a_OBJECTS)
 am__dirstamp = $(am__leading_dot)dirstamp
@@ -212,8 +212,8 @@ top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 AM_CPPFLAGS = -I. -Wall
 testdir = ${exec_prefix}/test-bin
-SRCS = stream-tokenizer.cc environment.cc environment-impl.cc factory.cc \
-	interpreter.cc example.cc
+SRCS = error.cc stream-tokenizer.cc environment.cc environment-impl.cc \
+	factory.cc interpreter.cc example.cc
 
 lib_LIBRARIES = lib/libinfact.a
 lib_libinfact_a_SOURCES = $(SRCS)
@@ -352,6 +352,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/environment-impl.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/environment-test.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/environment.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/error.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/example.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/factory.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/interpreter-test.Po@am__quote@

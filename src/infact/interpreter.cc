@@ -35,6 +35,7 @@
 
 #include <sstream>
 
+#include "error.h"
 #include "interpreter.h"
 
 using namespace std;
@@ -91,7 +92,7 @@ Interpreter::Eval(StreamTokenizer &st) {
       err_ss << "Interpreter:" << filename_
              << ": error: unexpected EOF at stream position "
              << st.tellg();
-      throw std::runtime_error(err_ss.str());
+      Error(err_ss.str());
     }
 
     // Consume and set the value for this variable in the environment.
@@ -122,7 +123,7 @@ Interpreter::WrongTokenError(size_t pos,
          << " expected token \"" << expected << "\" but found \"" << found
          << "\" (token type: " << StreamTokenizer::TypeName(found_type)
          << ")";
-  throw std::runtime_error(err_ss.str());
+  Error(err_ss.str());
 }
 
 void
@@ -146,7 +147,7 @@ Interpreter::WrongTokenTypeError(size_t pos,
          << " expected token type " << expected_type
          << " but found " << found_type
          << "; token=\"" << token << "\"";
-  throw std::runtime_error(err_ss.str());
+  Error(err_ss.str());
 }
 
 }  // namespace infact

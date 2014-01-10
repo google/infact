@@ -123,7 +123,7 @@ EnvironmentImpl::ReadAndSet(const string &varname, StreamTokenizer &st,
     err_ss << "Environment: error: expected literal or Factory-constructible "
 	   << "type but found token \"" << st.Peek() << "\" of type "
            << StreamTokenizer::TypeName(st.PeekTokenType());
-    throw std::runtime_error(err_ss.str());
+    Error(err_ss.str());
   }
 
   string next_tok = st.Peek();
@@ -146,14 +146,14 @@ EnvironmentImpl::ReadAndSet(const string &varname, StreamTokenizer &st,
     ostringstream err_ss;
     err_ss << "Environment: error: no explicit type specifier and could not "
            << "infer type for variable " << varname;
-    throw std::runtime_error(err_ss.str());
+    Error(err_ss.str());
   }
   if (type != "" && inferred_type != "" && type != inferred_type) {
     ostringstream err_ss;
     err_ss << "Environment: error: explicit type " << type
            << " and inferred type " << inferred_type
            << " disagree for variable " << varname;
-    throw std::runtime_error(err_ss.str());
+    Error(err_ss.str());
   }
 
   // If no explicit type specifier, then the inferred_type is the type.
@@ -233,7 +233,7 @@ EnvironmentImpl::InferType(const string &varname,
           ostringstream err_ss;
           err_ss << "Environment: error: token " << next_tok
                  << " is neither a variable nor a concrete object typename";
-          throw std::runtime_error(err_ss.str());
+          Error(err_ss.str());
         }
         return type;
       }

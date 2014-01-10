@@ -5,8 +5,8 @@ test_PROGRAMS = bin/stream-tokenizer-test \
 		bin/environment-test \
 		bin/interpreter-test
 
-SRCS =  stream-tokenizer.cc environment.cc environment-impl.cc factory.cc \
-	interpreter.cc example.cc
+SRCS =  error.cc stream-tokenizer.cc environment.cc environment-impl.cc \
+	factory.cc interpreter.cc example.cc
 
 lib_LIBRARIES = lib/libinfact.a
 lib_libinfact_a_SOURCES = $(SRCS)

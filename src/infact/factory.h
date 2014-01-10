@@ -44,8 +44,9 @@
 #include <vector>
 #include <stdexcept>
 
-#include "stream-tokenizer.h"
 #include "environment.h"
+#include "error.h"
+#include "stream-tokenizer.h"
 
 namespace infact {
 
@@ -301,7 +302,7 @@ class Initializers {
       ostringstream err_ss;
       err_ss << "Initializers::Add: error: two members have the same name: "
 	     << name;
-      throw std::runtime_error(err_ss.str());
+      Error(err_ss.str());
     }
     initializers_[name] = new TypedMemberInitializer<T>(name, member, required);
   }
@@ -652,7 +653,7 @@ class Factory : public FactoryBase {
       err_ss << "Factory<" << BaseName() << ">: "
              << "error: expected type specifier token but found "
              << StreamTokenizer::TypeName(token_type);
-      throw std::runtime_error(err_ss.str());
+      Error(err_ss.str());
     }
 
     // Read the concrete type of object to be created.
@@ -664,7 +665,7 @@ class Factory : public FactoryBase {
       err_ss << "Factory<" << BaseName() << ">: "
              << "error: expected '(' at stream position "
              << st.PeekTokenStart() << " but found \"" << st.Peek() << "\"";
-      throw std::runtime_error(err_ss.str());
+      Error(err_ss.str());
     }
     st.Next();
 
@@ -675,7 +676,7 @@ class Factory : public FactoryBase {
       ostringstream err_ss;
       err_ss << "Factory<" << BaseName() << ">: "
              << "error: unknown type: \"" << type << "\"";
-      throw std::runtime_error(err_ss.str());
+      Error(err_ss.str());
     }
     shared_ptr<T> instance(cons_it->second->NewInstance());
 
@@ -693,7 +694,7 @@ class Factory : public FactoryBase {
                << "stream position " << st.PeekTokenStart() << " but found "
                << StreamTokenizer::TypeName(token_type) << ": \""
                << st.Peek() << "\"";
-        throw std::runtime_error(err_ss.str());
+        Error(err_ss.str());
       }
       size_t member_name_start = st.PeekTokenStart();
       string member_name = st.Next();
@@ -704,7 +705,7 @@ class Factory : public FactoryBase {
                << "error: unknown member name \"" << member_name
                << "\" in initializer list for type " << type << " at stream "
                << "position " << member_name_start;
-        throw std::runtime_error(err_ss.str());
+        Error(err_ss.str());
       }
       MemberInitializer *member_initializer = init_it->second;
 
@@ -714,7 +715,7 @@ class Factory : public FactoryBase {
         err_ss << "Factory<" << BaseName() << ">: "
                << "error: expected '(' at stream position "
                << st.PeekTokenStart() << " but found \"" << st.Peek() << "\"";
-        throw std::runtime_error(err_ss.str());
+        Error(err_ss.str());
       }
       st.Next();
 
@@ -727,7 +728,7 @@ class Factory : public FactoryBase {
         err_ss << "Factory<" << BaseName() << ">: "
                << "error: expected ')' at stream position "
                << st.PeekTokenStart() << " but found \"" << st.Peek() << "\"";
-        throw std::runtime_error(err_ss.str());
+        Error(err_ss.str());
       }
       st.Next();
 
@@ -738,7 +739,7 @@ class Factory : public FactoryBase {
         err_ss << "Factory<" << BaseName() << ">: "
                << "error: expected ',' or ')' at stream position "
                << st.PeekTokenStart() << " but found \"" << st.Peek() << "\"";
-        throw std::runtime_error(err_ss.str());
+        Error(err_ss.str());
       }
       // Read comma, if present.
       if (st.Peek() == ",") {
@@ -752,7 +753,7 @@ class Factory : public FactoryBase {
       err_ss << "Factory<" << BaseName() << ">: "
              << "error: expected ')' at stream position "
              << st.PeekTokenStart() << " but found \"" << st.Peek() << "\"";
-      throw std::runtime_error(err_ss.str());
+      Error(err_ss.str());
     }
     st.Next();
 
@@ -769,7 +770,7 @@ class Factory : public FactoryBase {
                << "error: initialization for member with name \""
                << init_it->first << "\" required but not found (current "
                << "stream position: " << st.tellg() << ")";
-        throw std::runtime_error(err_ss.str());
+        Error(err_ss.str());
       }
     }
 

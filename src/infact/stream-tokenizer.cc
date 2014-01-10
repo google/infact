@@ -35,6 +35,7 @@
 /// \author dbikel@google.com (Dan Bikel)
 
 #include <ctype.h>
+#include <sstream>
 #include <stdexcept>
 
 #include "stream-tokenizer.h"
@@ -119,12 +120,13 @@ StreamTokenizer::GetNext(Token *next) {
       }
     }
     if (!found_closing_quote) {
-      cerr << "StreamTokenizer: error: could not find closing "
-           << "double quote for string literal beginning at stream index "
-           << string_literal_start_pos
-           << "; partial string literal read: \""
-           << next->tok << endl;
-      throw std::runtime_error("unclosed string literal");
+      ostringstream err_ss;
+      err_ss << "StreamTokenizer: error: could not find closing "
+             << "double quote for string literal beginning at stream index "
+             << string_literal_start_pos
+             << "; partial string literal read: \""
+             << next->tok;
+      Error(err_ss.str());
     }
     next_tok_complete = true;
     next->type = STRING;

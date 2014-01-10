@@ -44,6 +44,7 @@
 #include <sstream>
 #include <vector>
 
+#include "error.h"
 #include "stream-init.h"
 #include "stream-tokenizer.h"
 
@@ -316,7 +317,7 @@ class VarMapImpl : public VarMapBase {
     // Invoke Derived class' copy constructor.
     const Derived *derived = dynamic_cast<const Derived *>(this);
     if (derived == nullptr) {
-      throw std::runtime_error("bad dynamic cast");
+      Error("bad dynamic cast");
     }
     Derived *var_map_copy = new Derived(*derived);
     var_map_copy->SetMembers(name_, env, is_primitive_);
@@ -473,7 +474,7 @@ class VarMap<vector<T> > : public VarMapImpl<vector<T>, VarMap<vector<T> > > {
                << "error: expected '{' at stream position "
                << st.PeekPrevTokenStart() << " but found \""
                << st.PeekPrev() << "\"";
-        throw std::runtime_error(err_ss.str());
+        Error(err_ss.str());
       }
 
       vector<T> value;
@@ -492,15 +493,15 @@ class VarMap<vector<T> > : public VarMapImpl<vector<T>, VarMap<vector<T> > > {
         VarMap<T> *typed_element_var_map =
             dynamic_cast<VarMap<T> *>(element_var_map);
         T element;
-        bool success = typed_element_var_map->Get(element_name, &element);
-        if (!success) {
+        if (typed_element_var_map->Get(element_name, &element)) {
+          value.push_back(element);
+        } else {
           ostringstream err_ss;
           err_ss << "VarMap<" << Base::Name() << ">::ReadAndSet: trouble "
                  << "initializing element " << (element_idx - 1)
                  << " of variable " << varname;
-          throw std::runtime_error(err_ss.str());
+          Error(err_ss.str());
         }
-        value.push_back(element);
         // Each vector element initializer must be followed by a comma
         // or the final closing parenthesis.
         if (st.Peek() != ","  && st.Peek() != "}") {
@@ -508,7 +509,7 @@ class VarMap<vector<T> > : public VarMapImpl<vector<T>, VarMap<vector<T> > > {
           err_ss << "Initializer<vector<T>>: "
                  << "error: expected ',' or '}' at stream position "
                  << st.PeekTokenStart() << " but found \"" << st.Peek() << "\"";
-          throw std::runtime_error(err_ss.str());
+          Error(err_ss.str());
         }
         // Read comma, if present.
         if (st.Peek() == ",") {

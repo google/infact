@@ -44,6 +44,8 @@
 #include <string.h>
 #include <vector>
 
+#include "error.h"
+
 namespace infact {
 
 using std::istream;
@@ -200,9 +202,7 @@ class StreamTokenizer {
   /// Returns the next token in the token stream.
   string Next() {
     if (!HasNext()) {
-      // Error.
-      throw std::runtime_error("invoking StreamTokenizer::Next when HasNext "
-			       "returns false");
+      Error("invoking StreamTokenizer::Next when HasNext returns false");
     }
 
     size_t curr_token_idx = next_token_idx_;

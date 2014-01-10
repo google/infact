@@ -44,6 +44,7 @@
 #include <typeinfo>
 
 #include "environment.h"
+#include "error.h"
 
 namespace infact {
 
@@ -195,7 +196,7 @@ EnvironmentImpl::Get(const string &varname, T *value) const {
     ostringstream err_ss;
     err_ss << "Environment::Get: error: types_ and var_map_ data members "
            << "are out of sync";
-    throw std::runtime_error(err_ss.str());
+    Error(err_ss.str());
   }
 
   // Do a dynamic_cast down to the type-specific VarMap.
@@ -216,7 +217,7 @@ EnvironmentImpl::Get(const string &varname, T *value) const {
     err_ss << "Environment::Get: error: no value for variable "
            << varname << " of type " << typeid(*value).name()
            << "; types_ and var_map_ data members are out of sync";
-    throw std::runtime_error(err_ss.str());
+    Error(err_ss.str());
   }
   return success;
   }
