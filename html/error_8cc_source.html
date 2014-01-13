@@ -121,7 +121,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00041"></a>00041 <span class="preprocessor">#ifdef INFACT_THROW_EXCEPTIONS</span>
 <a name="l00042"></a>00042 <span class="preprocessor"></span>  <span class="keywordflow">throw</span> std::runtime_error(message);
 <a name="l00043"></a>00043 <span class="preprocessor">#else</span>
-<a name="l00044"></a>00044 <span class="preprocessor"></span>  cerr &lt;&lt; message &lt;&lt; endl;
+<a name="l00044"></a>00044 <span class="preprocessor"></span>  std::cerr &lt;&lt; message &lt;&lt; endl;
 <a name="l00045"></a>00045   assert <span class="keyword">false</span>;
 <a name="l00046"></a>00046 <span class="preprocessor">#endif</span>
 <a name="l00047"></a>00047 <span class="preprocessor"></span>}
@@ -145,7 +145,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Jan 10 2014 15:47:30 for InFact by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Jan 13 2014 11:20:20 for InFact by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.7.6.1
 </small></address>

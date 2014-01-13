@@ -113,81 +113,82 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00031"></a>00031 <span class="comment">//</span>
 <a name="l00036"></a>00036 <span class="comment"></span>
 <a name="l00037"></a>00037 <span class="preprocessor">#include &lt;iostream&gt;</span>
-<a name="l00038"></a>00038 
-<a name="l00039"></a>00039 <span class="preprocessor">#include &quot;<a class="code" href="stream-tokenizer_8h.html" title="Provides the StreamTokenizer  class.">stream-tokenizer.h</a>&quot;</span>
-<a name="l00040"></a>00040 
-<a name="l00041"></a>00041 <span class="keyword">using namespace </span>infact;
+<a name="l00038"></a>00038 <span class="preprocessor">#include &lt;string&gt;</span>
+<a name="l00039"></a>00039 
+<a name="l00040"></a>00040 <span class="preprocessor">#include &quot;<a class="code" href="stream-tokenizer_8h.html" title="Provides the StreamTokenizer  class.">stream-tokenizer.h</a>&quot;</span>
+<a name="l00041"></a>00041 
 <a name="l00042"></a>00042 <span class="keyword">using namespace </span>std;
-<a name="l00043"></a>00043 
-<a name="l00044"></a>00044 <span class="keywordtype">int</span>
-<a name="l00045"></a><a class="code" href="stream-tokenizer-test_8cc.html#a3c04138a5bfe5d72780bb7e82a18e627">00045</a> <a class="code" href="environment-test_8cc.html#a3c04138a5bfe5d72780bb7e82a18e627">main</a>(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span> **argv) {
-<a name="l00046"></a>00046   cerr &lt;&lt; <span class="stringliteral">&quot;Testing StreamTokenizer with string arg constructor:&quot;</span> &lt;&lt; endl;
-<a name="l00047"></a>00047   <span class="keywordtype">string</span> test_string = <span class="stringliteral">&quot;foo(bar, baz(34), bleh(\&quot;fleh with spaces\&quot;))&quot;</span>;
-<a name="l00048"></a>00048   <a class="code" href="classinfact_1_1_stream_tokenizer.html" title="A simple class for tokenizing a stream of tokens for the formally specified language used to construc...">StreamTokenizer</a> st1(test_string);
-<a name="l00049"></a>00049   <span class="keywordflow">while</span> (st1.<a class="code" href="classinfact_1_1_stream_tokenizer.html#ac8de4792d7dadb993d3e96c54df2cbe6" title="Returns whether there is another token in the token stream.">HasNext</a>()) {
-<a name="l00050"></a>00050     <a class="code" href="classinfact_1_1_stream_tokenizer.html#ac6e5b0b274a66a2a504ac4fd425c57b3" title="The set of types of tokens read by this stream tokenizer.">StreamTokenizer::TokenType</a> type = st1.<a class="code" href="classinfact_1_1_stream_tokenizer.html#a50a622f50ef6aa800a9c7c15b96bb6cb" title="Returns the type of the next token, or EOF_TYPE if there is no next token.">PeekTokenType</a>();
-<a name="l00051"></a>00051     <span class="keywordtype">size_t</span> start = st1.<a class="code" href="classinfact_1_1_stream_tokenizer.html#acbafcc5e7f6a0b3e4cd8166c4a53f4a8" title="Returns the next token&rsquo;s start position, or the byte position of the underlying byte stream if there ...">PeekTokenStart</a>();
-<a name="l00052"></a>00052     <span class="keywordtype">size_t</span> line_number = st1.<a class="code" href="classinfact_1_1_stream_tokenizer.html#a70c11e357a41f13d3c8e916fab290145" title="Returns the line number of the first byte of the next token, or the current line number of the underl...">PeekTokenLineNumber</a>();
-<a name="l00053"></a>00053     cout &lt;&lt; <span class="stringliteral">&quot;token: \&quot;&quot;</span> &lt;&lt; st1.<a class="code" href="classinfact_1_1_stream_tokenizer.html#ac6827f00a3da760e23241e890becee0c" title="Returns the next token in the token stream.">Next</a>() &lt;&lt; <span class="stringliteral">&quot;\&quot;&quot;</span>
-<a name="l00054"></a>00054          &lt;&lt; <span class="stringliteral">&quot;; type=&quot;</span> &lt;&lt; <a class="code" href="classinfact_1_1_stream_tokenizer.html#acd4baaa4ccb442e4398550e2f8c76419" title="Returns a string type name for the specified TokenType constant.">StreamTokenizer::TypeName</a>(type)
-<a name="l00055"></a>00055          &lt;&lt; <span class="stringliteral">&quot;; start=&quot;</span> &lt;&lt; start
-<a name="l00056"></a>00056          &lt;&lt; <span class="stringliteral">&quot;; line=&quot;</span> &lt;&lt; line_number
-<a name="l00057"></a>00057          &lt;&lt; endl;
-<a name="l00058"></a>00058     cout &lt;&lt; <span class="stringliteral">&quot;chars so far: &#39;&quot;</span> &lt;&lt; st1.<a class="code" href="classinfact_1_1_stream_tokenizer.html#a3790d1692c84c79af738a9ade303cbd7" title="Returns the entire sequence of characters read so far by this stream tokenizer as a newly constructed...">str</a>() &lt;&lt; <span class="stringliteral">&quot;&#39;&quot;</span> &lt;&lt; endl;
-<a name="l00059"></a>00059   }
-<a name="l00060"></a>00060   cerr &lt;&lt; <span class="stringliteral">&quot;Done.&quot;</span> &lt;&lt; endl;
-<a name="l00061"></a>00061 
-<a name="l00062"></a>00062   cerr &lt;&lt; <span class="stringliteral">&quot;\nTesting Putback:&quot;</span> &lt;&lt; endl;
-<a name="l00063"></a>00063   st1.<a class="code" href="classinfact_1_1_stream_tokenizer.html#a77e027a255cb0db73632e1ccd036808a" title="A synonym for Rewind(1).">Putback</a>();
-<a name="l00064"></a>00064   <span class="keywordflow">while</span> (st1.<a class="code" href="classinfact_1_1_stream_tokenizer.html#ac8de4792d7dadb993d3e96c54df2cbe6" title="Returns whether there is another token in the token stream.">HasNext</a>()) {
-<a name="l00065"></a>00065     <a class="code" href="classinfact_1_1_stream_tokenizer.html#ac6e5b0b274a66a2a504ac4fd425c57b3" title="The set of types of tokens read by this stream tokenizer.">StreamTokenizer::TokenType</a> type = st1.<a class="code" href="classinfact_1_1_stream_tokenizer.html#a50a622f50ef6aa800a9c7c15b96bb6cb" title="Returns the type of the next token, or EOF_TYPE if there is no next token.">PeekTokenType</a>();
-<a name="l00066"></a>00066     <span class="keywordtype">size_t</span> start = st1.<a class="code" href="classinfact_1_1_stream_tokenizer.html#acbafcc5e7f6a0b3e4cd8166c4a53f4a8" title="Returns the next token&rsquo;s start position, or the byte position of the underlying byte stream if there ...">PeekTokenStart</a>();
-<a name="l00067"></a>00067     <span class="keywordtype">size_t</span> line_number = st1.<a class="code" href="classinfact_1_1_stream_tokenizer.html#a70c11e357a41f13d3c8e916fab290145" title="Returns the line number of the first byte of the next token, or the current line number of the underl...">PeekTokenLineNumber</a>();
-<a name="l00068"></a>00068     cout &lt;&lt; <span class="stringliteral">&quot;token: \&quot;&quot;</span> &lt;&lt; st1.<a class="code" href="classinfact_1_1_stream_tokenizer.html#ac6827f00a3da760e23241e890becee0c" title="Returns the next token in the token stream.">Next</a>() &lt;&lt; <span class="stringliteral">&quot;\&quot;&quot;</span>
-<a name="l00069"></a>00069          &lt;&lt; <span class="stringliteral">&quot;; type=&quot;</span> &lt;&lt; <a class="code" href="classinfact_1_1_stream_tokenizer.html#acd4baaa4ccb442e4398550e2f8c76419" title="Returns a string type name for the specified TokenType constant.">StreamTokenizer::TypeName</a>(type)
-<a name="l00070"></a>00070          &lt;&lt; <span class="stringliteral">&quot;; start=&quot;</span> &lt;&lt; start
-<a name="l00071"></a>00071          &lt;&lt; <span class="stringliteral">&quot;; line=&quot;</span> &lt;&lt; line_number
-<a name="l00072"></a>00072          &lt;&lt; endl;
-<a name="l00073"></a>00073     cout &lt;&lt; <span class="stringliteral">&quot;chars so far: &#39;&quot;</span> &lt;&lt; st1.<a class="code" href="classinfact_1_1_stream_tokenizer.html#a3790d1692c84c79af738a9ade303cbd7" title="Returns the entire sequence of characters read so far by this stream tokenizer as a newly constructed...">str</a>() &lt;&lt; <span class="stringliteral">&quot;&#39;&quot;</span> &lt;&lt; endl;
-<a name="l00074"></a>00074   }
-<a name="l00075"></a>00075 
-<a name="l00076"></a>00076   cerr &lt;&lt; <span class="stringliteral">&quot;\nTesting Rewind(3):&quot;</span> &lt;&lt; endl;
-<a name="l00077"></a>00077   st1.<a class="code" href="classinfact_1_1_stream_tokenizer.html#ab67fe58983f7d9c2afb917bb70b4d8dd" title="Rewinds this token stream to the beginning.">Rewind</a>(3);
-<a name="l00078"></a>00078   <span class="keywordflow">while</span> (st1.<a class="code" href="classinfact_1_1_stream_tokenizer.html#ac8de4792d7dadb993d3e96c54df2cbe6" title="Returns whether there is another token in the token stream.">HasNext</a>()) {
-<a name="l00079"></a>00079     <a class="code" href="classinfact_1_1_stream_tokenizer.html#ac6e5b0b274a66a2a504ac4fd425c57b3" title="The set of types of tokens read by this stream tokenizer.">StreamTokenizer::TokenType</a> type = st1.<a class="code" href="classinfact_1_1_stream_tokenizer.html#a50a622f50ef6aa800a9c7c15b96bb6cb" title="Returns the type of the next token, or EOF_TYPE if there is no next token.">PeekTokenType</a>();
-<a name="l00080"></a>00080     <span class="keywordtype">size_t</span> start = st1.<a class="code" href="classinfact_1_1_stream_tokenizer.html#acbafcc5e7f6a0b3e4cd8166c4a53f4a8" title="Returns the next token&rsquo;s start position, or the byte position of the underlying byte stream if there ...">PeekTokenStart</a>();
-<a name="l00081"></a>00081     <span class="keywordtype">size_t</span> line_number = st1.<a class="code" href="classinfact_1_1_stream_tokenizer.html#a70c11e357a41f13d3c8e916fab290145" title="Returns the line number of the first byte of the next token, or the current line number of the underl...">PeekTokenLineNumber</a>();
-<a name="l00082"></a>00082     cout &lt;&lt; <span class="stringliteral">&quot;token: \&quot;&quot;</span> &lt;&lt; st1.<a class="code" href="classinfact_1_1_stream_tokenizer.html#ac6827f00a3da760e23241e890becee0c" title="Returns the next token in the token stream.">Next</a>() &lt;&lt; <span class="stringliteral">&quot;\&quot;&quot;</span>
-<a name="l00083"></a>00083          &lt;&lt; <span class="stringliteral">&quot;; type=&quot;</span> &lt;&lt; <a class="code" href="classinfact_1_1_stream_tokenizer.html#acd4baaa4ccb442e4398550e2f8c76419" title="Returns a string type name for the specified TokenType constant.">StreamTokenizer::TypeName</a>(type)
-<a name="l00084"></a>00084          &lt;&lt; <span class="stringliteral">&quot;; start=&quot;</span> &lt;&lt; start
-<a name="l00085"></a>00085          &lt;&lt; <span class="stringliteral">&quot;; line=&quot;</span> &lt;&lt; line_number
-<a name="l00086"></a>00086          &lt;&lt; endl;
-<a name="l00087"></a>00087     cout &lt;&lt; <span class="stringliteral">&quot;chars so far: &#39;&quot;</span> &lt;&lt; st1.<a class="code" href="classinfact_1_1_stream_tokenizer.html#a3790d1692c84c79af738a9ade303cbd7" title="Returns the entire sequence of characters read so far by this stream tokenizer as a newly constructed...">str</a>() &lt;&lt; <span class="stringliteral">&quot;&#39;&quot;</span> &lt;&lt; endl;
-<a name="l00088"></a>00088   }
-<a name="l00089"></a>00089 
-<a name="l00090"></a>00090   cerr &lt;&lt; <span class="stringliteral">&quot;Testing Rewind():&quot;</span> &lt;&lt; endl;
-<a name="l00091"></a>00091   st1.<a class="code" href="classinfact_1_1_stream_tokenizer.html#ab67fe58983f7d9c2afb917bb70b4d8dd" title="Rewinds this token stream to the beginning.">Rewind</a>();
-<a name="l00092"></a>00092   <span class="keywordflow">while</span> (st1.<a class="code" href="classinfact_1_1_stream_tokenizer.html#ac8de4792d7dadb993d3e96c54df2cbe6" title="Returns whether there is another token in the token stream.">HasNext</a>()) {
-<a name="l00093"></a>00093     <a class="code" href="classinfact_1_1_stream_tokenizer.html#ac6e5b0b274a66a2a504ac4fd425c57b3" title="The set of types of tokens read by this stream tokenizer.">StreamTokenizer::TokenType</a> type = st1.<a class="code" href="classinfact_1_1_stream_tokenizer.html#a50a622f50ef6aa800a9c7c15b96bb6cb" title="Returns the type of the next token, or EOF_TYPE if there is no next token.">PeekTokenType</a>();
-<a name="l00094"></a>00094     <span class="keywordtype">size_t</span> start = st1.<a class="code" href="classinfact_1_1_stream_tokenizer.html#acbafcc5e7f6a0b3e4cd8166c4a53f4a8" title="Returns the next token&rsquo;s start position, or the byte position of the underlying byte stream if there ...">PeekTokenStart</a>();
-<a name="l00095"></a>00095     <span class="keywordtype">size_t</span> line_number = st1.<a class="code" href="classinfact_1_1_stream_tokenizer.html#a70c11e357a41f13d3c8e916fab290145" title="Returns the line number of the first byte of the next token, or the current line number of the underl...">PeekTokenLineNumber</a>();
-<a name="l00096"></a>00096     cout &lt;&lt; <span class="stringliteral">&quot;token: \&quot;&quot;</span> &lt;&lt; st1.<a class="code" href="classinfact_1_1_stream_tokenizer.html#ac6827f00a3da760e23241e890becee0c" title="Returns the next token in the token stream.">Next</a>() &lt;&lt; <span class="stringliteral">&quot;\&quot;&quot;</span>
-<a name="l00097"></a>00097          &lt;&lt; <span class="stringliteral">&quot;; type=&quot;</span> &lt;&lt; <a class="code" href="classinfact_1_1_stream_tokenizer.html#acd4baaa4ccb442e4398550e2f8c76419" title="Returns a string type name for the specified TokenType constant.">StreamTokenizer::TypeName</a>(type)
-<a name="l00098"></a>00098          &lt;&lt; <span class="stringliteral">&quot;; start=&quot;</span> &lt;&lt; start
-<a name="l00099"></a>00099          &lt;&lt; <span class="stringliteral">&quot;; line=&quot;</span> &lt;&lt; line_number
-<a name="l00100"></a>00100          &lt;&lt; endl;
-<a name="l00101"></a>00101     cout &lt;&lt; <span class="stringliteral">&quot;chars so far: &#39;&quot;</span> &lt;&lt; st1.<a class="code" href="classinfact_1_1_stream_tokenizer.html#a3790d1692c84c79af738a9ade303cbd7" title="Returns the entire sequence of characters read so far by this stream tokenizer as a newly constructed...">str</a>() &lt;&lt; <span class="stringliteral">&quot;&#39;&quot;</span> &lt;&lt; endl;
-<a name="l00102"></a>00102   }
-<a name="l00103"></a>00103 
-<a name="l00104"></a>00104   cerr &lt;&lt; <span class="stringliteral">&quot;\nReading from stdin until EOF:&quot;</span> &lt;&lt; endl;
-<a name="l00105"></a>00105 
-<a name="l00106"></a>00106   <a class="code" href="classinfact_1_1_stream_tokenizer.html" title="A simple class for tokenizing a stream of tokens for the formally specified language used to construc...">StreamTokenizer</a> st2(cin);
-<a name="l00107"></a>00107   <span class="keywordflow">while</span> (st2.<a class="code" href="classinfact_1_1_stream_tokenizer.html#ac8de4792d7dadb993d3e96c54df2cbe6" title="Returns whether there is another token in the token stream.">HasNext</a>()) {
-<a name="l00108"></a>00108     <a class="code" href="classinfact_1_1_stream_tokenizer.html#ac6e5b0b274a66a2a504ac4fd425c57b3" title="The set of types of tokens read by this stream tokenizer.">StreamTokenizer::TokenType</a> type = st2.<a class="code" href="classinfact_1_1_stream_tokenizer.html#a50a622f50ef6aa800a9c7c15b96bb6cb" title="Returns the type of the next token, or EOF_TYPE if there is no next token.">PeekTokenType</a>();
-<a name="l00109"></a>00109     cout &lt;&lt; <span class="stringliteral">&quot;token: \&quot;&quot;</span> &lt;&lt; st2.<a class="code" href="classinfact_1_1_stream_tokenizer.html#ac6827f00a3da760e23241e890becee0c" title="Returns the next token in the token stream.">Next</a>() &lt;&lt; <span class="stringliteral">&quot;\&quot;&quot;</span>
-<a name="l00110"></a>00110          &lt;&lt; <span class="stringliteral">&quot;; type=&quot;</span> &lt;&lt; <a class="code" href="classinfact_1_1_stream_tokenizer.html#acd4baaa4ccb442e4398550e2f8c76419" title="Returns a string type name for the specified TokenType constant.">StreamTokenizer::TypeName</a>(type) &lt;&lt; endl;
-<a name="l00111"></a>00111   }
-<a name="l00112"></a>00112 }
+<a name="l00043"></a>00043 <span class="keyword">using namespace </span>infact;
+<a name="l00044"></a>00044 
+<a name="l00045"></a>00045 <span class="keywordtype">int</span>
+<a name="l00046"></a><a class="code" href="stream-tokenizer-test_8cc.html#a3c04138a5bfe5d72780bb7e82a18e627">00046</a> <a class="code" href="environment-test_8cc.html#a3c04138a5bfe5d72780bb7e82a18e627">main</a>(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span> **argv) {
+<a name="l00047"></a>00047   cerr &lt;&lt; <span class="stringliteral">&quot;Testing StreamTokenizer with string arg constructor:&quot;</span> &lt;&lt; endl;
+<a name="l00048"></a>00048   std::string test_string = <span class="stringliteral">&quot;foo(bar, baz(34), bleh(\&quot;fleh with spaces\&quot;))&quot;</span>;
+<a name="l00049"></a>00049   <a class="code" href="classinfact_1_1_stream_tokenizer.html" title="A simple class for tokenizing a stream of tokens for the formally specified language used to construc...">StreamTokenizer</a> st1(test_string);
+<a name="l00050"></a>00050   <span class="keywordflow">while</span> (st1.<a class="code" href="classinfact_1_1_stream_tokenizer.html#ac8de4792d7dadb993d3e96c54df2cbe6" title="Returns whether there is another token in the token stream.">HasNext</a>()) {
+<a name="l00051"></a>00051     <a class="code" href="classinfact_1_1_stream_tokenizer.html#ac6e5b0b274a66a2a504ac4fd425c57b3" title="The set of types of tokens read by this stream tokenizer.">StreamTokenizer::TokenType</a> type = st1.<a class="code" href="classinfact_1_1_stream_tokenizer.html#a50a622f50ef6aa800a9c7c15b96bb6cb" title="Returns the type of the next token, or EOF_TYPE if there is no next token.">PeekTokenType</a>();
+<a name="l00052"></a>00052     <span class="keywordtype">size_t</span> start = st1.<a class="code" href="classinfact_1_1_stream_tokenizer.html#acbafcc5e7f6a0b3e4cd8166c4a53f4a8" title="Returns the next token&rsquo;s start position, or the byte position of the underlying byte stream if there ...">PeekTokenStart</a>();
+<a name="l00053"></a>00053     <span class="keywordtype">size_t</span> line_number = st1.<a class="code" href="classinfact_1_1_stream_tokenizer.html#a70c11e357a41f13d3c8e916fab290145" title="Returns the line number of the first byte of the next token, or the current line number of the underl...">PeekTokenLineNumber</a>();
+<a name="l00054"></a>00054     cout &lt;&lt; <span class="stringliteral">&quot;token: \&quot;&quot;</span> &lt;&lt; st1.<a class="code" href="classinfact_1_1_stream_tokenizer.html#ac6827f00a3da760e23241e890becee0c" title="Returns the next token in the token stream.">Next</a>() &lt;&lt; <span class="stringliteral">&quot;\&quot;&quot;</span>
+<a name="l00055"></a>00055          &lt;&lt; <span class="stringliteral">&quot;; type=&quot;</span> &lt;&lt; StreamTokenizer::TypeName(type)
+<a name="l00056"></a>00056          &lt;&lt; <span class="stringliteral">&quot;; start=&quot;</span> &lt;&lt; start
+<a name="l00057"></a>00057          &lt;&lt; <span class="stringliteral">&quot;; line=&quot;</span> &lt;&lt; line_number
+<a name="l00058"></a>00058          &lt;&lt; endl;
+<a name="l00059"></a>00059     cout &lt;&lt; <span class="stringliteral">&quot;chars so far: &#39;&quot;</span> &lt;&lt; st1.<a class="code" href="classinfact_1_1_stream_tokenizer.html#a3790d1692c84c79af738a9ade303cbd7" title="Returns the entire sequence of characters read so far by this stream tokenizer as a newly constructed...">str</a>() &lt;&lt; <span class="stringliteral">&quot;&#39;&quot;</span> &lt;&lt; endl;
+<a name="l00060"></a>00060   }
+<a name="l00061"></a>00061   cerr &lt;&lt; <span class="stringliteral">&quot;Done.&quot;</span> &lt;&lt; endl;
+<a name="l00062"></a>00062 
+<a name="l00063"></a>00063   cerr &lt;&lt; <span class="stringliteral">&quot;\nTesting Putback:&quot;</span> &lt;&lt; endl;
+<a name="l00064"></a>00064   st1.<a class="code" href="classinfact_1_1_stream_tokenizer.html#a77e027a255cb0db73632e1ccd036808a" title="A synonym for Rewind(1).">Putback</a>();
+<a name="l00065"></a>00065   <span class="keywordflow">while</span> (st1.<a class="code" href="classinfact_1_1_stream_tokenizer.html#ac8de4792d7dadb993d3e96c54df2cbe6" title="Returns whether there is another token in the token stream.">HasNext</a>()) {
+<a name="l00066"></a>00066     <a class="code" href="classinfact_1_1_stream_tokenizer.html#ac6e5b0b274a66a2a504ac4fd425c57b3" title="The set of types of tokens read by this stream tokenizer.">StreamTokenizer::TokenType</a> type = st1.<a class="code" href="classinfact_1_1_stream_tokenizer.html#a50a622f50ef6aa800a9c7c15b96bb6cb" title="Returns the type of the next token, or EOF_TYPE if there is no next token.">PeekTokenType</a>();
+<a name="l00067"></a>00067     <span class="keywordtype">size_t</span> start = st1.<a class="code" href="classinfact_1_1_stream_tokenizer.html#acbafcc5e7f6a0b3e4cd8166c4a53f4a8" title="Returns the next token&rsquo;s start position, or the byte position of the underlying byte stream if there ...">PeekTokenStart</a>();
+<a name="l00068"></a>00068     <span class="keywordtype">size_t</span> line_number = st1.<a class="code" href="classinfact_1_1_stream_tokenizer.html#a70c11e357a41f13d3c8e916fab290145" title="Returns the line number of the first byte of the next token, or the current line number of the underl...">PeekTokenLineNumber</a>();
+<a name="l00069"></a>00069     cout &lt;&lt; <span class="stringliteral">&quot;token: \&quot;&quot;</span> &lt;&lt; st1.<a class="code" href="classinfact_1_1_stream_tokenizer.html#ac6827f00a3da760e23241e890becee0c" title="Returns the next token in the token stream.">Next</a>() &lt;&lt; <span class="stringliteral">&quot;\&quot;&quot;</span>
+<a name="l00070"></a>00070          &lt;&lt; <span class="stringliteral">&quot;; type=&quot;</span> &lt;&lt; StreamTokenizer::TypeName(type)
+<a name="l00071"></a>00071          &lt;&lt; <span class="stringliteral">&quot;; start=&quot;</span> &lt;&lt; start
+<a name="l00072"></a>00072          &lt;&lt; <span class="stringliteral">&quot;; line=&quot;</span> &lt;&lt; line_number
+<a name="l00073"></a>00073          &lt;&lt; endl;
+<a name="l00074"></a>00074     cout &lt;&lt; <span class="stringliteral">&quot;chars so far: &#39;&quot;</span> &lt;&lt; st1.<a class="code" href="classinfact_1_1_stream_tokenizer.html#a3790d1692c84c79af738a9ade303cbd7" title="Returns the entire sequence of characters read so far by this stream tokenizer as a newly constructed...">str</a>() &lt;&lt; <span class="stringliteral">&quot;&#39;&quot;</span> &lt;&lt; endl;
+<a name="l00075"></a>00075   }
+<a name="l00076"></a>00076 
+<a name="l00077"></a>00077   cerr &lt;&lt; <span class="stringliteral">&quot;\nTesting Rewind(3):&quot;</span> &lt;&lt; endl;
+<a name="l00078"></a>00078   st1.<a class="code" href="classinfact_1_1_stream_tokenizer.html#ab67fe58983f7d9c2afb917bb70b4d8dd" title="Rewinds this token stream to the beginning.">Rewind</a>(3);
+<a name="l00079"></a>00079   <span class="keywordflow">while</span> (st1.<a class="code" href="classinfact_1_1_stream_tokenizer.html#ac8de4792d7dadb993d3e96c54df2cbe6" title="Returns whether there is another token in the token stream.">HasNext</a>()) {
+<a name="l00080"></a>00080     <a class="code" href="classinfact_1_1_stream_tokenizer.html#ac6e5b0b274a66a2a504ac4fd425c57b3" title="The set of types of tokens read by this stream tokenizer.">StreamTokenizer::TokenType</a> type = st1.<a class="code" href="classinfact_1_1_stream_tokenizer.html#a50a622f50ef6aa800a9c7c15b96bb6cb" title="Returns the type of the next token, or EOF_TYPE if there is no next token.">PeekTokenType</a>();
+<a name="l00081"></a>00081     <span class="keywordtype">size_t</span> start = st1.<a class="code" href="classinfact_1_1_stream_tokenizer.html#acbafcc5e7f6a0b3e4cd8166c4a53f4a8" title="Returns the next token&rsquo;s start position, or the byte position of the underlying byte stream if there ...">PeekTokenStart</a>();
+<a name="l00082"></a>00082     <span class="keywordtype">size_t</span> line_number = st1.<a class="code" href="classinfact_1_1_stream_tokenizer.html#a70c11e357a41f13d3c8e916fab290145" title="Returns the line number of the first byte of the next token, or the current line number of the underl...">PeekTokenLineNumber</a>();
+<a name="l00083"></a>00083     cout &lt;&lt; <span class="stringliteral">&quot;token: \&quot;&quot;</span> &lt;&lt; st1.<a class="code" href="classinfact_1_1_stream_tokenizer.html#ac6827f00a3da760e23241e890becee0c" title="Returns the next token in the token stream.">Next</a>() &lt;&lt; <span class="stringliteral">&quot;\&quot;&quot;</span>
+<a name="l00084"></a>00084          &lt;&lt; <span class="stringliteral">&quot;; type=&quot;</span> &lt;&lt; StreamTokenizer::TypeName(type)
+<a name="l00085"></a>00085          &lt;&lt; <span class="stringliteral">&quot;; start=&quot;</span> &lt;&lt; start
+<a name="l00086"></a>00086          &lt;&lt; <span class="stringliteral">&quot;; line=&quot;</span> &lt;&lt; line_number
+<a name="l00087"></a>00087          &lt;&lt; endl;
+<a name="l00088"></a>00088     cout &lt;&lt; <span class="stringliteral">&quot;chars so far: &#39;&quot;</span> &lt;&lt; st1.<a class="code" href="classinfact_1_1_stream_tokenizer.html#a3790d1692c84c79af738a9ade303cbd7" title="Returns the entire sequence of characters read so far by this stream tokenizer as a newly constructed...">str</a>() &lt;&lt; <span class="stringliteral">&quot;&#39;&quot;</span> &lt;&lt; endl;
+<a name="l00089"></a>00089   }
+<a name="l00090"></a>00090 
+<a name="l00091"></a>00091   cerr &lt;&lt; <span class="stringliteral">&quot;Testing Rewind():&quot;</span> &lt;&lt; endl;
+<a name="l00092"></a>00092   st1.<a class="code" href="classinfact_1_1_stream_tokenizer.html#ab67fe58983f7d9c2afb917bb70b4d8dd" title="Rewinds this token stream to the beginning.">Rewind</a>();
+<a name="l00093"></a>00093   <span class="keywordflow">while</span> (st1.<a class="code" href="classinfact_1_1_stream_tokenizer.html#ac8de4792d7dadb993d3e96c54df2cbe6" title="Returns whether there is another token in the token stream.">HasNext</a>()) {
+<a name="l00094"></a>00094     <a class="code" href="classinfact_1_1_stream_tokenizer.html#ac6e5b0b274a66a2a504ac4fd425c57b3" title="The set of types of tokens read by this stream tokenizer.">StreamTokenizer::TokenType</a> type = st1.<a class="code" href="classinfact_1_1_stream_tokenizer.html#a50a622f50ef6aa800a9c7c15b96bb6cb" title="Returns the type of the next token, or EOF_TYPE if there is no next token.">PeekTokenType</a>();
+<a name="l00095"></a>00095     <span class="keywordtype">size_t</span> start = st1.<a class="code" href="classinfact_1_1_stream_tokenizer.html#acbafcc5e7f6a0b3e4cd8166c4a53f4a8" title="Returns the next token&rsquo;s start position, or the byte position of the underlying byte stream if there ...">PeekTokenStart</a>();
+<a name="l00096"></a>00096     <span class="keywordtype">size_t</span> line_number = st1.<a class="code" href="classinfact_1_1_stream_tokenizer.html#a70c11e357a41f13d3c8e916fab290145" title="Returns the line number of the first byte of the next token, or the current line number of the underl...">PeekTokenLineNumber</a>();
+<a name="l00097"></a>00097     cout &lt;&lt; <span class="stringliteral">&quot;token: \&quot;&quot;</span> &lt;&lt; st1.<a class="code" href="classinfact_1_1_stream_tokenizer.html#ac6827f00a3da760e23241e890becee0c" title="Returns the next token in the token stream.">Next</a>() &lt;&lt; <span class="stringliteral">&quot;\&quot;&quot;</span>
+<a name="l00098"></a>00098          &lt;&lt; <span class="stringliteral">&quot;; type=&quot;</span> &lt;&lt; StreamTokenizer::TypeName(type)
+<a name="l00099"></a>00099          &lt;&lt; <span class="stringliteral">&quot;; start=&quot;</span> &lt;&lt; start
+<a name="l00100"></a>00100          &lt;&lt; <span class="stringliteral">&quot;; line=&quot;</span> &lt;&lt; line_number
+<a name="l00101"></a>00101          &lt;&lt; endl;
+<a name="l00102"></a>00102     cout &lt;&lt; <span class="stringliteral">&quot;chars so far: &#39;&quot;</span> &lt;&lt; st1.<a class="code" href="classinfact_1_1_stream_tokenizer.html#a3790d1692c84c79af738a9ade303cbd7" title="Returns the entire sequence of characters read so far by this stream tokenizer as a newly constructed...">str</a>() &lt;&lt; <span class="stringliteral">&quot;&#39;&quot;</span> &lt;&lt; endl;
+<a name="l00103"></a>00103   }
+<a name="l00104"></a>00104 
+<a name="l00105"></a>00105   cerr &lt;&lt; <span class="stringliteral">&quot;\nReading from stdin until EOF:&quot;</span> &lt;&lt; endl;
+<a name="l00106"></a>00106 
+<a name="l00107"></a>00107   <a class="code" href="classinfact_1_1_stream_tokenizer.html" title="A simple class for tokenizing a stream of tokens for the formally specified language used to construc...">StreamTokenizer</a> st2(cin);
+<a name="l00108"></a>00108   <span class="keywordflow">while</span> (st2.<a class="code" href="classinfact_1_1_stream_tokenizer.html#ac8de4792d7dadb993d3e96c54df2cbe6" title="Returns whether there is another token in the token stream.">HasNext</a>()) {
+<a name="l00109"></a>00109     <a class="code" href="classinfact_1_1_stream_tokenizer.html#ac6e5b0b274a66a2a504ac4fd425c57b3" title="The set of types of tokens read by this stream tokenizer.">StreamTokenizer::TokenType</a> type = st2.<a class="code" href="classinfact_1_1_stream_tokenizer.html#a50a622f50ef6aa800a9c7c15b96bb6cb" title="Returns the type of the next token, or EOF_TYPE if there is no next token.">PeekTokenType</a>();
+<a name="l00110"></a>00110     cout &lt;&lt; <span class="stringliteral">&quot;token: \&quot;&quot;</span> &lt;&lt; st2.<a class="code" href="classinfact_1_1_stream_tokenizer.html#ac6827f00a3da760e23241e890becee0c" title="Returns the next token in the token stream.">Next</a>() &lt;&lt; <span class="stringliteral">&quot;\&quot;&quot;</span>
+<a name="l00111"></a>00111          &lt;&lt; <span class="stringliteral">&quot;; type=&quot;</span> &lt;&lt; StreamTokenizer::TypeName(type) &lt;&lt; endl;
+<a name="l00112"></a>00112   }
+<a name="l00113"></a>00113 }
 </pre></div></div><!-- contents -->
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -206,7 +207,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Jan 10 2014 15:47:30 for InFact by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Jan 13 2014 11:20:20 for InFact by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.7.6.1
 </small></address>

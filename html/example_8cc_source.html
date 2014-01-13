@@ -136,14 +136,14 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00056"></a>00056 <a class="code" href="factory_8h.html#a01b208854b036ee1381a9289186ff3c2" title="Provides the necessary implementation for a factory for the specified BASE class type.">IMPLEMENT_FACTORY</a>(<a class="code" href="classinfact_1_1_pet_owner.html" title="An owner of a pet.">PetOwner</a>)
 <a name="l00057"></a><a class="code" href="namespaceinfact.html#ab7fbb0f2c855cef766c9a7817c149f41">00057</a> <a class="code" href="example_8h.html#a9533639d16f8b0269c286444897ff13d" title="The macro by which PetOwner  implementations may register themselves with the Factory  that can const...">REGISTER_PET_OWNER</a>(<a class="code" href="classinfact_1_1_human_pet_owner.html" title="A concrete type of PetOwner that can be constructed by a Factory&lt;PetOwner&gt; instance.">HumanPetOwner</a>)
 <a name="l00058"></a>00058 
-<a name="l00059"></a><a class="code" href="classinfact_1_1_sheep.html#aec1365906226ba78ca438e39eb3976d5">00059</a> <span class="keywordtype">void</span> <a class="code" href="classinfact_1_1_sheep.html" title="A sheep.">Sheep</a>::Init(<a class="code" href="classinfact_1_1_stream_tokenizer.html" title="A simple class for tokenizing a stream of tokens for the formally specified language used to construc...">StreamTokenizer</a> &amp;st, <a class="code" href="classinfact_1_1_environment.html" title="An interface for an environment in which variables of various types are mapped to their values...">Environment</a> *env) {
+<a name="l00059"></a><a class="code" href="classinfact_1_1_sheep.html#a69f798764ffea946753bd06e678407cf">00059</a> <span class="keywordtype">void</span> <a class="code" href="classinfact_1_1_sheep.html" title="A sheep.">Sheep</a>::PostInit(const <a class="code" href="classinfact_1_1_environment.html" title="An interface for an environment in which variables of various types are mapped to their values...">Environment</a> *env, const <span class="keywordtype">string</span> &amp;init_str) {
 <a name="l00060"></a>00060   <span class="keywordtype">int</span> env_age;
 <a name="l00061"></a>00061   <span class="comment">// Note how we need to cast Environment down to EnvironmentImpl,</span>
 <a name="l00062"></a>00062   <span class="comment">// because only the implementation has the templated \link</span>
 <a name="l00063"></a>00063   <span class="comment">// EnvironmentImpl::Get \endlink method, because only an</span>
 <a name="l00064"></a>00064   <span class="comment">// implementation can be aware of the all the \link</span>
 <a name="l00065"></a>00065   <span class="comment">// Factory\endlink-constructible types.</span>
-<a name="l00066"></a>00066   <a class="code" href="classinfact_1_1_environment_impl.html" title="Provides a set of named variables and their types, as well as the values for those variables...">EnvironmentImpl</a> *env_impl = <span class="keyword">dynamic_cast&lt;</span><a class="code" href="classinfact_1_1_environment_impl.html" title="Provides a set of named variables and their types, as well as the values for those variables...">EnvironmentImpl</a> *<span class="keyword">&gt;</span>(env);
+<a name="l00066"></a>00066   <span class="keyword">const</span> <a class="code" href="classinfact_1_1_environment_impl.html" title="Provides a set of named variables and their types, as well as the values for those variables...">EnvironmentImpl</a> *env_impl = <span class="keyword">dynamic_cast&lt;</span><span class="keyword">const </span><a class="code" href="classinfact_1_1_environment_impl.html" title="Provides a set of named variables and their types, as well as the values for those variables...">EnvironmentImpl</a> *<span class="keyword">&gt;</span>(env);
 <a name="l00067"></a>00067   <span class="keywordflow">if</span> (env_impl != <span class="keyword">nullptr</span> &amp;&amp;
 <a name="l00068"></a>00068       env_impl-&gt;<a class="code" href="classinfact_1_1_environment_impl.html#a4c7040cdaade112f6cef88cff8c4ee6c" title="Retrieves the value of the variable with the specified name and puts into into the object pointed to ...">Get</a>(<span class="stringliteral">&quot;age&quot;</span>, &amp;env_age)) {
 <a name="l00069"></a>00069     age_ = env_age * 2;
@@ -169,7 +169,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Jan 10 2014 15:47:30 for InFact by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Jan 13 2014 11:20:20 for InFact by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.7.6.1
 </small></address>

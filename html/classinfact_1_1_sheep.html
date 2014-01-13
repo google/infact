@@ -130,8 +130,8 @@ Public Member Functions</h2></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Destroys a sheep.  <a href="#a85b9c2d8a9379078d29ec82e3ab4e328"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classinfact_1_1_sheep.html#a5fc9522fe9d8cb71ef61ddb732aff63f">RegisterInitializers</a> (<a class="el" href="classinfact_1_1_initializers.html">Initializers</a> &amp;initializers)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Registers one required and two optional inititalizers.  <a href="#a5fc9522fe9d8cb71ef61ddb732aff63f"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classinfact_1_1_sheep.html#aec1365906226ba78ca438e39eb3976d5">Init</a> (<a class="el" href="classinfact_1_1_stream_tokenizer.html">StreamTokenizer</a> &amp;st, <a class="el" href="classinfact_1_1_environment.html">Environment</a> *env)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Grabs the variable named "age" from the <a class="el" href="classinfact_1_1_environment.html" title="An interface for an environment in which variables of various types are mapped to their values...">Environment</a> (set up by RegisterInitializers, above) and sets this sheep&rsquo;s age to be twice that value.  <a href="#aec1365906226ba78ca438e39eb3976d5"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classinfact_1_1_sheep.html#a69f798764ffea946753bd06e678407cf">PostInit</a> (const <a class="el" href="classinfact_1_1_environment.html">Environment</a> *env, const string &amp;init_str)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Grabs the variable named "age" from the <a class="el" href="classinfact_1_1_environment.html" title="An interface for an environment in which variables of various types are mapped to their values...">Environment</a> (set up by RegisterInitializers, above) and sets this sheep&rsquo;s age to be twice that value.  <a href="#a69f798764ffea946753bd06e678407cf"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual const string &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classinfact_1_1_sheep.html#a2fbf359eb99794a182fea7a7b1e00469">name</a> () const </td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classinfact_1_1_sheep.html#af6c829e8f5889e74769039a377a8f51b">age</a> () const </td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">const vector&lt; int &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classinfact_1_1_sheep.html#a7311016b4dfbc9d6e63628bbbe574e1e">counts</a> ()</td></tr>
@@ -224,37 +224,6 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="aec1365906226ba78ca438e39eb3976d5"></a><!-- doxytag: member="infact::Sheep::Init" ref="aec1365906226ba78ca438e39eb3976d5" args="(StreamTokenizer &amp;st, Environment *env)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void <a class="el" href="classinfact_1_1_sheep.html#aec1365906226ba78ca438e39eb3976d5">infact::Sheep::Init</a> </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="classinfact_1_1_stream_tokenizer.html">StreamTokenizer</a> &amp;&#160;</td>
-          <td class="paramname"><em>st</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="classinfact_1_1_environment.html">Environment</a> *&#160;</td>
-          <td class="paramname"><em>env</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td><code> [virtual]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Grabs the variable named "age" from the <a class="el" href="classinfact_1_1_environment.html" title="An interface for an environment in which variables of various types are mapped to their values...">Environment</a> (set up by RegisterInitializers, above) and sets this sheep&rsquo;s age to be twice that value. </p>
-
-<p>Definition at line <a class="el" href="example_8cc_source.html#l00059">59</a> of file <a class="el" href="example_8cc_source.html">example.cc</a>.</p>
-
-</div>
-</div>
 <a class="anchor" id="a2fbf359eb99794a182fea7a7b1e00469"></a><!-- doxytag: member="infact::Sheep::name" ref="a2fbf359eb99794a182fea7a7b1e00469" args="() const " -->
 <div class="memitem">
 <div class="memproto">
@@ -273,6 +242,39 @@ Public Member Functions</h2></td></tr>
 <p>Implements <a class="el" href="classinfact_1_1_animal.html#a4a4d3b54ae6ac6a7cafc1ea0406d0e91">infact::Animal</a>.</p>
 
 <p>Definition at line <a class="el" href="example_8h_source.html#l00232">232</a> of file <a class="el" href="example_8h_source.html">example.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a69f798764ffea946753bd06e678407cf"></a><!-- doxytag: member="infact::Sheep::PostInit" ref="a69f798764ffea946753bd06e678407cf" args="(const Environment *env, const string &amp;init_str)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classinfact_1_1_sheep.html#a69f798764ffea946753bd06e678407cf">infact::Sheep::PostInit</a> </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classinfact_1_1_environment.html">Environment</a> *&#160;</td>
+          <td class="paramname"><em>env</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const string &amp;&#160;</td>
+          <td class="paramname"><em>init_str</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td><code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Grabs the variable named "age" from the <a class="el" href="classinfact_1_1_environment.html" title="An interface for an environment in which variables of various types are mapped to their values...">Environment</a> (set up by RegisterInitializers, above) and sets this sheep&rsquo;s age to be twice that value. </p>
+
+<p>Reimplemented from <a class="el" href="classinfact_1_1_factory_constructible.html#a1a08d77c5afecbd050ab4b7cff5a5b65">infact::FactoryConstructible</a>.</p>
+
+<p>Definition at line <a class="el" href="example_8cc_source.html#l00059">59</a> of file <a class="el" href="example_8cc_source.html">example.cc</a>.</p>
 
 </div>
 </div>
@@ -321,7 +323,7 @@ Public Member Functions</h2></td></tr>
 
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Jan 10 2014 15:47:30 for InFact by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Jan 13 2014 11:20:20 for InFact by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.7.6.1
 </small></address>

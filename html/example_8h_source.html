@@ -243,7 +243,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00223"></a>00223     initializers.<a class="code" href="classinfact_1_1_initializers.html#a33d96794d73289dd072351a8fa269728" title="This method is the raison d&#39;etre of this class: a method to make it easy to add all supported types o...">Add</a>(<span class="stringliteral">&quot;age&quot;</span>, (<span class="keywordtype">int</span> *)<span class="keyword">nullptr</span>);
 <a name="l00224"></a>00224   }
 <a name="l00225"></a>00225 
-<a name="l00229"></a>00229   <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classinfact_1_1_sheep.html#aec1365906226ba78ca438e39eb3976d5" title="Grabs the variable named &quot;age&quot; from the Environment (set up by RegisterInitializers, above) and sets this sheep&rsquo;s age to be twice that value.">Init</a>(<a class="code" href="classinfact_1_1_stream_tokenizer.html" title="A simple class for tokenizing a stream of tokens for the formally specified language used to construc...">StreamTokenizer</a> &amp;st, <a class="code" href="classinfact_1_1_environment.html" title="An interface for an environment in which variables of various types are mapped to their values...">Environment</a> *env);
+<a name="l00229"></a>00229   <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classinfact_1_1_sheep.html#a69f798764ffea946753bd06e678407cf" title="Grabs the variable named &quot;age&quot; from the Environment (set up by RegisterInitializers, above) and sets this sheep&rsquo;s age to be twice that value.">PostInit</a>(<span class="keyword">const</span> <a class="code" href="classinfact_1_1_environment.html" title="An interface for an environment in which variables of various types are mapped to their values...">Environment</a> *env, <span class="keyword">const</span> <span class="keywordtype">string</span> &amp;init_str);
 <a name="l00230"></a>00230 
 <a name="l00232"></a><a class="code" href="classinfact_1_1_sheep.html#a2fbf359eb99794a182fea7a7b1e00469">00232</a>   <span class="keyword">virtual</span> <span class="keyword">const</span> <span class="keywordtype">string</span> &amp;<a class="code" href="classinfact_1_1_sheep.html#a2fbf359eb99794a182fea7a7b1e00469">name</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> name_; }
 <a name="l00234"></a><a class="code" href="classinfact_1_1_sheep.html#af6c829e8f5889e74769039a377a8f51b">00234</a>   <span class="keyword">virtual</span> <span class="keywordtype">int</span> <a class="code" href="classinfact_1_1_sheep.html#af6c829e8f5889e74769039a377a8f51b">age</a>()<span class="keyword"> const </span>{
@@ -314,7 +314,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Jan 10 2014 15:47:30 for InFact by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Jan 13 2014 11:20:20 for InFact by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.7.6.1
 </small></address>
