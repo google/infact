@@ -462,9 +462,39 @@ class Constructor {
 /// types by implementing both required methods to do nothing.
 class FactoryConstructible {
  public:
+  /// Destroys this instance.
   virtual ~FactoryConstructible() { }
+
+  /// Registers data members of this class for initialization when an
+  /// instance is constructed via the \link
+  /// infact::Factory::CreateOrDie Factory::CreateOrDie \endlink
+  /// method.  Adding a data member for initialization is done via the
+  /// templated \link infact::Initializers::Add Initializers::Add
+  /// \endlink method.  Please see \link
+  /// infact::PersonImpl::RegisterInitializers \endlink for an example
+  /// implementation.
+  ///
+  /// \param initializers an object that stores the initializers for
+  ///                     various data members of this class that can
+  ///                     be initialized by the \link
+  ///                     infact::Factory::CreateOrDie
+  ///                     Factory::CreateOrDie \endlink method
+  ///
+  /// \see infact::Initializers::Add
   virtual void RegisterInitializers(Initializers &initializers) { }
-  virtual void PostInit(const Environment *env, const string &arg) { }
+
+  /// Does any additional initialization after an instance of this
+  /// class has been constructed, crucially giving access to the \link
+  /// infact::Environment Environment \endlink that was in use and
+  /// modified during construction by the \link
+  /// infact::Factory::CreateOrDie Factory::CreateOrDie \endlink method.
+  ///
+  /// \param env      the environment in use during construction by the
+  ///                 \link infact::Factory::CreateOrDie
+  ///                 Factory::CreateOrDie \endlink method
+  /// \param init_str the entire string used to initialize this object
+  ///                 (for example, <tt>PersonImpl(name("Fred"))</tt>)
+  virtual void PostInit(const Environment *env, const string &init_str) { }
 };
 
 /// Factory for dynamically created instance of the specified type.
