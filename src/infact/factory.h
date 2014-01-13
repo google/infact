@@ -562,9 +562,14 @@ class Factory : public FactoryBase {
   /// ExampleFeatureExtractor(strvec({"foo", "bar", "baz"}), arg("foo"))
   /// \endcode
   ///
-  /// More formally, the specification string must conform to the following
-  /// grammar:
+  /// More formally, the specification string must be a
+  /// <tt>\<spec_or_null\></tt> conforming to the following grammar:
   /// <table border=0>
+  /// <tr>
+  ///   <td><tt>\<spec_or_null\></tt></td>
+  ///   <td><tt>::=</tt></td>
+  ///   <td><tt>\<spec\> | 'NULL' | 'nullptr'</tt></td>
+  /// </tr>
   /// <tr>
   ///   <td><tt>\<spec\></tt></td>
   ///   <td><tt>::=</tt></td>
@@ -644,7 +649,7 @@ class Factory : public FactoryBase {
   /// <tr>
   ///   <td><tt>\<factory_init\></tt></td>
   ///   <td><tt>::=</tt></td>
-  ///   <td><tt>\<member_name\> '(' \<spec\> ')'</tt></td>
+  ///   <td><tt>\<member_name\> '(' \<spec_or_null\> ')'</tt></td>
   /// </tr>
   /// <tr>
   ///   <td><tt>\<factory_vector_init\></tt></td>
@@ -654,10 +659,11 @@ class Factory : public FactoryBase {
   /// <tr>
   ///   <td valign=top><tt>\<spec_list\></tt></td>
   ///   <td valign=top><tt>::=</tt></td>
-  ///   <td><tt>\<spec\> [ ',' \<spec\> ]* [',']</tt><br>
-  ///       where every <tt>\<spec\></tt> has a <tt>\<type\></tt>
+  ///   <td><tt>\<spec_or_null\> [ ',' \<spec_or_null\> ]* [',']</tt><br>
+  ///       where every <tt>\<spec_or_null\></tt> has a <tt>\<type\></tt>
   ///       constructible by the same Factory (<i>i.e.</i>, all
-  ///       <tt>\<type\></tt>&rsquo;s have a common abstract base class)
+  ///       <tt>\<type\></tt>&rsquo;s have a common abstract base class),
+  ///       or is either <tt>'NULL'</tt> or <tt>'nullptr'</tt>
   ///   </td>
   /// </tr>
   /// </table>
