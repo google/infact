@@ -128,6 +128,7 @@ Public Member Functions</h2></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a cow.  <a href="#aed06eeb55e758e22684621260b886fc5"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classinfact_1_1_cow.html#ad1af3a6bfa73b1a37c869d1666b966ed">~Cow</a> ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classinfact_1_1_cow.html#a8fbdb40e5f983cd20f2caa15b72a227b">RegisterInitializers</a> (<a class="el" href="classinfact_1_1_initializers.html">Initializers</a> &amp;initializers)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Registers data members of this class for initialization when an instance is constructed via the <a class="el" href="classinfact_1_1_factory.html#a8b2771ba4fac39a71cb1d0156ddba7b6">Factory::CreateOrDie </a> method.  <a href="#a8fbdb40e5f983cd20f2caa15b72a227b"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual const string &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classinfact_1_1_cow.html#a7403aa2e0f5e922f4867813bcf6048d5">name</a> () const </td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the name of this animal.  <a href="#a7403aa2e0f5e922f4867813bcf6048d5"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classinfact_1_1_cow.html#aa1b7f4a657955eb096bb9c407a8a0b28">age</a> () const </td></tr>
@@ -236,6 +237,16 @@ Public Member Functions</h2></td></tr>
 </div>
 <div class="memdoc">
 
+<p>Registers data members of this class for initialization when an instance is constructed via the <a class="el" href="classinfact_1_1_factory.html#a8b2771ba4fac39a71cb1d0156ddba7b6">Factory::CreateOrDie </a> method. </p>
+<p>Adding a data member for initialization is done via the templated <a class="el" href="classinfact_1_1_initializers.html#a33d96794d73289dd072351a8fa269728">Initializers::Add </a> method. Please see <a class="el" href="classinfact_1_1_person_impl.html#a289e8cb9cedc6c8c42d0ae743b014e51">infact::PersonImpl::RegisterInitializers</a> for an example implementation.</p>
+<dl class="params"><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">initializers</td><td>an object that stores the initializers for various data members of this class that can be initialized by the <a class="el" href="classinfact_1_1_factory.html#a8b2771ba4fac39a71cb1d0156ddba7b6">Factory::CreateOrDie </a> method</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="see"><dt><b>See also:</b></dt><dd><a class="el" href="classinfact_1_1_initializers.html#a33d96794d73289dd072351a8fa269728" title="This method is the raison d&#39;etre of this class: a method to make it easy to add all supported types o...">infact::Initializers::Add</a> </dd></dl>
+
 <p>Reimplemented from <a class="el" href="classinfact_1_1_factory_constructible.html#a1c186ded6db298b7a84e5767e87c740f">infact::FactoryConstructible</a>.</p>
 
 <p>Definition at line <a class="el" href="example_8h_source.html#l00191">191</a> of file <a class="el" href="example_8h_source.html">example.h</a>.</p>
@@ -263,7 +274,7 @@ Public Member Functions</h2></td></tr>
 
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Jan 13 2014 11:20:20 for InFact by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Jan 13 2014 13:28:27 for InFact by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.7.6.1
 </small></address>

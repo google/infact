@@ -373,252 +373,254 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00460"></a>00460 
 <a name="l00463"></a><a class="code" href="classinfact_1_1_factory_constructible.html">00463</a> <span class="keyword">class </span><a class="code" href="classinfact_1_1_factory_constructible.html" title="An interface to make it easier to implement Factory-constructible types by implementing both required...">FactoryConstructible</a> {
 <a name="l00464"></a>00464  <span class="keyword">public</span>:
-<a name="l00465"></a><a class="code" href="classinfact_1_1_factory_constructible.html#a71837c2002fe8f555036eed482b105e3">00465</a>   <span class="keyword">virtual</span> <a class="code" href="classinfact_1_1_factory_constructible.html#a71837c2002fe8f555036eed482b105e3">~FactoryConstructible</a>() { }
-<a name="l00466"></a><a class="code" href="classinfact_1_1_factory_constructible.html#a1c186ded6db298b7a84e5767e87c740f">00466</a>   <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classinfact_1_1_factory_constructible.html#a1c186ded6db298b7a84e5767e87c740f">RegisterInitializers</a>(<a class="code" href="classinfact_1_1_initializers.html" title="A container for all the member initializers for a particular Factory-constructible instance...">Initializers</a> &amp;initializers) { }
-<a name="l00467"></a><a class="code" href="classinfact_1_1_factory_constructible.html#a1a08d77c5afecbd050ab4b7cff5a5b65">00467</a>   <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classinfact_1_1_factory_constructible.html#a1a08d77c5afecbd050ab4b7cff5a5b65">PostInit</a>(<span class="keyword">const</span> <a class="code" href="classinfact_1_1_environment.html" title="An interface for an environment in which variables of various types are mapped to their values...">Environment</a> *env, <span class="keyword">const</span> <span class="keywordtype">string</span> &amp;arg) { }
-<a name="l00468"></a>00468 };
-<a name="l00469"></a>00469 
-<a name="l00476"></a>00476 <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;
-<a name="l00477"></a><a class="code" href="classinfact_1_1_factory.html">00477</a> <span class="keyword">class </span><a class="code" href="classinfact_1_1_factory.html" title="Factory for dynamically created instance of the specified type.">Factory</a> : <span class="keyword">public</span> <a class="code" href="classinfact_1_1_factory_base.html" title="An interface for all Factory instances, specifying a few pure virtual methods.">FactoryBase</a> {
-<a name="l00478"></a>00478  <span class="keyword">public</span>:
-<a name="l00480"></a><a class="code" href="classinfact_1_1_factory.html#aeee238dea345546be513d9e871a3b8af">00480</a>   <a class="code" href="classinfact_1_1_factory.html#aeee238dea345546be513d9e871a3b8af" title="Constructs a new factory.">Factory</a>() { }
-<a name="l00481"></a>00481 
-<a name="l00487"></a><a class="code" href="classinfact_1_1_factory.html#a0da8e64d55dfe9c99d37feec9ccbacb2">00487</a>   <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classinfact_1_1_factory.html#a0da8e64d55dfe9c99d37feec9ccbacb2" title="Clears this factory of all (possibly static) data.">Clear</a>() {
-<a name="l00488"></a>00488     <a class="code" href="classinfact_1_1_factory.html#a9438277a67d200ca87cc08ec2c46cbde" title="Clears all static data associated with this class.">ClearStatic</a>();
-<a name="l00489"></a>00489   }
-<a name="l00490"></a>00490 
-<a name="l00640"></a><a class="code" href="classinfact_1_1_factory.html#a8b2771ba4fac39a71cb1d0156ddba7b6">00640</a>   shared_ptr&lt;T&gt; <a class="code" href="classinfact_1_1_factory.html#a8b2771ba4fac39a71cb1d0156ddba7b6" title="Dynamically creates an object, whose type and initialization are contained in a specification string...">CreateOrDie</a>(<a class="code" href="classinfact_1_1_stream_tokenizer.html" title="A simple class for tokenizing a stream of tokens for the formally specified language used to construc...">StreamTokenizer</a> &amp;st, <a class="code" href="classinfact_1_1_environment.html" title="An interface for an environment in which variables of various types are mapped to their values...">Environment</a> *env = <span class="keyword">nullptr</span>) {
-<a name="l00641"></a>00641     shared_ptr&lt;Environment&gt; env_ptr(env == <span class="keyword">nullptr</span> ?
-<a name="l00642"></a>00642                                     <a class="code" href="classinfact_1_1_environment.html#ac155016aa1651ef2303906fa24976771" title="A static factory method to create a new, empty Environment instance.">Environment::CreateEmpty</a>() : env-&gt;<a class="code" href="classinfact_1_1_environment.html#ade64259636e7933ff9f02d46bda298e6" title="Returns a copy of this environment.">Copy</a>());
-<a name="l00643"></a>00643     <span class="keywordtype">size_t</span> start = st.<a class="code" href="classinfact_1_1_stream_tokenizer.html#acbafcc5e7f6a0b3e4cd8166c4a53f4a8" title="Returns the next token&rsquo;s start position, or the byte position of the underlying byte stream if there ...">PeekTokenStart</a>();
-<a name="l00644"></a>00644     <a class="code" href="classinfact_1_1_stream_tokenizer.html#ac6e5b0b274a66a2a504ac4fd425c57b3" title="The set of types of tokens read by this stream tokenizer.">StreamTokenizer::TokenType</a> token_type = st.<a class="code" href="classinfact_1_1_stream_tokenizer.html#a50a622f50ef6aa800a9c7c15b96bb6cb" title="Returns the type of the next token, or EOF_TYPE if there is no next token.">PeekTokenType</a>();
-<a name="l00645"></a>00645     <span class="keywordflow">if</span> (token_type == <a class="code" href="classinfact_1_1_stream_tokenizer.html#ac6e5b0b274a66a2a504ac4fd425c57b3a1c9eaa574c618f243aa51efe253d3118">StreamTokenizer::RESERVED_WORD</a> &amp;&amp;
-<a name="l00646"></a>00646         (st.<a class="code" href="classinfact_1_1_stream_tokenizer.html#a61ec5de244a34de264e5b18e4809d753" title="Returns the next token that would be returned by the Next method.">Peek</a>() == <span class="stringliteral">&quot;nullptr&quot;</span> || st.<a class="code" href="classinfact_1_1_stream_tokenizer.html#a61ec5de244a34de264e5b18e4809d753" title="Returns the next token that would be returned by the Next method.">Peek</a>() == <span class="stringliteral">&quot;NULL&quot;</span>)) {
-<a name="l00647"></a>00647       <span class="comment">// Consume the nullptr.</span>
-<a name="l00648"></a>00648       st.<a class="code" href="classinfact_1_1_stream_tokenizer.html#ac6827f00a3da760e23241e890becee0c" title="Returns the next token in the token stream.">Next</a>();
-<a name="l00649"></a>00649       <span class="keywordflow">return</span> shared_ptr&lt;T&gt;();
-<a name="l00650"></a>00650     }
-<a name="l00651"></a>00651     <span class="keywordflow">if</span> (token_type != <a class="code" href="classinfact_1_1_stream_tokenizer.html#ac6e5b0b274a66a2a504ac4fd425c57b3a61f308d29c6dd30996fcb120b6344e41">StreamTokenizer::IDENTIFIER</a>) {
-<a name="l00652"></a>00652       ostringstream err_ss;
-<a name="l00653"></a>00653       err_ss &lt;&lt; <span class="stringliteral">&quot;Factory&lt;&quot;</span> &lt;&lt; <a class="code" href="classinfact_1_1_factory.html#ad620a617807715cd33c77ad6a68483ee" title="Returns the name of the base type of objects constructed by this factory.">BaseName</a>() &lt;&lt; <span class="stringliteral">&quot;&gt;: &quot;</span>
-<a name="l00654"></a>00654              &lt;&lt; <span class="stringliteral">&quot;error: expected type specifier token but found &quot;</span>
-<a name="l00655"></a>00655              &lt;&lt; <a class="code" href="classinfact_1_1_stream_tokenizer.html#acd4baaa4ccb442e4398550e2f8c76419" title="Returns a string type name for the specified TokenType constant.">StreamTokenizer::TypeName</a>(token_type);
-<a name="l00656"></a>00656       <a class="code" href="namespaceinfact.html#a746fb382cf3fd6cf656f40669d90372c" title="Reports an error encountered during parsing and/or construction of an object.">Error</a>(err_ss.str());
-<a name="l00657"></a>00657     }
-<a name="l00658"></a>00658 
-<a name="l00659"></a>00659     <span class="comment">// Read the concrete type of object to be created.</span>
-<a name="l00660"></a>00660     <span class="keywordtype">string</span> type = st.<a class="code" href="classinfact_1_1_stream_tokenizer.html#ac6827f00a3da760e23241e890becee0c" title="Returns the next token in the token stream.">Next</a>();
-<a name="l00661"></a>00661 
-<a name="l00662"></a>00662     <span class="comment">// Read the open parenthesis token.</span>
-<a name="l00663"></a>00663     <span class="keywordflow">if</span> (st.<a class="code" href="classinfact_1_1_stream_tokenizer.html#a61ec5de244a34de264e5b18e4809d753" title="Returns the next token that would be returned by the Next method.">Peek</a>() != <span class="stringliteral">&quot;(&quot;</span>) {
-<a name="l00664"></a>00664       ostringstream err_ss;
-<a name="l00665"></a>00665       err_ss &lt;&lt; <span class="stringliteral">&quot;Factory&lt;&quot;</span> &lt;&lt; <a class="code" href="classinfact_1_1_factory.html#ad620a617807715cd33c77ad6a68483ee" title="Returns the name of the base type of objects constructed by this factory.">BaseName</a>() &lt;&lt; <span class="stringliteral">&quot;&gt;: &quot;</span>
-<a name="l00666"></a>00666              &lt;&lt; <span class="stringliteral">&quot;error: expected &#39;(&#39; at stream position &quot;</span>
-<a name="l00667"></a>00667              &lt;&lt; st.<a class="code" href="classinfact_1_1_stream_tokenizer.html#acbafcc5e7f6a0b3e4cd8166c4a53f4a8" title="Returns the next token&rsquo;s start position, or the byte position of the underlying byte stream if there ...">PeekTokenStart</a>() &lt;&lt; <span class="stringliteral">&quot; but found \&quot;&quot;</span> &lt;&lt; st.<a class="code" href="classinfact_1_1_stream_tokenizer.html#a61ec5de244a34de264e5b18e4809d753" title="Returns the next token that would be returned by the Next method.">Peek</a>() &lt;&lt; <span class="stringliteral">&quot;\&quot;&quot;</span>;
-<a name="l00668"></a>00668       <a class="code" href="namespaceinfact.html#a746fb382cf3fd6cf656f40669d90372c" title="Reports an error encountered during parsing and/or construction of an object.">Error</a>(err_ss.str());
-<a name="l00669"></a>00669     }
-<a name="l00670"></a>00670     st.<a class="code" href="classinfact_1_1_stream_tokenizer.html#ac6827f00a3da760e23241e890becee0c" title="Returns the next token in the token stream.">Next</a>();
-<a name="l00671"></a>00671 
-<a name="l00672"></a>00672     <span class="comment">// Attempt to create an instance of type.</span>
-<a name="l00673"></a>00673     <span class="keyword">typename</span> unordered_map&lt;string, const Constructor&lt;T&gt; *&gt;::iterator cons_it =
-<a name="l00674"></a>00674         cons_table_-&gt;find(type);
-<a name="l00675"></a>00675     <span class="keywordflow">if</span> (cons_it == cons_table_-&gt;end()) {
-<a name="l00676"></a>00676       ostringstream err_ss;
-<a name="l00677"></a>00677       err_ss &lt;&lt; <span class="stringliteral">&quot;Factory&lt;&quot;</span> &lt;&lt; <a class="code" href="classinfact_1_1_factory.html#ad620a617807715cd33c77ad6a68483ee" title="Returns the name of the base type of objects constructed by this factory.">BaseName</a>() &lt;&lt; <span class="stringliteral">&quot;&gt;: &quot;</span>
-<a name="l00678"></a>00678              &lt;&lt; <span class="stringliteral">&quot;error: unknown type: \&quot;&quot;</span> &lt;&lt; type &lt;&lt; <span class="stringliteral">&quot;\&quot;&quot;</span>;
-<a name="l00679"></a>00679       <a class="code" href="namespaceinfact.html#a746fb382cf3fd6cf656f40669d90372c" title="Reports an error encountered during parsing and/or construction of an object.">Error</a>(err_ss.str());
+<a name="l00466"></a><a class="code" href="classinfact_1_1_factory_constructible.html#a71837c2002fe8f555036eed482b105e3">00466</a>   <span class="keyword">virtual</span> <a class="code" href="classinfact_1_1_factory_constructible.html#a71837c2002fe8f555036eed482b105e3" title="Destroys this instance.">~FactoryConstructible</a>() { }
+<a name="l00467"></a>00467 
+<a name="l00484"></a><a class="code" href="classinfact_1_1_factory_constructible.html#a1c186ded6db298b7a84e5767e87c740f">00484</a>   <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classinfact_1_1_factory_constructible.html#a1c186ded6db298b7a84e5767e87c740f" title="Registers data members of this class for initialization when an instance is constructed via the Facto...">RegisterInitializers</a>(<a class="code" href="classinfact_1_1_initializers.html" title="A container for all the member initializers for a particular Factory-constructible instance...">Initializers</a> &amp;initializers) { }
+<a name="l00485"></a>00485 
+<a name="l00497"></a><a class="code" href="classinfact_1_1_factory_constructible.html#abbcefaf8b2137f888ef133807cefe083">00497</a>   <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classinfact_1_1_factory_constructible.html#abbcefaf8b2137f888ef133807cefe083" title="Does any additional initialization after an instance of this class has been constructed, crucially giving access to the Environment  that was in use and modified during construction by the Factory::CreateOrDie  method.">PostInit</a>(<span class="keyword">const</span> <a class="code" href="classinfact_1_1_environment.html" title="An interface for an environment in which variables of various types are mapped to their values...">Environment</a> *env, <span class="keyword">const</span> <span class="keywordtype">string</span> &amp;init_str) { }
+<a name="l00498"></a>00498 };
+<a name="l00499"></a>00499 
+<a name="l00506"></a>00506 <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;
+<a name="l00507"></a><a class="code" href="classinfact_1_1_factory.html">00507</a> <span class="keyword">class </span><a class="code" href="classinfact_1_1_factory.html" title="Factory for dynamically created instance of the specified type.">Factory</a> : <span class="keyword">public</span> <a class="code" href="classinfact_1_1_factory_base.html" title="An interface for all Factory instances, specifying a few pure virtual methods.">FactoryBase</a> {
+<a name="l00508"></a>00508  <span class="keyword">public</span>:
+<a name="l00510"></a><a class="code" href="classinfact_1_1_factory.html#aeee238dea345546be513d9e871a3b8af">00510</a>   <a class="code" href="classinfact_1_1_factory.html#aeee238dea345546be513d9e871a3b8af" title="Constructs a new factory.">Factory</a>() { }
+<a name="l00511"></a>00511 
+<a name="l00517"></a><a class="code" href="classinfact_1_1_factory.html#a0da8e64d55dfe9c99d37feec9ccbacb2">00517</a>   <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classinfact_1_1_factory.html#a0da8e64d55dfe9c99d37feec9ccbacb2" title="Clears this factory of all (possibly static) data.">Clear</a>() {
+<a name="l00518"></a>00518     <a class="code" href="classinfact_1_1_factory.html#a9438277a67d200ca87cc08ec2c46cbde" title="Clears all static data associated with this class.">ClearStatic</a>();
+<a name="l00519"></a>00519   }
+<a name="l00520"></a>00520 
+<a name="l00670"></a><a class="code" href="classinfact_1_1_factory.html#a8b2771ba4fac39a71cb1d0156ddba7b6">00670</a>   shared_ptr&lt;T&gt; <a class="code" href="classinfact_1_1_factory.html#a8b2771ba4fac39a71cb1d0156ddba7b6" title="Dynamically creates an object, whose type and initialization are contained in a specification string...">CreateOrDie</a>(<a class="code" href="classinfact_1_1_stream_tokenizer.html" title="A simple class for tokenizing a stream of tokens for the formally specified language used to construc...">StreamTokenizer</a> &amp;st, <a class="code" href="classinfact_1_1_environment.html" title="An interface for an environment in which variables of various types are mapped to their values...">Environment</a> *env = <span class="keyword">nullptr</span>) {
+<a name="l00671"></a>00671     shared_ptr&lt;Environment&gt; env_ptr(env == <span class="keyword">nullptr</span> ?
+<a name="l00672"></a>00672                                     <a class="code" href="classinfact_1_1_environment.html#ac155016aa1651ef2303906fa24976771" title="A static factory method to create a new, empty Environment instance.">Environment::CreateEmpty</a>() : env-&gt;<a class="code" href="classinfact_1_1_environment.html#ade64259636e7933ff9f02d46bda298e6" title="Returns a copy of this environment.">Copy</a>());
+<a name="l00673"></a>00673     <span class="keywordtype">size_t</span> start = st.<a class="code" href="classinfact_1_1_stream_tokenizer.html#acbafcc5e7f6a0b3e4cd8166c4a53f4a8" title="Returns the next token&rsquo;s start position, or the byte position of the underlying byte stream if there ...">PeekTokenStart</a>();
+<a name="l00674"></a>00674     <a class="code" href="classinfact_1_1_stream_tokenizer.html#ac6e5b0b274a66a2a504ac4fd425c57b3" title="The set of types of tokens read by this stream tokenizer.">StreamTokenizer::TokenType</a> token_type = st.<a class="code" href="classinfact_1_1_stream_tokenizer.html#a50a622f50ef6aa800a9c7c15b96bb6cb" title="Returns the type of the next token, or EOF_TYPE if there is no next token.">PeekTokenType</a>();
+<a name="l00675"></a>00675     <span class="keywordflow">if</span> (token_type == <a class="code" href="classinfact_1_1_stream_tokenizer.html#ac6e5b0b274a66a2a504ac4fd425c57b3a1c9eaa574c618f243aa51efe253d3118">StreamTokenizer::RESERVED_WORD</a> &amp;&amp;
+<a name="l00676"></a>00676         (st.<a class="code" href="classinfact_1_1_stream_tokenizer.html#a61ec5de244a34de264e5b18e4809d753" title="Returns the next token that would be returned by the Next method.">Peek</a>() == <span class="stringliteral">&quot;nullptr&quot;</span> || st.<a class="code" href="classinfact_1_1_stream_tokenizer.html#a61ec5de244a34de264e5b18e4809d753" title="Returns the next token that would be returned by the Next method.">Peek</a>() == <span class="stringliteral">&quot;NULL&quot;</span>)) {
+<a name="l00677"></a>00677       <span class="comment">// Consume the nullptr.</span>
+<a name="l00678"></a>00678       st.<a class="code" href="classinfact_1_1_stream_tokenizer.html#ac6827f00a3da760e23241e890becee0c" title="Returns the next token in the token stream.">Next</a>();
+<a name="l00679"></a>00679       <span class="keywordflow">return</span> shared_ptr&lt;T&gt;();
 <a name="l00680"></a>00680     }
-<a name="l00681"></a>00681     shared_ptr&lt;T&gt; instance(cons_it-&gt;second-&gt;NewInstance());
-<a name="l00682"></a>00682 
-<a name="l00683"></a>00683     <span class="comment">// Ask new instance to set up member initializers.</span>
-<a name="l00684"></a>00684     <a class="code" href="classinfact_1_1_initializers.html" title="A container for all the member initializers for a particular Factory-constructible instance...">Initializers</a> initializers;
-<a name="l00685"></a>00685     instance-&gt;RegisterInitializers(initializers);
-<a name="l00686"></a>00686 
-<a name="l00687"></a>00687     <span class="comment">// Parse initializer list.</span>
-<a name="l00688"></a>00688     <span class="keywordflow">while</span> (st.<a class="code" href="classinfact_1_1_stream_tokenizer.html#a61ec5de244a34de264e5b18e4809d753" title="Returns the next token that would be returned by the Next method.">Peek</a>() != <span class="stringliteral">&quot;)&quot;</span>) {
-<a name="l00689"></a>00689       token_type = st.<a class="code" href="classinfact_1_1_stream_tokenizer.html#a50a622f50ef6aa800a9c7c15b96bb6cb" title="Returns the type of the next token, or EOF_TYPE if there is no next token.">PeekTokenType</a>();
-<a name="l00690"></a>00690       <span class="keywordflow">if</span> (token_type != <a class="code" href="classinfact_1_1_stream_tokenizer.html#ac6e5b0b274a66a2a504ac4fd425c57b3a61f308d29c6dd30996fcb120b6344e41">StreamTokenizer::IDENTIFIER</a>) {
-<a name="l00691"></a>00691         ostringstream err_ss;
-<a name="l00692"></a>00692         err_ss &lt;&lt; <span class="stringliteral">&quot;Factory&lt;&quot;</span> &lt;&lt; <a class="code" href="classinfact_1_1_factory.html#ad620a617807715cd33c77ad6a68483ee" title="Returns the name of the base type of objects constructed by this factory.">BaseName</a>() &lt;&lt; <span class="stringliteral">&quot;&gt;: &quot;</span>
-<a name="l00693"></a>00693                &lt;&lt; <span class="stringliteral">&quot;error: expected token of type IDENTIFIER at &quot;</span>
-<a name="l00694"></a>00694                &lt;&lt; <span class="stringliteral">&quot;stream position &quot;</span> &lt;&lt; st.<a class="code" href="classinfact_1_1_stream_tokenizer.html#acbafcc5e7f6a0b3e4cd8166c4a53f4a8" title="Returns the next token&rsquo;s start position, or the byte position of the underlying byte stream if there ...">PeekTokenStart</a>() &lt;&lt; <span class="stringliteral">&quot; but found &quot;</span>
-<a name="l00695"></a>00695                &lt;&lt; <a class="code" href="classinfact_1_1_stream_tokenizer.html#acd4baaa4ccb442e4398550e2f8c76419" title="Returns a string type name for the specified TokenType constant.">StreamTokenizer::TypeName</a>(token_type) &lt;&lt; <span class="stringliteral">&quot;: \&quot;&quot;</span>
-<a name="l00696"></a>00696                &lt;&lt; st.<a class="code" href="classinfact_1_1_stream_tokenizer.html#a61ec5de244a34de264e5b18e4809d753" title="Returns the next token that would be returned by the Next method.">Peek</a>() &lt;&lt; <span class="stringliteral">&quot;\&quot;&quot;</span>;
-<a name="l00697"></a>00697         <a class="code" href="namespaceinfact.html#a746fb382cf3fd6cf656f40669d90372c" title="Reports an error encountered during parsing and/or construction of an object.">Error</a>(err_ss.str());
-<a name="l00698"></a>00698       }
-<a name="l00699"></a>00699       <span class="keywordtype">size_t</span> member_name_start = st.<a class="code" href="classinfact_1_1_stream_tokenizer.html#acbafcc5e7f6a0b3e4cd8166c4a53f4a8" title="Returns the next token&rsquo;s start position, or the byte position of the underlying byte stream if there ...">PeekTokenStart</a>();
-<a name="l00700"></a>00700       <span class="keywordtype">string</span> member_name = st.<a class="code" href="classinfact_1_1_stream_tokenizer.html#ac6827f00a3da760e23241e890becee0c" title="Returns the next token in the token stream.">Next</a>();
-<a name="l00701"></a>00701       <span class="keyword">typename</span> <a class="code" href="classinfact_1_1_initializers.html#a873d5a9d6458351331c6135d62017071" title="Forward the iterator typedef of the internal data structure, to make code compact and readable...">Initializers::iterator</a> init_it = initializers.find(member_name);
-<a name="l00702"></a>00702       <span class="keywordflow">if</span> (init_it == initializers.end()) {
-<a name="l00703"></a>00703         ostringstream err_ss;
-<a name="l00704"></a>00704         err_ss &lt;&lt; <span class="stringliteral">&quot;Factory&lt;&quot;</span> &lt;&lt; <a class="code" href="classinfact_1_1_factory.html#ad620a617807715cd33c77ad6a68483ee" title="Returns the name of the base type of objects constructed by this factory.">BaseName</a>() &lt;&lt; <span class="stringliteral">&quot;&gt;: &quot;</span>
-<a name="l00705"></a>00705                &lt;&lt; <span class="stringliteral">&quot;error: unknown member name \&quot;&quot;</span> &lt;&lt; member_name
-<a name="l00706"></a>00706                &lt;&lt; <span class="stringliteral">&quot;\&quot; in initializer list for type &quot;</span> &lt;&lt; type &lt;&lt; <span class="stringliteral">&quot; at stream &quot;</span>
-<a name="l00707"></a>00707                &lt;&lt; <span class="stringliteral">&quot;position &quot;</span> &lt;&lt; member_name_start;
-<a name="l00708"></a>00708         <a class="code" href="namespaceinfact.html#a746fb382cf3fd6cf656f40669d90372c" title="Reports an error encountered during parsing and/or construction of an object.">Error</a>(err_ss.str());
-<a name="l00709"></a>00709       }
-<a name="l00710"></a>00710       <a class="code" href="classinfact_1_1_member_initializer.html" title="An interface for data member initializers of members of a Factory-constructible object.">MemberInitializer</a> *member_initializer = init_it-&gt;second;
-<a name="l00711"></a>00711 
-<a name="l00712"></a>00712       <span class="comment">// Read open parenthesis.</span>
-<a name="l00713"></a>00713       <span class="keywordflow">if</span> (st.<a class="code" href="classinfact_1_1_stream_tokenizer.html#a61ec5de244a34de264e5b18e4809d753" title="Returns the next token that would be returned by the Next method.">Peek</a>() != <span class="stringliteral">&quot;(&quot;</span>) {
-<a name="l00714"></a>00714         ostringstream err_ss;
-<a name="l00715"></a>00715         err_ss &lt;&lt; <span class="stringliteral">&quot;Factory&lt;&quot;</span> &lt;&lt; <a class="code" href="classinfact_1_1_factory.html#ad620a617807715cd33c77ad6a68483ee" title="Returns the name of the base type of objects constructed by this factory.">BaseName</a>() &lt;&lt; <span class="stringliteral">&quot;&gt;: &quot;</span>
-<a name="l00716"></a>00716                &lt;&lt; <span class="stringliteral">&quot;error: expected &#39;(&#39; at stream position &quot;</span>
-<a name="l00717"></a>00717                &lt;&lt; st.<a class="code" href="classinfact_1_1_stream_tokenizer.html#acbafcc5e7f6a0b3e4cd8166c4a53f4a8" title="Returns the next token&rsquo;s start position, or the byte position of the underlying byte stream if there ...">PeekTokenStart</a>() &lt;&lt; <span class="stringliteral">&quot; but found \&quot;&quot;</span> &lt;&lt; st.<a class="code" href="classinfact_1_1_stream_tokenizer.html#a61ec5de244a34de264e5b18e4809d753" title="Returns the next token that would be returned by the Next method.">Peek</a>() &lt;&lt; <span class="stringliteral">&quot;\&quot;&quot;</span>;
-<a name="l00718"></a>00718         <a class="code" href="namespaceinfact.html#a746fb382cf3fd6cf656f40669d90372c" title="Reports an error encountered during parsing and/or construction of an object.">Error</a>(err_ss.str());
-<a name="l00719"></a>00719       }
-<a name="l00720"></a>00720       st.<a class="code" href="classinfact_1_1_stream_tokenizer.html#ac6827f00a3da760e23241e890becee0c" title="Returns the next token in the token stream.">Next</a>();
-<a name="l00721"></a>00721 
-<a name="l00722"></a>00722       <span class="comment">// Initialize member based on following token(s).</span>
-<a name="l00723"></a>00723       member_initializer-&gt;<a class="code" href="classinfact_1_1_member_initializer.html#a4c12e33f71273d982c073dffdb08ff01" title="Initializes this instance based on the following tokens obtained from the specified StreamTokenizer...">Init</a>(st, env_ptr.get());
-<a name="l00724"></a>00724 
-<a name="l00725"></a>00725       <span class="comment">// Read close parenthesis for current member initializer.</span>
-<a name="l00726"></a>00726       <span class="keywordflow">if</span> (st.<a class="code" href="classinfact_1_1_stream_tokenizer.html#a61ec5de244a34de264e5b18e4809d753" title="Returns the next token that would be returned by the Next method.">Peek</a>() != <span class="stringliteral">&quot;)&quot;</span>) {
-<a name="l00727"></a>00727         ostringstream err_ss;
-<a name="l00728"></a>00728         err_ss &lt;&lt; <span class="stringliteral">&quot;Factory&lt;&quot;</span> &lt;&lt; <a class="code" href="classinfact_1_1_factory.html#ad620a617807715cd33c77ad6a68483ee" title="Returns the name of the base type of objects constructed by this factory.">BaseName</a>() &lt;&lt; <span class="stringliteral">&quot;&gt;: &quot;</span>
-<a name="l00729"></a>00729                &lt;&lt; <span class="stringliteral">&quot;error: expected &#39;)&#39; at stream position &quot;</span>
-<a name="l00730"></a>00730                &lt;&lt; st.<a class="code" href="classinfact_1_1_stream_tokenizer.html#acbafcc5e7f6a0b3e4cd8166c4a53f4a8" title="Returns the next token&rsquo;s start position, or the byte position of the underlying byte stream if there ...">PeekTokenStart</a>() &lt;&lt; <span class="stringliteral">&quot; but found \&quot;&quot;</span> &lt;&lt; st.<a class="code" href="classinfact_1_1_stream_tokenizer.html#a61ec5de244a34de264e5b18e4809d753" title="Returns the next token that would be returned by the Next method.">Peek</a>() &lt;&lt; <span class="stringliteral">&quot;\&quot;&quot;</span>;
-<a name="l00731"></a>00731         <a class="code" href="namespaceinfact.html#a746fb382cf3fd6cf656f40669d90372c" title="Reports an error encountered during parsing and/or construction of an object.">Error</a>(err_ss.str());
-<a name="l00732"></a>00732       }
-<a name="l00733"></a>00733       st.<a class="code" href="classinfact_1_1_stream_tokenizer.html#ac6827f00a3da760e23241e890becee0c" title="Returns the next token in the token stream.">Next</a>();
-<a name="l00734"></a>00734 
-<a name="l00735"></a>00735       <span class="comment">// Each member initializer must be followed by a comma or the final</span>
-<a name="l00736"></a>00736       <span class="comment">// closing parenthesis.</span>
-<a name="l00737"></a>00737       <span class="keywordflow">if</span> (st.<a class="code" href="classinfact_1_1_stream_tokenizer.html#a61ec5de244a34de264e5b18e4809d753" title="Returns the next token that would be returned by the Next method.">Peek</a>() != <span class="stringliteral">&quot;,&quot;</span>  &amp;&amp; st.<a class="code" href="classinfact_1_1_stream_tokenizer.html#a61ec5de244a34de264e5b18e4809d753" title="Returns the next token that would be returned by the Next method.">Peek</a>() != <span class="stringliteral">&quot;)&quot;</span>) {
-<a name="l00738"></a>00738         ostringstream err_ss;
-<a name="l00739"></a>00739         err_ss &lt;&lt; <span class="stringliteral">&quot;Factory&lt;&quot;</span> &lt;&lt; <a class="code" href="classinfact_1_1_factory.html#ad620a617807715cd33c77ad6a68483ee" title="Returns the name of the base type of objects constructed by this factory.">BaseName</a>() &lt;&lt; <span class="stringliteral">&quot;&gt;: &quot;</span>
-<a name="l00740"></a>00740                &lt;&lt; <span class="stringliteral">&quot;error: expected &#39;,&#39; or &#39;)&#39; at stream position &quot;</span>
-<a name="l00741"></a>00741                &lt;&lt; st.<a class="code" href="classinfact_1_1_stream_tokenizer.html#acbafcc5e7f6a0b3e4cd8166c4a53f4a8" title="Returns the next token&rsquo;s start position, or the byte position of the underlying byte stream if there ...">PeekTokenStart</a>() &lt;&lt; <span class="stringliteral">&quot; but found \&quot;&quot;</span> &lt;&lt; st.<a class="code" href="classinfact_1_1_stream_tokenizer.html#a61ec5de244a34de264e5b18e4809d753" title="Returns the next token that would be returned by the Next method.">Peek</a>() &lt;&lt; <span class="stringliteral">&quot;\&quot;&quot;</span>;
-<a name="l00742"></a>00742         <a class="code" href="namespaceinfact.html#a746fb382cf3fd6cf656f40669d90372c" title="Reports an error encountered during parsing and/or construction of an object.">Error</a>(err_ss.str());
-<a name="l00743"></a>00743       }
-<a name="l00744"></a>00744       <span class="comment">// Read comma, if present.</span>
-<a name="l00745"></a>00745       <span class="keywordflow">if</span> (st.<a class="code" href="classinfact_1_1_stream_tokenizer.html#a61ec5de244a34de264e5b18e4809d753" title="Returns the next token that would be returned by the Next method.">Peek</a>() == <span class="stringliteral">&quot;,&quot;</span>) {
-<a name="l00746"></a>00746         st.<a class="code" href="classinfact_1_1_stream_tokenizer.html#ac6827f00a3da760e23241e890becee0c" title="Returns the next token in the token stream.">Next</a>();
-<a name="l00747"></a>00747       }
-<a name="l00748"></a>00748     }
-<a name="l00749"></a>00749 
-<a name="l00750"></a>00750     <span class="comment">// Read the close parenthesis token for this factory type specification.</span>
-<a name="l00751"></a>00751     <span class="keywordflow">if</span> (st.<a class="code" href="classinfact_1_1_stream_tokenizer.html#a61ec5de244a34de264e5b18e4809d753" title="Returns the next token that would be returned by the Next method.">Peek</a>() != <span class="stringliteral">&quot;)&quot;</span>) {
-<a name="l00752"></a>00752       ostringstream err_ss;
-<a name="l00753"></a>00753       err_ss &lt;&lt; <span class="stringliteral">&quot;Factory&lt;&quot;</span> &lt;&lt; <a class="code" href="classinfact_1_1_factory.html#ad620a617807715cd33c77ad6a68483ee" title="Returns the name of the base type of objects constructed by this factory.">BaseName</a>() &lt;&lt; <span class="stringliteral">&quot;&gt;: &quot;</span>
-<a name="l00754"></a>00754              &lt;&lt; <span class="stringliteral">&quot;error: expected &#39;)&#39; at stream position &quot;</span>
-<a name="l00755"></a>00755              &lt;&lt; st.<a class="code" href="classinfact_1_1_stream_tokenizer.html#acbafcc5e7f6a0b3e4cd8166c4a53f4a8" title="Returns the next token&rsquo;s start position, or the byte position of the underlying byte stream if there ...">PeekTokenStart</a>() &lt;&lt; <span class="stringliteral">&quot; but found \&quot;&quot;</span> &lt;&lt; st.<a class="code" href="classinfact_1_1_stream_tokenizer.html#a61ec5de244a34de264e5b18e4809d753" title="Returns the next token that would be returned by the Next method.">Peek</a>() &lt;&lt; <span class="stringliteral">&quot;\&quot;&quot;</span>;
-<a name="l00756"></a>00756       <a class="code" href="namespaceinfact.html#a746fb382cf3fd6cf656f40669d90372c" title="Reports an error encountered during parsing and/or construction of an object.">Error</a>(err_ss.str());
-<a name="l00757"></a>00757     }
-<a name="l00758"></a>00758     st.<a class="code" href="classinfact_1_1_stream_tokenizer.html#ac6827f00a3da760e23241e890becee0c" title="Returns the next token in the token stream.">Next</a>();
-<a name="l00759"></a>00759 
-<a name="l00760"></a>00760     <span class="comment">// Run through all member initializers: if any are required but haven&#39;t</span>
-<a name="l00761"></a>00761     <span class="comment">// been invoked, it is an error.</span>
-<a name="l00762"></a>00762     <span class="keywordflow">for</span> (<span class="keyword">typename</span> <a class="code" href="classinfact_1_1_initializers.html#a4fc9267fb231848052fe96843c1758d1" title="Forward the const_iterator typedef of the internal data structure, to make code compact and readable...">Initializers::const_iterator</a> init_it = initializers.begin();
-<a name="l00763"></a>00763          init_it != initializers.end();
-<a name="l00764"></a>00764          ++init_it) {
-<a name="l00765"></a>00765       <a class="code" href="classinfact_1_1_member_initializer.html" title="An interface for data member initializers of members of a Factory-constructible object.">MemberInitializer</a> *member_initializer = init_it-&gt;second;
-<a name="l00766"></a>00766       <span class="keywordflow">if</span> (member_initializer-&gt;<a class="code" href="classinfact_1_1_member_initializer.html#a51229eee1ad22cacb7665f5abc72fe32" title="Whether this member is required to be initialized in a spec string.">Required</a>() &amp;&amp;
-<a name="l00767"></a>00767           member_initializer-&gt;<a class="code" href="classinfact_1_1_member_initializer.html#a6bc9747bc681d4eef7ce2f155a4e509d" title="Returns the number of times this member initializer&rsquo;s Init method has been invoked.">Initialized</a>() == 0) {
+<a name="l00681"></a>00681     <span class="keywordflow">if</span> (token_type != <a class="code" href="classinfact_1_1_stream_tokenizer.html#ac6e5b0b274a66a2a504ac4fd425c57b3a61f308d29c6dd30996fcb120b6344e41">StreamTokenizer::IDENTIFIER</a>) {
+<a name="l00682"></a>00682       ostringstream err_ss;
+<a name="l00683"></a>00683       err_ss &lt;&lt; <span class="stringliteral">&quot;Factory&lt;&quot;</span> &lt;&lt; <a class="code" href="classinfact_1_1_factory.html#ad620a617807715cd33c77ad6a68483ee" title="Returns the name of the base type of objects constructed by this factory.">BaseName</a>() &lt;&lt; <span class="stringliteral">&quot;&gt;: &quot;</span>
+<a name="l00684"></a>00684              &lt;&lt; <span class="stringliteral">&quot;error: expected type specifier token but found &quot;</span>
+<a name="l00685"></a>00685              &lt;&lt; <a class="code" href="classinfact_1_1_stream_tokenizer.html#acd4baaa4ccb442e4398550e2f8c76419" title="Returns a string type name for the specified TokenType constant.">StreamTokenizer::TypeName</a>(token_type);
+<a name="l00686"></a>00686       <a class="code" href="namespaceinfact.html#a746fb382cf3fd6cf656f40669d90372c" title="Reports an error encountered during parsing and/or construction of an object.">Error</a>(err_ss.str());
+<a name="l00687"></a>00687     }
+<a name="l00688"></a>00688 
+<a name="l00689"></a>00689     <span class="comment">// Read the concrete type of object to be created.</span>
+<a name="l00690"></a>00690     <span class="keywordtype">string</span> type = st.<a class="code" href="classinfact_1_1_stream_tokenizer.html#ac6827f00a3da760e23241e890becee0c" title="Returns the next token in the token stream.">Next</a>();
+<a name="l00691"></a>00691 
+<a name="l00692"></a>00692     <span class="comment">// Read the open parenthesis token.</span>
+<a name="l00693"></a>00693     <span class="keywordflow">if</span> (st.<a class="code" href="classinfact_1_1_stream_tokenizer.html#a61ec5de244a34de264e5b18e4809d753" title="Returns the next token that would be returned by the Next method.">Peek</a>() != <span class="stringliteral">&quot;(&quot;</span>) {
+<a name="l00694"></a>00694       ostringstream err_ss;
+<a name="l00695"></a>00695       err_ss &lt;&lt; <span class="stringliteral">&quot;Factory&lt;&quot;</span> &lt;&lt; <a class="code" href="classinfact_1_1_factory.html#ad620a617807715cd33c77ad6a68483ee" title="Returns the name of the base type of objects constructed by this factory.">BaseName</a>() &lt;&lt; <span class="stringliteral">&quot;&gt;: &quot;</span>
+<a name="l00696"></a>00696              &lt;&lt; <span class="stringliteral">&quot;error: expected &#39;(&#39; at stream position &quot;</span>
+<a name="l00697"></a>00697              &lt;&lt; st.<a class="code" href="classinfact_1_1_stream_tokenizer.html#acbafcc5e7f6a0b3e4cd8166c4a53f4a8" title="Returns the next token&rsquo;s start position, or the byte position of the underlying byte stream if there ...">PeekTokenStart</a>() &lt;&lt; <span class="stringliteral">&quot; but found \&quot;&quot;</span> &lt;&lt; st.<a class="code" href="classinfact_1_1_stream_tokenizer.html#a61ec5de244a34de264e5b18e4809d753" title="Returns the next token that would be returned by the Next method.">Peek</a>() &lt;&lt; <span class="stringliteral">&quot;\&quot;&quot;</span>;
+<a name="l00698"></a>00698       <a class="code" href="namespaceinfact.html#a746fb382cf3fd6cf656f40669d90372c" title="Reports an error encountered during parsing and/or construction of an object.">Error</a>(err_ss.str());
+<a name="l00699"></a>00699     }
+<a name="l00700"></a>00700     st.<a class="code" href="classinfact_1_1_stream_tokenizer.html#ac6827f00a3da760e23241e890becee0c" title="Returns the next token in the token stream.">Next</a>();
+<a name="l00701"></a>00701 
+<a name="l00702"></a>00702     <span class="comment">// Attempt to create an instance of type.</span>
+<a name="l00703"></a>00703     <span class="keyword">typename</span> unordered_map&lt;string, const Constructor&lt;T&gt; *&gt;::iterator cons_it =
+<a name="l00704"></a>00704         cons_table_-&gt;find(type);
+<a name="l00705"></a>00705     <span class="keywordflow">if</span> (cons_it == cons_table_-&gt;end()) {
+<a name="l00706"></a>00706       ostringstream err_ss;
+<a name="l00707"></a>00707       err_ss &lt;&lt; <span class="stringliteral">&quot;Factory&lt;&quot;</span> &lt;&lt; <a class="code" href="classinfact_1_1_factory.html#ad620a617807715cd33c77ad6a68483ee" title="Returns the name of the base type of objects constructed by this factory.">BaseName</a>() &lt;&lt; <span class="stringliteral">&quot;&gt;: &quot;</span>
+<a name="l00708"></a>00708              &lt;&lt; <span class="stringliteral">&quot;error: unknown type: \&quot;&quot;</span> &lt;&lt; type &lt;&lt; <span class="stringliteral">&quot;\&quot;&quot;</span>;
+<a name="l00709"></a>00709       <a class="code" href="namespaceinfact.html#a746fb382cf3fd6cf656f40669d90372c" title="Reports an error encountered during parsing and/or construction of an object.">Error</a>(err_ss.str());
+<a name="l00710"></a>00710     }
+<a name="l00711"></a>00711     shared_ptr&lt;T&gt; instance(cons_it-&gt;second-&gt;NewInstance());
+<a name="l00712"></a>00712 
+<a name="l00713"></a>00713     <span class="comment">// Ask new instance to set up member initializers.</span>
+<a name="l00714"></a>00714     <a class="code" href="classinfact_1_1_initializers.html" title="A container for all the member initializers for a particular Factory-constructible instance...">Initializers</a> initializers;
+<a name="l00715"></a>00715     instance-&gt;RegisterInitializers(initializers);
+<a name="l00716"></a>00716 
+<a name="l00717"></a>00717     <span class="comment">// Parse initializer list.</span>
+<a name="l00718"></a>00718     <span class="keywordflow">while</span> (st.<a class="code" href="classinfact_1_1_stream_tokenizer.html#a61ec5de244a34de264e5b18e4809d753" title="Returns the next token that would be returned by the Next method.">Peek</a>() != <span class="stringliteral">&quot;)&quot;</span>) {
+<a name="l00719"></a>00719       token_type = st.<a class="code" href="classinfact_1_1_stream_tokenizer.html#a50a622f50ef6aa800a9c7c15b96bb6cb" title="Returns the type of the next token, or EOF_TYPE if there is no next token.">PeekTokenType</a>();
+<a name="l00720"></a>00720       <span class="keywordflow">if</span> (token_type != <a class="code" href="classinfact_1_1_stream_tokenizer.html#ac6e5b0b274a66a2a504ac4fd425c57b3a61f308d29c6dd30996fcb120b6344e41">StreamTokenizer::IDENTIFIER</a>) {
+<a name="l00721"></a>00721         ostringstream err_ss;
+<a name="l00722"></a>00722         err_ss &lt;&lt; <span class="stringliteral">&quot;Factory&lt;&quot;</span> &lt;&lt; <a class="code" href="classinfact_1_1_factory.html#ad620a617807715cd33c77ad6a68483ee" title="Returns the name of the base type of objects constructed by this factory.">BaseName</a>() &lt;&lt; <span class="stringliteral">&quot;&gt;: &quot;</span>
+<a name="l00723"></a>00723                &lt;&lt; <span class="stringliteral">&quot;error: expected token of type IDENTIFIER at &quot;</span>
+<a name="l00724"></a>00724                &lt;&lt; <span class="stringliteral">&quot;stream position &quot;</span> &lt;&lt; st.<a class="code" href="classinfact_1_1_stream_tokenizer.html#acbafcc5e7f6a0b3e4cd8166c4a53f4a8" title="Returns the next token&rsquo;s start position, or the byte position of the underlying byte stream if there ...">PeekTokenStart</a>() &lt;&lt; <span class="stringliteral">&quot; but found &quot;</span>
+<a name="l00725"></a>00725                &lt;&lt; <a class="code" href="classinfact_1_1_stream_tokenizer.html#acd4baaa4ccb442e4398550e2f8c76419" title="Returns a string type name for the specified TokenType constant.">StreamTokenizer::TypeName</a>(token_type) &lt;&lt; <span class="stringliteral">&quot;: \&quot;&quot;</span>
+<a name="l00726"></a>00726                &lt;&lt; st.<a class="code" href="classinfact_1_1_stream_tokenizer.html#a61ec5de244a34de264e5b18e4809d753" title="Returns the next token that would be returned by the Next method.">Peek</a>() &lt;&lt; <span class="stringliteral">&quot;\&quot;&quot;</span>;
+<a name="l00727"></a>00727         <a class="code" href="namespaceinfact.html#a746fb382cf3fd6cf656f40669d90372c" title="Reports an error encountered during parsing and/or construction of an object.">Error</a>(err_ss.str());
+<a name="l00728"></a>00728       }
+<a name="l00729"></a>00729       <span class="keywordtype">size_t</span> member_name_start = st.<a class="code" href="classinfact_1_1_stream_tokenizer.html#acbafcc5e7f6a0b3e4cd8166c4a53f4a8" title="Returns the next token&rsquo;s start position, or the byte position of the underlying byte stream if there ...">PeekTokenStart</a>();
+<a name="l00730"></a>00730       <span class="keywordtype">string</span> member_name = st.<a class="code" href="classinfact_1_1_stream_tokenizer.html#ac6827f00a3da760e23241e890becee0c" title="Returns the next token in the token stream.">Next</a>();
+<a name="l00731"></a>00731       <span class="keyword">typename</span> <a class="code" href="classinfact_1_1_initializers.html#a873d5a9d6458351331c6135d62017071" title="Forward the iterator typedef of the internal data structure, to make code compact and readable...">Initializers::iterator</a> init_it = initializers.find(member_name);
+<a name="l00732"></a>00732       <span class="keywordflow">if</span> (init_it == initializers.end()) {
+<a name="l00733"></a>00733         ostringstream err_ss;
+<a name="l00734"></a>00734         err_ss &lt;&lt; <span class="stringliteral">&quot;Factory&lt;&quot;</span> &lt;&lt; <a class="code" href="classinfact_1_1_factory.html#ad620a617807715cd33c77ad6a68483ee" title="Returns the name of the base type of objects constructed by this factory.">BaseName</a>() &lt;&lt; <span class="stringliteral">&quot;&gt;: &quot;</span>
+<a name="l00735"></a>00735                &lt;&lt; <span class="stringliteral">&quot;error: unknown member name \&quot;&quot;</span> &lt;&lt; member_name
+<a name="l00736"></a>00736                &lt;&lt; <span class="stringliteral">&quot;\&quot; in initializer list for type &quot;</span> &lt;&lt; type &lt;&lt; <span class="stringliteral">&quot; at stream &quot;</span>
+<a name="l00737"></a>00737                &lt;&lt; <span class="stringliteral">&quot;position &quot;</span> &lt;&lt; member_name_start;
+<a name="l00738"></a>00738         <a class="code" href="namespaceinfact.html#a746fb382cf3fd6cf656f40669d90372c" title="Reports an error encountered during parsing and/or construction of an object.">Error</a>(err_ss.str());
+<a name="l00739"></a>00739       }
+<a name="l00740"></a>00740       <a class="code" href="classinfact_1_1_member_initializer.html" title="An interface for data member initializers of members of a Factory-constructible object.">MemberInitializer</a> *member_initializer = init_it-&gt;second;
+<a name="l00741"></a>00741 
+<a name="l00742"></a>00742       <span class="comment">// Read open parenthesis.</span>
+<a name="l00743"></a>00743       <span class="keywordflow">if</span> (st.<a class="code" href="classinfact_1_1_stream_tokenizer.html#a61ec5de244a34de264e5b18e4809d753" title="Returns the next token that would be returned by the Next method.">Peek</a>() != <span class="stringliteral">&quot;(&quot;</span>) {
+<a name="l00744"></a>00744         ostringstream err_ss;
+<a name="l00745"></a>00745         err_ss &lt;&lt; <span class="stringliteral">&quot;Factory&lt;&quot;</span> &lt;&lt; <a class="code" href="classinfact_1_1_factory.html#ad620a617807715cd33c77ad6a68483ee" title="Returns the name of the base type of objects constructed by this factory.">BaseName</a>() &lt;&lt; <span class="stringliteral">&quot;&gt;: &quot;</span>
+<a name="l00746"></a>00746                &lt;&lt; <span class="stringliteral">&quot;error: expected &#39;(&#39; at stream position &quot;</span>
+<a name="l00747"></a>00747                &lt;&lt; st.<a class="code" href="classinfact_1_1_stream_tokenizer.html#acbafcc5e7f6a0b3e4cd8166c4a53f4a8" title="Returns the next token&rsquo;s start position, or the byte position of the underlying byte stream if there ...">PeekTokenStart</a>() &lt;&lt; <span class="stringliteral">&quot; but found \&quot;&quot;</span> &lt;&lt; st.<a class="code" href="classinfact_1_1_stream_tokenizer.html#a61ec5de244a34de264e5b18e4809d753" title="Returns the next token that would be returned by the Next method.">Peek</a>() &lt;&lt; <span class="stringliteral">&quot;\&quot;&quot;</span>;
+<a name="l00748"></a>00748         <a class="code" href="namespaceinfact.html#a746fb382cf3fd6cf656f40669d90372c" title="Reports an error encountered during parsing and/or construction of an object.">Error</a>(err_ss.str());
+<a name="l00749"></a>00749       }
+<a name="l00750"></a>00750       st.<a class="code" href="classinfact_1_1_stream_tokenizer.html#ac6827f00a3da760e23241e890becee0c" title="Returns the next token in the token stream.">Next</a>();
+<a name="l00751"></a>00751 
+<a name="l00752"></a>00752       <span class="comment">// Initialize member based on following token(s).</span>
+<a name="l00753"></a>00753       member_initializer-&gt;<a class="code" href="classinfact_1_1_member_initializer.html#a4c12e33f71273d982c073dffdb08ff01" title="Initializes this instance based on the following tokens obtained from the specified StreamTokenizer...">Init</a>(st, env_ptr.get());
+<a name="l00754"></a>00754 
+<a name="l00755"></a>00755       <span class="comment">// Read close parenthesis for current member initializer.</span>
+<a name="l00756"></a>00756       <span class="keywordflow">if</span> (st.<a class="code" href="classinfact_1_1_stream_tokenizer.html#a61ec5de244a34de264e5b18e4809d753" title="Returns the next token that would be returned by the Next method.">Peek</a>() != <span class="stringliteral">&quot;)&quot;</span>) {
+<a name="l00757"></a>00757         ostringstream err_ss;
+<a name="l00758"></a>00758         err_ss &lt;&lt; <span class="stringliteral">&quot;Factory&lt;&quot;</span> &lt;&lt; <a class="code" href="classinfact_1_1_factory.html#ad620a617807715cd33c77ad6a68483ee" title="Returns the name of the base type of objects constructed by this factory.">BaseName</a>() &lt;&lt; <span class="stringliteral">&quot;&gt;: &quot;</span>
+<a name="l00759"></a>00759                &lt;&lt; <span class="stringliteral">&quot;error: expected &#39;)&#39; at stream position &quot;</span>
+<a name="l00760"></a>00760                &lt;&lt; st.<a class="code" href="classinfact_1_1_stream_tokenizer.html#acbafcc5e7f6a0b3e4cd8166c4a53f4a8" title="Returns the next token&rsquo;s start position, or the byte position of the underlying byte stream if there ...">PeekTokenStart</a>() &lt;&lt; <span class="stringliteral">&quot; but found \&quot;&quot;</span> &lt;&lt; st.<a class="code" href="classinfact_1_1_stream_tokenizer.html#a61ec5de244a34de264e5b18e4809d753" title="Returns the next token that would be returned by the Next method.">Peek</a>() &lt;&lt; <span class="stringliteral">&quot;\&quot;&quot;</span>;
+<a name="l00761"></a>00761         <a class="code" href="namespaceinfact.html#a746fb382cf3fd6cf656f40669d90372c" title="Reports an error encountered during parsing and/or construction of an object.">Error</a>(err_ss.str());
+<a name="l00762"></a>00762       }
+<a name="l00763"></a>00763       st.<a class="code" href="classinfact_1_1_stream_tokenizer.html#ac6827f00a3da760e23241e890becee0c" title="Returns the next token in the token stream.">Next</a>();
+<a name="l00764"></a>00764 
+<a name="l00765"></a>00765       <span class="comment">// Each member initializer must be followed by a comma or the final</span>
+<a name="l00766"></a>00766       <span class="comment">// closing parenthesis.</span>
+<a name="l00767"></a>00767       <span class="keywordflow">if</span> (st.<a class="code" href="classinfact_1_1_stream_tokenizer.html#a61ec5de244a34de264e5b18e4809d753" title="Returns the next token that would be returned by the Next method.">Peek</a>() != <span class="stringliteral">&quot;,&quot;</span>  &amp;&amp; st.<a class="code" href="classinfact_1_1_stream_tokenizer.html#a61ec5de244a34de264e5b18e4809d753" title="Returns the next token that would be returned by the Next method.">Peek</a>() != <span class="stringliteral">&quot;)&quot;</span>) {
 <a name="l00768"></a>00768         ostringstream err_ss;
 <a name="l00769"></a>00769         err_ss &lt;&lt; <span class="stringliteral">&quot;Factory&lt;&quot;</span> &lt;&lt; <a class="code" href="classinfact_1_1_factory.html#ad620a617807715cd33c77ad6a68483ee" title="Returns the name of the base type of objects constructed by this factory.">BaseName</a>() &lt;&lt; <span class="stringliteral">&quot;&gt;: &quot;</span>
-<a name="l00770"></a>00770                &lt;&lt; <span class="stringliteral">&quot;error: initialization for member with name \&quot;&quot;</span>
-<a name="l00771"></a>00771                &lt;&lt; init_it-&gt;first &lt;&lt; <span class="stringliteral">&quot;\&quot; required but not found (current &quot;</span>
-<a name="l00772"></a>00772                &lt;&lt; <span class="stringliteral">&quot;stream position: &quot;</span> &lt;&lt; st.<a class="code" href="classinfact_1_1_stream_tokenizer.html#a2f2705cec4fa2f38202e8c3022482fd2" title="Returns the number of bytes read from the underlying byte stream just after scanning the most recent ...">tellg</a>() &lt;&lt; <span class="stringliteral">&quot;)&quot;</span>;
-<a name="l00773"></a>00773         <a class="code" href="namespaceinfact.html#a746fb382cf3fd6cf656f40669d90372c" title="Reports an error encountered during parsing and/or construction of an object.">Error</a>(err_ss.str());
-<a name="l00774"></a>00774       }
-<a name="l00775"></a>00775     }
-<a name="l00776"></a>00776 
-<a name="l00777"></a>00777     <span class="keywordtype">size_t</span> end = st.<a class="code" href="classinfact_1_1_stream_tokenizer.html#a2f2705cec4fa2f38202e8c3022482fd2" title="Returns the number of bytes read from the underlying byte stream just after scanning the most recent ...">tellg</a>();
-<a name="l00778"></a>00778     <span class="comment">// Invoke new instance&#39;s Init method.</span>
-<a name="l00779"></a>00779     <span class="keywordtype">string</span> stream_str = st.<a class="code" href="classinfact_1_1_stream_tokenizer.html#a3790d1692c84c79af738a9ade303cbd7" title="Returns the entire sequence of characters read so far by this stream tokenizer as a newly constructed...">str</a>();
-<a name="l00780"></a>00780     <span class="comment">//cerr &lt;&lt; &quot;Full stream string is: \&quot;&quot; &lt;&lt; stream_str &lt;&lt; &quot;\&quot;&quot; &lt;&lt; endl;</span>
-<a name="l00781"></a>00781     <span class="keywordtype">string</span> init_str = stream_str.substr(start, end - start);
-<a name="l00782"></a>00782     <span class="comment">//cerr &lt;&lt; &quot;PostInit string is: \&quot;&quot; &lt;&lt; init_str &lt;&lt; &quot;\&quot;&quot; &lt;&lt; endl;</span>
-<a name="l00783"></a>00783     instance-&gt;PostInit(env_ptr.get(), init_str);
-<a name="l00784"></a>00784 
-<a name="l00785"></a>00785     <span class="keywordflow">return</span> instance;
-<a name="l00786"></a>00786   }
-<a name="l00787"></a>00787 
-<a name="l00788"></a><a class="code" href="classinfact_1_1_factory.html#a8442aa06c928e31110fd25b9c80b006d">00788</a>   shared_ptr&lt;T&gt; <a class="code" href="classinfact_1_1_factory.html#a8b2771ba4fac39a71cb1d0156ddba7b6" title="Dynamically creates an object, whose type and initialization are contained in a specification string...">CreateOrDie</a>(<span class="keyword">const</span> <span class="keywordtype">string</span> &amp;spec, <span class="keyword">const</span> <span class="keywordtype">string</span> err_msg,
-<a name="l00789"></a>00789                             <a class="code" href="classinfact_1_1_environment.html" title="An interface for an environment in which variables of various types are mapped to their values...">Environment</a> *env = <span class="keyword">nullptr</span>) {
-<a name="l00790"></a>00790     <a class="code" href="classinfact_1_1_stream_tokenizer.html" title="A simple class for tokenizing a stream of tokens for the formally specified language used to construc...">StreamTokenizer</a> st(spec);
-<a name="l00791"></a>00791     <span class="keywordflow">return</span> <a class="code" href="classinfact_1_1_factory.html#a8b2771ba4fac39a71cb1d0156ddba7b6" title="Dynamically creates an object, whose type and initialization are contained in a specification string...">CreateOrDie</a>(st, env);
-<a name="l00792"></a>00792   }
-<a name="l00793"></a>00793 
-<a name="l00794"></a>00794 
-<a name="l00796"></a><a class="code" href="classinfact_1_1_factory.html#ad620a617807715cd33c77ad6a68483ee">00796</a>   <span class="keyword">virtual</span> <span class="keyword">const</span> <span class="keywordtype">string</span> <a class="code" href="classinfact_1_1_factory.html#ad620a617807715cd33c77ad6a68483ee" title="Returns the name of the base type of objects constructed by this factory.">BaseName</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> base_name_; }
-<a name="l00797"></a>00797 
-<a name="l00805"></a><a class="code" href="classinfact_1_1_factory.html#a17872c09395ca9505ed56b165089f749">00805</a>   <span class="keyword">static</span> <span class="keywordtype">bool</span> <a class="code" href="classinfact_1_1_factory.html#a17872c09395ca9505ed56b165089f749" title="Returns whether the specified type has been registered with this factory (where registration happens ...">IsRegistered</a>(<span class="keyword">const</span> <span class="keywordtype">string</span> &amp;type) {
-<a name="l00806"></a>00806     <span class="keywordflow">return</span> initialized_ &amp;&amp; cons_table_-&gt;find(type) != cons_table_-&gt;end();
-<a name="l00807"></a>00807   }
-<a name="l00808"></a>00808 
-<a name="l00810"></a><a class="code" href="classinfact_1_1_factory.html#a3076c07068d1eab3de4457897b4ba437">00810</a>   <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classinfact_1_1_factory.html#a3076c07068d1eab3de4457897b4ba437">CollectRegistered</a>(unordered_set&lt;string&gt; &amp;registered)<span class="keyword"> const </span>{
-<a name="l00811"></a>00811     <span class="keywordflow">if</span> (initialized_) {
-<a name="l00812"></a>00812       <span class="keywordflow">for</span> (<span class="keyword">typename</span> unordered_map&lt;<span class="keywordtype">string</span>, <span class="keyword">const</span> <a class="code" href="classinfact_1_1_constructor.html" title="An interface with a single virtual method that constructs a concrete instance of the abstract type T...">Constructor&lt;T&gt;</a> *&gt;::iterator it =
-<a name="l00813"></a>00813                cons_table_-&gt;begin();
-<a name="l00814"></a>00814            it != cons_table_-&gt;end();
-<a name="l00815"></a>00815            ++it) {
-<a name="l00816"></a>00816         registered.insert(it-&gt;first);
-<a name="l00817"></a>00817       }
-<a name="l00818"></a>00818     }
-<a name="l00819"></a>00819   }
-<a name="l00820"></a>00820 
-<a name="l00821"></a><a class="code" href="classinfact_1_1_factory.html#a935b3afe182cbaececdaeae2704a6019">00821</a>   <span class="keyword">virtual</span> <a class="code" href="classinfact_1_1_var_map_base.html" title="A base class for a mapping from variables of a specific type to their values.">VarMapBase</a> *<a class="code" href="classinfact_1_1_factory.html#a935b3afe182cbaececdaeae2704a6019">CreateVarMap</a>(<a class="code" href="classinfact_1_1_environment.html" title="An interface for an environment in which variables of various types are mapped to their values...">Environment</a> *env)<span class="keyword"> const </span>{
-<a name="l00822"></a>00822     <span class="keywordtype">bool</span> is_primitive = <span class="keyword">false</span>;
-<a name="l00823"></a>00823     <span class="keywordflow">return</span> <span class="keyword">new</span> <a class="code" href="classinfact_1_1_var_map.html" title="A container to hold the mapping between named variables of a specific type and their values...">VarMap&lt;shared_ptr&lt;T&gt;</a> &gt;(<a class="code" href="classinfact_1_1_factory.html#ad620a617807715cd33c77ad6a68483ee" title="Returns the name of the base type of objects constructed by this factory.">BaseName</a>(), env, is_primitive);
-<a name="l00824"></a>00824   }
-<a name="l00825"></a>00825 
-<a name="l00826"></a><a class="code" href="classinfact_1_1_factory.html#a425fe369a75bbf639c797a1ca5926c63">00826</a>   <span class="keyword">virtual</span> <a class="code" href="classinfact_1_1_var_map_base.html" title="A base class for a mapping from variables of a specific type to their values.">VarMapBase</a> *<a class="code" href="classinfact_1_1_factory.html#a425fe369a75bbf639c797a1ca5926c63">CreateVectorVarMap</a>(<a class="code" href="classinfact_1_1_environment.html" title="An interface for an environment in which variables of various types are mapped to their values...">Environment</a> *env)<span class="keyword"> const </span>{
-<a name="l00827"></a>00827     <span class="keywordtype">string</span> name = <a class="code" href="classinfact_1_1_factory.html#ad620a617807715cd33c77ad6a68483ee" title="Returns the name of the base type of objects constructed by this factory.">BaseName</a>() + <span class="stringliteral">&quot;[]&quot;</span>;
-<a name="l00828"></a>00828     <span class="keywordtype">bool</span> is_primitive = <span class="keyword">false</span>;
-<a name="l00829"></a>00829     <span class="keywordflow">return</span> <span class="keyword">new</span> <a class="code" href="classinfact_1_1_var_map.html" title="A container to hold the mapping between named variables of a specific type and their values...">VarMap&lt;vector&lt;shared_ptr&lt;T&gt;</a> &gt; &gt;(name, <a class="code" href="classinfact_1_1_factory.html#ad620a617807715cd33c77ad6a68483ee" title="Returns the name of the base type of objects constructed by this factory.">BaseName</a>(), env,
-<a name="l00830"></a>00830                                                is_primitive);
-<a name="l00831"></a>00831   }
-<a name="l00832"></a>00832 
-<a name="l00838"></a><a class="code" href="classinfact_1_1_factory.html#a39e6a67a0a3f5ba160195bd23826d8aa">00838</a>   <span class="keyword">static</span> <span class="keyword">const</span> <a class="code" href="classinfact_1_1_constructor.html" title="An interface with a single virtual method that constructs a concrete instance of the abstract type T...">Constructor&lt;T&gt;</a> *<a class="code" href="classinfact_1_1_factory.html#a39e6a67a0a3f5ba160195bd23826d8aa" title="The method used by the REGISTER_NAMED macro to ensure that subclasses add themselves to the factory...">Register</a>(<span class="keyword">const</span> <span class="keywordtype">string</span> &amp;type,
-<a name="l00839"></a>00839                                         <span class="keyword">const</span> <a class="code" href="classinfact_1_1_constructor.html" title="An interface with a single virtual method that constructs a concrete instance of the abstract type T...">Constructor&lt;T&gt;</a> *p) {
-<a name="l00840"></a>00840     <span class="keywordflow">if</span> (!initialized_) {
-<a name="l00841"></a>00841       cons_table_ = <span class="keyword">new</span> unordered_map&lt;string, const Constructor&lt;T&gt; *&gt;();
-<a name="l00842"></a>00842       initialized_ = 1;
-<a name="l00843"></a>00843       <a class="code" href="classinfact_1_1_factory_container.html#a557a5f3c79c1bd105bec2855918a6f43" title="Adds the specified factory to this container of factories.">FactoryContainer::Add</a>(<span class="keyword">new</span> <a class="code" href="classinfact_1_1_factory.html" title="Factory for dynamically created instance of the specified type.">Factory&lt;T&gt;</a>());
-<a name="l00844"></a>00844     }
-<a name="l00845"></a>00845     (*cons_table_)[type] = p;
-<a name="l00846"></a>00846     <span class="keywordflow">return</span> p;
-<a name="l00847"></a>00847   }
-<a name="l00848"></a>00848 
-<a name="l00854"></a><a class="code" href="classinfact_1_1_factory.html#a9438277a67d200ca87cc08ec2c46cbde">00854</a>   <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="classinfact_1_1_factory.html#a9438277a67d200ca87cc08ec2c46cbde" title="Clears all static data associated with this class.">ClearStatic</a>() {
-<a name="l00855"></a>00855     <span class="keywordflow">if</span> (initialized_) {
-<a name="l00856"></a>00856       <span class="keywordflow">for</span> (<span class="keyword">typename</span> unordered_map&lt;<span class="keywordtype">string</span>, <span class="keyword">const</span> <a class="code" href="classinfact_1_1_constructor.html" title="An interface with a single virtual method that constructs a concrete instance of the abstract type T...">Constructor&lt;T&gt;</a> *&gt;::iterator it =
-<a name="l00857"></a>00857                cons_table_-&gt;begin();
-<a name="l00858"></a>00858            it != cons_table_-&gt;end();
-<a name="l00859"></a>00859            ++it) {
-<a name="l00860"></a>00860         <span class="keyword">delete</span> it-&gt;second;
-<a name="l00861"></a>00861       }
-<a name="l00862"></a>00862       <span class="keyword">delete</span> cons_table_;
-<a name="l00863"></a>00863       initialized_ = 0;
-<a name="l00864"></a>00864     }
-<a name="l00865"></a>00865   }
-<a name="l00866"></a>00866  <span class="keyword">private</span>:
-<a name="l00867"></a>00867   <span class="comment">// data members</span>
-<a name="l00869"></a>00869 <span class="comment"></span>  <span class="keyword">static</span> <span class="keywordtype">int</span> initialized_;
-<a name="l00871"></a>00871   <span class="keyword">static</span> unordered_map&lt;string, const Constructor&lt;T&gt; *&gt; *cons_table_;
-<a name="l00872"></a>00872   <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span> *base_name_;
-<a name="l00873"></a>00873 };
-<a name="l00874"></a>00874 
-<a name="l00881"></a><a class="code" href="factory_8h.html#a0440aa6c8d7080a9daa203766dae388d">00881</a> <span class="preprocessor">#define DEFINE_CONS_CLASS(TYPE,NAME,BASE) \</span>
-<a name="l00882"></a>00882 <span class="preprocessor">  class NAME ## Constructor : public Constructor&lt;BASE&gt; { \</span>
-<a name="l00883"></a>00883 <span class="preprocessor">   public: virtual BASE *NewInstance() const { return new TYPE(); } };</span>
-<a name="l00884"></a>00884 <span class="preprocessor"></span>
-<a name="l00895"></a><a class="code" href="factory_8h.html#a0b09e4aaef613d7556c07875c7d5a029">00895</a> <span class="preprocessor">#define REGISTER_NAMED(TYPE,NAME,BASE)  \</span>
-<a name="l00896"></a>00896 <span class="preprocessor">  DEFINE_CONS_CLASS(TYPE,NAME,BASE) \</span>
-<a name="l00897"></a>00897 <span class="preprocessor">  const Constructor&lt;BASE&gt; *NAME ## _my_protoype = \</span>
-<a name="l00898"></a>00898 <span class="preprocessor">      Factory&lt;BASE&gt;::Register(string(#NAME), new NAME ## Constructor());</span>
-<a name="l00899"></a>00899 <span class="preprocessor"></span>
-<a name="l00902"></a><a class="code" href="factory_8h.html#a01b208854b036ee1381a9289186ff3c2">00902</a> <span class="preprocessor">#define IMPLEMENT_FACTORY(BASE) \</span>
-<a name="l00903"></a>00903 <span class="preprocessor">  template&lt;&gt; int Factory&lt;BASE&gt;::initialized_ = 0; \</span>
-<a name="l00904"></a>00904 <span class="preprocessor">  template&lt;&gt; unordered_map&lt;string, const Constructor&lt;BASE&gt; *&gt; * \</span>
-<a name="l00905"></a>00905 <span class="preprocessor">    Factory&lt;BASE&gt;::cons_table_ = 0; \</span>
-<a name="l00906"></a>00906 <span class="preprocessor">  template&lt;&gt; const char *Factory&lt;BASE&gt;::base_name_ = #BASE;</span>
-<a name="l00907"></a>00907 <span class="preprocessor"></span>
-<a name="l00908"></a>00908 }  <span class="comment">// namespace infact</span>
-<a name="l00909"></a>00909 
-<a name="l00910"></a>00910 <span class="preprocessor">#endif</span>
+<a name="l00770"></a>00770                &lt;&lt; <span class="stringliteral">&quot;error: expected &#39;,&#39; or &#39;)&#39; at stream position &quot;</span>
+<a name="l00771"></a>00771                &lt;&lt; st.<a class="code" href="classinfact_1_1_stream_tokenizer.html#acbafcc5e7f6a0b3e4cd8166c4a53f4a8" title="Returns the next token&rsquo;s start position, or the byte position of the underlying byte stream if there ...">PeekTokenStart</a>() &lt;&lt; <span class="stringliteral">&quot; but found \&quot;&quot;</span> &lt;&lt; st.<a class="code" href="classinfact_1_1_stream_tokenizer.html#a61ec5de244a34de264e5b18e4809d753" title="Returns the next token that would be returned by the Next method.">Peek</a>() &lt;&lt; <span class="stringliteral">&quot;\&quot;&quot;</span>;
+<a name="l00772"></a>00772         <a class="code" href="namespaceinfact.html#a746fb382cf3fd6cf656f40669d90372c" title="Reports an error encountered during parsing and/or construction of an object.">Error</a>(err_ss.str());
+<a name="l00773"></a>00773       }
+<a name="l00774"></a>00774       <span class="comment">// Read comma, if present.</span>
+<a name="l00775"></a>00775       <span class="keywordflow">if</span> (st.<a class="code" href="classinfact_1_1_stream_tokenizer.html#a61ec5de244a34de264e5b18e4809d753" title="Returns the next token that would be returned by the Next method.">Peek</a>() == <span class="stringliteral">&quot;,&quot;</span>) {
+<a name="l00776"></a>00776         st.<a class="code" href="classinfact_1_1_stream_tokenizer.html#ac6827f00a3da760e23241e890becee0c" title="Returns the next token in the token stream.">Next</a>();
+<a name="l00777"></a>00777       }
+<a name="l00778"></a>00778     }
+<a name="l00779"></a>00779 
+<a name="l00780"></a>00780     <span class="comment">// Read the close parenthesis token for this factory type specification.</span>
+<a name="l00781"></a>00781     <span class="keywordflow">if</span> (st.<a class="code" href="classinfact_1_1_stream_tokenizer.html#a61ec5de244a34de264e5b18e4809d753" title="Returns the next token that would be returned by the Next method.">Peek</a>() != <span class="stringliteral">&quot;)&quot;</span>) {
+<a name="l00782"></a>00782       ostringstream err_ss;
+<a name="l00783"></a>00783       err_ss &lt;&lt; <span class="stringliteral">&quot;Factory&lt;&quot;</span> &lt;&lt; <a class="code" href="classinfact_1_1_factory.html#ad620a617807715cd33c77ad6a68483ee" title="Returns the name of the base type of objects constructed by this factory.">BaseName</a>() &lt;&lt; <span class="stringliteral">&quot;&gt;: &quot;</span>
+<a name="l00784"></a>00784              &lt;&lt; <span class="stringliteral">&quot;error: expected &#39;)&#39; at stream position &quot;</span>
+<a name="l00785"></a>00785              &lt;&lt; st.<a class="code" href="classinfact_1_1_stream_tokenizer.html#acbafcc5e7f6a0b3e4cd8166c4a53f4a8" title="Returns the next token&rsquo;s start position, or the byte position of the underlying byte stream if there ...">PeekTokenStart</a>() &lt;&lt; <span class="stringliteral">&quot; but found \&quot;&quot;</span> &lt;&lt; st.<a class="code" href="classinfact_1_1_stream_tokenizer.html#a61ec5de244a34de264e5b18e4809d753" title="Returns the next token that would be returned by the Next method.">Peek</a>() &lt;&lt; <span class="stringliteral">&quot;\&quot;&quot;</span>;
+<a name="l00786"></a>00786       <a class="code" href="namespaceinfact.html#a746fb382cf3fd6cf656f40669d90372c" title="Reports an error encountered during parsing and/or construction of an object.">Error</a>(err_ss.str());
+<a name="l00787"></a>00787     }
+<a name="l00788"></a>00788     st.<a class="code" href="classinfact_1_1_stream_tokenizer.html#ac6827f00a3da760e23241e890becee0c" title="Returns the next token in the token stream.">Next</a>();
+<a name="l00789"></a>00789 
+<a name="l00790"></a>00790     <span class="comment">// Run through all member initializers: if any are required but haven&#39;t</span>
+<a name="l00791"></a>00791     <span class="comment">// been invoked, it is an error.</span>
+<a name="l00792"></a>00792     <span class="keywordflow">for</span> (<span class="keyword">typename</span> <a class="code" href="classinfact_1_1_initializers.html#a4fc9267fb231848052fe96843c1758d1" title="Forward the const_iterator typedef of the internal data structure, to make code compact and readable...">Initializers::const_iterator</a> init_it = initializers.begin();
+<a name="l00793"></a>00793          init_it != initializers.end();
+<a name="l00794"></a>00794          ++init_it) {
+<a name="l00795"></a>00795       <a class="code" href="classinfact_1_1_member_initializer.html" title="An interface for data member initializers of members of a Factory-constructible object.">MemberInitializer</a> *member_initializer = init_it-&gt;second;
+<a name="l00796"></a>00796       <span class="keywordflow">if</span> (member_initializer-&gt;<a class="code" href="classinfact_1_1_member_initializer.html#a51229eee1ad22cacb7665f5abc72fe32" title="Whether this member is required to be initialized in a spec string.">Required</a>() &amp;&amp;
+<a name="l00797"></a>00797           member_initializer-&gt;<a class="code" href="classinfact_1_1_member_initializer.html#a6bc9747bc681d4eef7ce2f155a4e509d" title="Returns the number of times this member initializer&rsquo;s Init method has been invoked.">Initialized</a>() == 0) {
+<a name="l00798"></a>00798         ostringstream err_ss;
+<a name="l00799"></a>00799         err_ss &lt;&lt; <span class="stringliteral">&quot;Factory&lt;&quot;</span> &lt;&lt; <a class="code" href="classinfact_1_1_factory.html#ad620a617807715cd33c77ad6a68483ee" title="Returns the name of the base type of objects constructed by this factory.">BaseName</a>() &lt;&lt; <span class="stringliteral">&quot;&gt;: &quot;</span>
+<a name="l00800"></a>00800                &lt;&lt; <span class="stringliteral">&quot;error: initialization for member with name \&quot;&quot;</span>
+<a name="l00801"></a>00801                &lt;&lt; init_it-&gt;first &lt;&lt; <span class="stringliteral">&quot;\&quot; required but not found (current &quot;</span>
+<a name="l00802"></a>00802                &lt;&lt; <span class="stringliteral">&quot;stream position: &quot;</span> &lt;&lt; st.<a class="code" href="classinfact_1_1_stream_tokenizer.html#a2f2705cec4fa2f38202e8c3022482fd2" title="Returns the number of bytes read from the underlying byte stream just after scanning the most recent ...">tellg</a>() &lt;&lt; <span class="stringliteral">&quot;)&quot;</span>;
+<a name="l00803"></a>00803         <a class="code" href="namespaceinfact.html#a746fb382cf3fd6cf656f40669d90372c" title="Reports an error encountered during parsing and/or construction of an object.">Error</a>(err_ss.str());
+<a name="l00804"></a>00804       }
+<a name="l00805"></a>00805     }
+<a name="l00806"></a>00806 
+<a name="l00807"></a>00807     <span class="keywordtype">size_t</span> end = st.<a class="code" href="classinfact_1_1_stream_tokenizer.html#a2f2705cec4fa2f38202e8c3022482fd2" title="Returns the number of bytes read from the underlying byte stream just after scanning the most recent ...">tellg</a>();
+<a name="l00808"></a>00808     <span class="comment">// Invoke new instance&#39;s Init method.</span>
+<a name="l00809"></a>00809     <span class="keywordtype">string</span> stream_str = st.<a class="code" href="classinfact_1_1_stream_tokenizer.html#a3790d1692c84c79af738a9ade303cbd7" title="Returns the entire sequence of characters read so far by this stream tokenizer as a newly constructed...">str</a>();
+<a name="l00810"></a>00810     <span class="comment">//cerr &lt;&lt; &quot;Full stream string is: \&quot;&quot; &lt;&lt; stream_str &lt;&lt; &quot;\&quot;&quot; &lt;&lt; endl;</span>
+<a name="l00811"></a>00811     <span class="keywordtype">string</span> init_str = stream_str.substr(start, end - start);
+<a name="l00812"></a>00812     <span class="comment">//cerr &lt;&lt; &quot;PostInit string is: \&quot;&quot; &lt;&lt; init_str &lt;&lt; &quot;\&quot;&quot; &lt;&lt; endl;</span>
+<a name="l00813"></a>00813     instance-&gt;PostInit(env_ptr.get(), init_str);
+<a name="l00814"></a>00814 
+<a name="l00815"></a>00815     <span class="keywordflow">return</span> instance;
+<a name="l00816"></a>00816   }
+<a name="l00817"></a>00817 
+<a name="l00818"></a><a class="code" href="classinfact_1_1_factory.html#a8442aa06c928e31110fd25b9c80b006d">00818</a>   shared_ptr&lt;T&gt; <a class="code" href="classinfact_1_1_factory.html#a8b2771ba4fac39a71cb1d0156ddba7b6" title="Dynamically creates an object, whose type and initialization are contained in a specification string...">CreateOrDie</a>(<span class="keyword">const</span> <span class="keywordtype">string</span> &amp;spec, <span class="keyword">const</span> <span class="keywordtype">string</span> err_msg,
+<a name="l00819"></a>00819                             <a class="code" href="classinfact_1_1_environment.html" title="An interface for an environment in which variables of various types are mapped to their values...">Environment</a> *env = <span class="keyword">nullptr</span>) {
+<a name="l00820"></a>00820     <a class="code" href="classinfact_1_1_stream_tokenizer.html" title="A simple class for tokenizing a stream of tokens for the formally specified language used to construc...">StreamTokenizer</a> st(spec);
+<a name="l00821"></a>00821     <span class="keywordflow">return</span> <a class="code" href="classinfact_1_1_factory.html#a8b2771ba4fac39a71cb1d0156ddba7b6" title="Dynamically creates an object, whose type and initialization are contained in a specification string...">CreateOrDie</a>(st, env);
+<a name="l00822"></a>00822   }
+<a name="l00823"></a>00823 
+<a name="l00824"></a>00824 
+<a name="l00826"></a><a class="code" href="classinfact_1_1_factory.html#ad620a617807715cd33c77ad6a68483ee">00826</a>   <span class="keyword">virtual</span> <span class="keyword">const</span> <span class="keywordtype">string</span> <a class="code" href="classinfact_1_1_factory.html#ad620a617807715cd33c77ad6a68483ee" title="Returns the name of the base type of objects constructed by this factory.">BaseName</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> base_name_; }
+<a name="l00827"></a>00827 
+<a name="l00835"></a><a class="code" href="classinfact_1_1_factory.html#a17872c09395ca9505ed56b165089f749">00835</a>   <span class="keyword">static</span> <span class="keywordtype">bool</span> <a class="code" href="classinfact_1_1_factory.html#a17872c09395ca9505ed56b165089f749" title="Returns whether the specified type has been registered with this factory (where registration happens ...">IsRegistered</a>(<span class="keyword">const</span> <span class="keywordtype">string</span> &amp;type) {
+<a name="l00836"></a>00836     <span class="keywordflow">return</span> initialized_ &amp;&amp; cons_table_-&gt;find(type) != cons_table_-&gt;end();
+<a name="l00837"></a>00837   }
+<a name="l00838"></a>00838 
+<a name="l00840"></a><a class="code" href="classinfact_1_1_factory.html#a3076c07068d1eab3de4457897b4ba437">00840</a>   <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classinfact_1_1_factory.html#a3076c07068d1eab3de4457897b4ba437">CollectRegistered</a>(unordered_set&lt;string&gt; &amp;registered)<span class="keyword"> const </span>{
+<a name="l00841"></a>00841     <span class="keywordflow">if</span> (initialized_) {
+<a name="l00842"></a>00842       <span class="keywordflow">for</span> (<span class="keyword">typename</span> unordered_map&lt;<span class="keywordtype">string</span>, <span class="keyword">const</span> <a class="code" href="classinfact_1_1_constructor.html" title="An interface with a single virtual method that constructs a concrete instance of the abstract type T...">Constructor&lt;T&gt;</a> *&gt;::iterator it =
+<a name="l00843"></a>00843                cons_table_-&gt;begin();
+<a name="l00844"></a>00844            it != cons_table_-&gt;end();
+<a name="l00845"></a>00845            ++it) {
+<a name="l00846"></a>00846         registered.insert(it-&gt;first);
+<a name="l00847"></a>00847       }
+<a name="l00848"></a>00848     }
+<a name="l00849"></a>00849   }
+<a name="l00850"></a>00850 
+<a name="l00851"></a><a class="code" href="classinfact_1_1_factory.html#a935b3afe182cbaececdaeae2704a6019">00851</a>   <span class="keyword">virtual</span> <a class="code" href="classinfact_1_1_var_map_base.html" title="A base class for a mapping from variables of a specific type to their values.">VarMapBase</a> *<a class="code" href="classinfact_1_1_factory.html#a935b3afe182cbaececdaeae2704a6019">CreateVarMap</a>(<a class="code" href="classinfact_1_1_environment.html" title="An interface for an environment in which variables of various types are mapped to their values...">Environment</a> *env)<span class="keyword"> const </span>{
+<a name="l00852"></a>00852     <span class="keywordtype">bool</span> is_primitive = <span class="keyword">false</span>;
+<a name="l00853"></a>00853     <span class="keywordflow">return</span> <span class="keyword">new</span> <a class="code" href="classinfact_1_1_var_map.html" title="A container to hold the mapping between named variables of a specific type and their values...">VarMap&lt;shared_ptr&lt;T&gt;</a> &gt;(<a class="code" href="classinfact_1_1_factory.html#ad620a617807715cd33c77ad6a68483ee" title="Returns the name of the base type of objects constructed by this factory.">BaseName</a>(), env, is_primitive);
+<a name="l00854"></a>00854   }
+<a name="l00855"></a>00855 
+<a name="l00856"></a><a class="code" href="classinfact_1_1_factory.html#a425fe369a75bbf639c797a1ca5926c63">00856</a>   <span class="keyword">virtual</span> <a class="code" href="classinfact_1_1_var_map_base.html" title="A base class for a mapping from variables of a specific type to their values.">VarMapBase</a> *<a class="code" href="classinfact_1_1_factory.html#a425fe369a75bbf639c797a1ca5926c63">CreateVectorVarMap</a>(<a class="code" href="classinfact_1_1_environment.html" title="An interface for an environment in which variables of various types are mapped to their values...">Environment</a> *env)<span class="keyword"> const </span>{
+<a name="l00857"></a>00857     <span class="keywordtype">string</span> name = <a class="code" href="classinfact_1_1_factory.html#ad620a617807715cd33c77ad6a68483ee" title="Returns the name of the base type of objects constructed by this factory.">BaseName</a>() + <span class="stringliteral">&quot;[]&quot;</span>;
+<a name="l00858"></a>00858     <span class="keywordtype">bool</span> is_primitive = <span class="keyword">false</span>;
+<a name="l00859"></a>00859     <span class="keywordflow">return</span> <span class="keyword">new</span> <a class="code" href="classinfact_1_1_var_map.html" title="A container to hold the mapping between named variables of a specific type and their values...">VarMap&lt;vector&lt;shared_ptr&lt;T&gt;</a> &gt; &gt;(name, <a class="code" href="classinfact_1_1_factory.html#ad620a617807715cd33c77ad6a68483ee" title="Returns the name of the base type of objects constructed by this factory.">BaseName</a>(), env,
+<a name="l00860"></a>00860                                                is_primitive);
+<a name="l00861"></a>00861   }
+<a name="l00862"></a>00862 
+<a name="l00868"></a><a class="code" href="classinfact_1_1_factory.html#a39e6a67a0a3f5ba160195bd23826d8aa">00868</a>   <span class="keyword">static</span> <span class="keyword">const</span> <a class="code" href="classinfact_1_1_constructor.html" title="An interface with a single virtual method that constructs a concrete instance of the abstract type T...">Constructor&lt;T&gt;</a> *<a class="code" href="classinfact_1_1_factory.html#a39e6a67a0a3f5ba160195bd23826d8aa" title="The method used by the REGISTER_NAMED macro to ensure that subclasses add themselves to the factory...">Register</a>(<span class="keyword">const</span> <span class="keywordtype">string</span> &amp;type,
+<a name="l00869"></a>00869                                         <span class="keyword">const</span> <a class="code" href="classinfact_1_1_constructor.html" title="An interface with a single virtual method that constructs a concrete instance of the abstract type T...">Constructor&lt;T&gt;</a> *p) {
+<a name="l00870"></a>00870     <span class="keywordflow">if</span> (!initialized_) {
+<a name="l00871"></a>00871       cons_table_ = <span class="keyword">new</span> unordered_map&lt;string, const Constructor&lt;T&gt; *&gt;();
+<a name="l00872"></a>00872       initialized_ = 1;
+<a name="l00873"></a>00873       <a class="code" href="classinfact_1_1_factory_container.html#a557a5f3c79c1bd105bec2855918a6f43" title="Adds the specified factory to this container of factories.">FactoryContainer::Add</a>(<span class="keyword">new</span> <a class="code" href="classinfact_1_1_factory.html" title="Factory for dynamically created instance of the specified type.">Factory&lt;T&gt;</a>());
+<a name="l00874"></a>00874     }
+<a name="l00875"></a>00875     (*cons_table_)[type] = p;
+<a name="l00876"></a>00876     <span class="keywordflow">return</span> p;
+<a name="l00877"></a>00877   }
+<a name="l00878"></a>00878 
+<a name="l00884"></a><a class="code" href="classinfact_1_1_factory.html#a9438277a67d200ca87cc08ec2c46cbde">00884</a>   <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="classinfact_1_1_factory.html#a9438277a67d200ca87cc08ec2c46cbde" title="Clears all static data associated with this class.">ClearStatic</a>() {
+<a name="l00885"></a>00885     <span class="keywordflow">if</span> (initialized_) {
+<a name="l00886"></a>00886       <span class="keywordflow">for</span> (<span class="keyword">typename</span> unordered_map&lt;<span class="keywordtype">string</span>, <span class="keyword">const</span> <a class="code" href="classinfact_1_1_constructor.html" title="An interface with a single virtual method that constructs a concrete instance of the abstract type T...">Constructor&lt;T&gt;</a> *&gt;::iterator it =
+<a name="l00887"></a>00887                cons_table_-&gt;begin();
+<a name="l00888"></a>00888            it != cons_table_-&gt;end();
+<a name="l00889"></a>00889            ++it) {
+<a name="l00890"></a>00890         <span class="keyword">delete</span> it-&gt;second;
+<a name="l00891"></a>00891       }
+<a name="l00892"></a>00892       <span class="keyword">delete</span> cons_table_;
+<a name="l00893"></a>00893       initialized_ = 0;
+<a name="l00894"></a>00894     }
+<a name="l00895"></a>00895   }
+<a name="l00896"></a>00896  <span class="keyword">private</span>:
+<a name="l00897"></a>00897   <span class="comment">// data members</span>
+<a name="l00899"></a>00899 <span class="comment"></span>  <span class="keyword">static</span> <span class="keywordtype">int</span> initialized_;
+<a name="l00901"></a>00901   <span class="keyword">static</span> unordered_map&lt;string, const Constructor&lt;T&gt; *&gt; *cons_table_;
+<a name="l00902"></a>00902   <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span> *base_name_;
+<a name="l00903"></a>00903 };
+<a name="l00904"></a>00904 
+<a name="l00911"></a><a class="code" href="factory_8h.html#a0440aa6c8d7080a9daa203766dae388d">00911</a> <span class="preprocessor">#define DEFINE_CONS_CLASS(TYPE,NAME,BASE) \</span>
+<a name="l00912"></a>00912 <span class="preprocessor">  class NAME ## Constructor : public Constructor&lt;BASE&gt; { \</span>
+<a name="l00913"></a>00913 <span class="preprocessor">   public: virtual BASE *NewInstance() const { return new TYPE(); } };</span>
+<a name="l00914"></a>00914 <span class="preprocessor"></span>
+<a name="l00925"></a><a class="code" href="factory_8h.html#a0b09e4aaef613d7556c07875c7d5a029">00925</a> <span class="preprocessor">#define REGISTER_NAMED(TYPE,NAME,BASE)  \</span>
+<a name="l00926"></a>00926 <span class="preprocessor">  DEFINE_CONS_CLASS(TYPE,NAME,BASE) \</span>
+<a name="l00927"></a>00927 <span class="preprocessor">  const Constructor&lt;BASE&gt; *NAME ## _my_protoype = \</span>
+<a name="l00928"></a>00928 <span class="preprocessor">      Factory&lt;BASE&gt;::Register(string(#NAME), new NAME ## Constructor());</span>
+<a name="l00929"></a>00929 <span class="preprocessor"></span>
+<a name="l00932"></a><a class="code" href="factory_8h.html#a01b208854b036ee1381a9289186ff3c2">00932</a> <span class="preprocessor">#define IMPLEMENT_FACTORY(BASE) \</span>
+<a name="l00933"></a>00933 <span class="preprocessor">  template&lt;&gt; int Factory&lt;BASE&gt;::initialized_ = 0; \</span>
+<a name="l00934"></a>00934 <span class="preprocessor">  template&lt;&gt; unordered_map&lt;string, const Constructor&lt;BASE&gt; *&gt; * \</span>
+<a name="l00935"></a>00935 <span class="preprocessor">    Factory&lt;BASE&gt;::cons_table_ = 0; \</span>
+<a name="l00936"></a>00936 <span class="preprocessor">  template&lt;&gt; const char *Factory&lt;BASE&gt;::base_name_ = #BASE;</span>
+<a name="l00937"></a>00937 <span class="preprocessor"></span>
+<a name="l00938"></a>00938 }  <span class="comment">// namespace infact</span>
+<a name="l00939"></a>00939 
+<a name="l00940"></a>00940 <span class="preprocessor">#endif</span>
 </pre></div></div><!-- contents -->
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -637,7 +639,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Jan 13 2014 11:20:20 for InFact by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Jan 13 2014 13:28:26 for InFact by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.7.6.1
 </small></address>
