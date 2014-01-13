@@ -202,7 +202,7 @@ template&lt;typename T&gt; </div>
 
 <p>Implements <a class="el" href="classinfact_1_1_factory_base.html#ab11fc85e901a402e3db2ea88a0fd76bb">infact::FactoryBase</a>.</p>
 
-<p>Definition at line <a class="el" href="factory_8h_source.html#l00826">826</a> of file <a class="el" href="factory_8h_source.html">factory.h</a>.</p>
+<p>Definition at line <a class="el" href="factory_8h_source.html#l00832">832</a> of file <a class="el" href="factory_8h_source.html">factory.h</a>.</p>
 
 </div>
 </div>
@@ -250,7 +250,7 @@ template&lt;typename T&gt; </div>
 <p>Clears all static data associated with this class. </p>
 <p><code>Note</code> that invoking this method will prevent the factory from functioning! It should only be invoked when the factory is no longer needed by the current process. </p>
 
-<p>Definition at line <a class="el" href="factory_8h_source.html#l00884">884</a> of file <a class="el" href="factory_8h_source.html">factory.h</a>.</p>
+<p>Definition at line <a class="el" href="factory_8h_source.html#l00890">890</a> of file <a class="el" href="factory_8h_source.html">factory.h</a>.</p>
 
 </div>
 </div>
@@ -280,7 +280,7 @@ template&lt;typename T&gt; </div>
  
 <p>Implements <a class="el" href="classinfact_1_1_factory_base.html#ad801507cc88948faf540cdfee4e02319">infact::FactoryBase</a>.</p>
 
-<p>Definition at line <a class="el" href="factory_8h_source.html#l00840">840</a> of file <a class="el" href="factory_8h_source.html">factory.h</a>.</p>
+<p>Definition at line <a class="el" href="factory_8h_source.html#l00846">846</a> of file <a class="el" href="factory_8h_source.html">factory.h</a>.</p>
 
 </div>
 </div>
@@ -339,8 +339,10 @@ a member named <code>age</code> of type <code>int</code> </li>
 </pre></div><p> Crucially, note how a vector can have an optional comma at the end of its list (the second example), and how a boolean may be initialized either with one of the two <em>reserved words</em> <code>true</code> or <code>false</code>, as in C and C++. Finally, unlike parameter lists to C++ constructors, since our members are always named, the grammar allows them to appear in any order, making the following two specification strings equivalent: </p>
 <div class="fragment"><pre class="fragment"> ExampleFeatureExtractor(arg(<span class="stringliteral">&quot;foo&quot;</span>), strvec({<span class="stringliteral">&quot;foo&quot;</span>, <span class="stringliteral">&quot;bar&quot;</span>, <span class="stringliteral">&quot;baz&quot;</span>}))
  ExampleFeatureExtractor(strvec({<span class="stringliteral">&quot;foo&quot;</span>, <span class="stringliteral">&quot;bar&quot;</span>, <span class="stringliteral">&quot;baz&quot;</span>}), arg(<span class="stringliteral">&quot;foo&quot;</span>))
-</pre></div><p>More formally, the specification string must conform to the following grammar: </p>
+</pre></div><p>More formally, the specification string must be a <code>&lt;spec_or_null&gt;</code> conforming to the following grammar: </p>
 <table  border="0">
+<tr>
+<td><code>&lt;spec_or_null&gt;</code> </td><td><code>::=</code> </td><td><code>&lt;spec&gt; | 'NULL' | 'nullptr'</code>  </td></tr>
 <tr>
 <td><code>&lt;spec&gt;</code> </td><td><code>::=</code> </td><td><code>&lt;type&gt; '(' &lt;member_init_list&gt; ')'</code>  </td></tr>
 <tr>
@@ -371,12 +373,12 @@ a member named <code>age</code> of type <code>int</code> </li>
  &lt;int_literal&gt; [ ',' &lt;int_literal&gt; ]* [','] |<br/>
  &lt;bool_literal&gt; [ ',' &lt;bool_literal&gt; ]* [',']</code>   </td></tr>
 <tr>
-<td><code>&lt;factory_init&gt;</code> </td><td><code>::=</code> </td><td><code>&lt;member_name&gt; '(' &lt;spec&gt; ')'</code>  </td></tr>
+<td><code>&lt;factory_init&gt;</code> </td><td><code>::=</code> </td><td><code>&lt;member_name&gt; '(' &lt;spec_or_null&gt; ')'</code>  </td></tr>
 <tr>
 <td><code>&lt;factory_vector_init&gt;</code> </td><td><code>::=</code> </td><td><code>&lt;member_name&gt; '(' '{' &lt;spec_list&gt; '}' ')'</code>  </td></tr>
 <tr>
-<td valign="top"><code>&lt;spec_list&gt;</code> </td><td valign="top"><code>::=</code> </td><td><code>&lt;spec&gt; [ ',' &lt;spec&gt; ]* [',']</code><br/>
- where every <code>&lt;spec&gt;</code> has a <code>&lt;type&gt;</code> constructible by the same <a class="el" href="classinfact_1_1_factory.html" title="Factory for dynamically created instance of the specified type.">Factory</a> (<em>i.e.</em>, all <code>&lt;type&gt;</code>&rsquo;s have a common abstract base class)   </td></tr>
+<td valign="top"><code>&lt;spec_list&gt;</code> </td><td valign="top"><code>::=</code> </td><td><code>&lt;spec_or_null&gt; [ ',' &lt;spec_or_null&gt; ]* [',']</code><br/>
+ where every <code>&lt;spec_or_null&gt;</code> has a <code>&lt;type&gt;</code> constructible by the same <a class="el" href="classinfact_1_1_factory.html" title="Factory for dynamically created instance of the specified type.">Factory</a> (<em>i.e.</em>, all <code>&lt;type&gt;</code>&rsquo;s have a common abstract base class), or is either <code>'NULL'</code> or <code>'nullptr'</code>   </td></tr>
 </table>
 <dl class="params"><dt><b>Parameters:</b></dt><dd>
   <table class="params">
@@ -386,7 +388,7 @@ a member named <code>age</code> of type <code>int</code> </li>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="factory_8h_source.html#l00670">670</a> of file <a class="el" href="factory_8h_source.html">factory.h</a>.</p>
+<p>Definition at line <a class="el" href="factory_8h_source.html#l00676">676</a> of file <a class="el" href="factory_8h_source.html">factory.h</a>.</p>
 
 </div>
 </div>
@@ -423,7 +425,7 @@ template&lt;typename T&gt; </div>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="factory_8h_source.html#l00818">818</a> of file <a class="el" href="factory_8h_source.html">factory.h</a>.</p>
+<p>Definition at line <a class="el" href="factory_8h_source.html#l00824">824</a> of file <a class="el" href="factory_8h_source.html">factory.h</a>.</p>
 
 </div>
 </div>
@@ -446,7 +448,7 @@ template&lt;typename T&gt; </div>
 
 <p>Implements <a class="el" href="classinfact_1_1_factory_base.html#a1cc61a662485882019f4fecfe7b6b54e">infact::FactoryBase</a>.</p>
 
-<p>Definition at line <a class="el" href="factory_8h_source.html#l00851">851</a> of file <a class="el" href="factory_8h_source.html">factory.h</a>.</p>
+<p>Definition at line <a class="el" href="factory_8h_source.html#l00857">857</a> of file <a class="el" href="factory_8h_source.html">factory.h</a>.</p>
 
 </div>
 </div>
@@ -469,7 +471,7 @@ template&lt;typename T&gt; </div>
 
 <p>Implements <a class="el" href="classinfact_1_1_factory_base.html#a612b59d8e802ab667304264a8d3dca72">infact::FactoryBase</a>.</p>
 
-<p>Definition at line <a class="el" href="factory_8h_source.html#l00856">856</a> of file <a class="el" href="factory_8h_source.html">factory.h</a>.</p>
+<p>Definition at line <a class="el" href="factory_8h_source.html#l00862">862</a> of file <a class="el" href="factory_8h_source.html">factory.h</a>.</p>
 
 </div>
 </div>
@@ -499,7 +501,7 @@ template&lt;typename T&gt; </div>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>whether the specified type has been registered with this factory </dd></dl>
 
-<p>Definition at line <a class="el" href="factory_8h_source.html#l00835">835</a> of file <a class="el" href="factory_8h_source.html">factory.h</a>.</p>
+<p>Definition at line <a class="el" href="factory_8h_source.html#l00841">841</a> of file <a class="el" href="factory_8h_source.html">factory.h</a>.</p>
 
 </div>
 </div>
@@ -539,7 +541,7 @@ template&lt;typename T&gt; </div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="factory_8h_source.html#l00868">868</a> of file <a class="el" href="factory_8h_source.html">factory.h</a>.</p>
+<p>Definition at line <a class="el" href="factory_8h_source.html#l00874">874</a> of file <a class="el" href="factory_8h_source.html">factory.h</a>.</p>
 
 </div>
 </div>
@@ -564,7 +566,7 @@ template&lt;typename T&gt; </div>
 
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Jan 13 2014 13:28:27 for InFact by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Jan 13 2014 14:03:28 for InFact by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.7.6.1
 </small></address>
