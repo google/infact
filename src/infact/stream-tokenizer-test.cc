@@ -35,16 +35,17 @@
 /// \author dbikel@google.com (Dan Bikel)
 
 #include <iostream>
+#include <string>
 
 #include "stream-tokenizer.h"
 
-using namespace infact;
 using namespace std;
+using namespace infact;
 
 int
 main(int argc, char **argv) {
   cerr << "Testing StreamTokenizer with string arg constructor:" << endl;
-  string test_string = "foo(bar, baz(34), bleh(\"fleh with spaces\"))";
+  std::string test_string = "foo(bar, baz(34), bleh(\"fleh with spaces\"))";
   StreamTokenizer st1(test_string);
   while (st1.HasNext()) {
     StreamTokenizer::TokenType type = st1.PeekTokenType();

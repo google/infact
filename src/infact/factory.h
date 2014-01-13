@@ -223,7 +223,7 @@ class TypedMemberInitializer : public MemberInitializer {
   ///                 initialized, or nullptr if this initializer should only
   ///                 modify the Environment (providing a mapping between a
   ///                 name a value that might be used by a class&rsquo;
-  ///         \link FactoryConstructible::Init(const Environment*,const string&)
+  ///    \link FactoryConstructible::PostInit(const Environment*,const string&)
   ///                 Init \endlink method
   /// \param required whether this member is required to be initialized in a
   ///                 spec string
@@ -464,7 +464,7 @@ class FactoryConstructible {
  public:
   virtual ~FactoryConstructible() { }
   virtual void RegisterInitializers(Initializers &initializers) { }
-  virtual void Init(const Environment *env, const string &arg) { }
+  virtual void PostInit(const Environment *env, const string &arg) { }
 };
 
 /// Factory for dynamically created instance of the specified type.
@@ -779,8 +779,8 @@ class Factory : public FactoryBase {
     string stream_str = st.str();
     //cerr << "Full stream string is: \"" << stream_str << "\"" << endl;
     string init_str = stream_str.substr(start, end - start);
-    //cerr << "Init string is: \"" << init_str << "\"" << endl;
-    instance->Init(env_ptr.get(), init_str);
+    //cerr << "PostInit string is: \"" << init_str << "\"" << endl;
+    instance->PostInit(env_ptr.get(), init_str);
 
     return instance;
   }

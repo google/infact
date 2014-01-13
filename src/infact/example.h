@@ -226,7 +226,7 @@ class Sheep : public Animal {
   /// Grabs the variable named "age" from the Environment (set up by
   /// RegisterInitializers, above) and sets this sheep&rsquo;s age to
   /// be twice that value.
-  virtual void Init(StreamTokenizer &st, Environment *env);
+  virtual void PostInit(const Environment *env, const string &init_str);
 
   /// \copydoc Animal::name
   virtual const string &name() const { return name_; }

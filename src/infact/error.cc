@@ -41,7 +41,7 @@ void Error(const std::string &message) {
 #ifdef INFACT_THROW_EXCEPTIONS
   throw std::runtime_error(message);
 #else
-  cerr << message << endl;
+  std::cerr << message << endl;
   assert false;
 #endif
 }
