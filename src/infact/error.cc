@@ -35,14 +35,21 @@
 
 #include "error.h"
 
+#ifdef INFACT_THROW_EXCEPTIONS
+#include <stdexcept>
+#else
+#include <cassert>
+#include <iostream>
+#endif
+
 namespace infact {
 
 void Error(const std::string &message) {
 #ifdef INFACT_THROW_EXCEPTIONS
   throw std::runtime_error(message);
 #else
-  std::cerr << message << endl;
-  assert false;
+  std::cerr << message << std::endl;
+  assert(false);
 #endif
 }
 

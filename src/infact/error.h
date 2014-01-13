@@ -37,14 +37,13 @@
 #ifndef INFACT_ERROR_H_
 #define INFACT_ERROR_H_
 
-#include <stdexcept>
+/// Determines whether the Error function, and therefore the entire InFact
+/// library, throws an exception when an error occurs.
+#undef INFACT_THROW_EXCEPTIONS
+
 #include <string>
 
 namespace infact {
-
-/// Determines whether the Error function, and therefore the entire InFact
-/// library, throws an exception when an error occurs.
-#define INFACT_THROW_EXCEPTIONS 1
 
 /// Reports an error encountered during parsing and/or construction
 /// of an object.  Optionally throws an exception, according to the value
