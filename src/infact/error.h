@@ -39,7 +39,7 @@
 
 /// Determines whether the Error function, and therefore the entire InFact
 /// library, throws an exception when an error occurs.
-#undef INFACT_THROW_EXCEPTIONS
+#define INFACT_THROW_EXCEPTIONS
 
 #include <string>
 

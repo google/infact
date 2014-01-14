@@ -217,7 +217,7 @@ main(int argc, char **argv) {
 /// By convention every \link infact::Factory
 /// Factory\endlink-constructible abstract type defines one or two
 /// macros in terms of the \link REGISTER_NAMED \endlink macro defined
-/// in \link factory.H\endlink to allow concrete subtypes to register
+/// in \link factory.h \endlink to allow concrete subtypes to register
 /// themselves with the \link infact::Factory Factory\endlink, so
 /// that they may be instantiated.  For example, since the \link
 /// infact::Animal Animal \endlink class is an
@@ -289,7 +289,7 @@ main(int argc, char **argv) {
 /// its concrete subclasses have a \link
 /// infact::Animal::RegisterInitializers
 /// RegisterInitializers \endlink method and an \link
-/// infact::Animal::Init Init \endlink method by being a
+/// infact::Animal::PostInit Init \endlink method by being a
 /// subclass of \link infact::FactoryConstructible\endlink. As we
 /// saw above, \link infact::Cow
 /// Cow \endlink is a concrete subtype of \link
