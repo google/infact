@@ -84,6 +84,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">infact Namespace Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Determines whether the Error function, and therefore the entire InFact library, throws an exception when an error occurs.  
+<a href="#details">More...</a></p>
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="nested-classes"></a>
 Classes</h2></td></tr>
@@ -190,7 +193,9 @@ Variables</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classinfact_1_1_constructor.html">Constructor</a>&lt; <a class="el" href="classinfact_1_1_animal.html">Animal</a> &gt; *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceinfact.html#ac4e8bbe20afc54a77c73e96f30c842b9">Sheep_my_protoype</a> = <a class="el" href="classinfact_1_1_factory.html">Factory</a>&lt; <a class="el" href="classinfact_1_1_animal.html">Animal</a> &gt;::Register(string(&quot;Sheep&quot;), new <a class="el" href="classinfact_1_1_sheep_constructor.html">SheepConstructor</a>())</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classinfact_1_1_constructor.html">Constructor</a>&lt; <a class="el" href="classinfact_1_1_pet_owner.html">PetOwner</a> &gt; *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceinfact.html#ab7fbb0f2c855cef766c9a7817c149f41">HumanPetOwner_my_protoype</a> = <a class="el" href="classinfact_1_1_factory.html">Factory</a>&lt; <a class="el" href="classinfact_1_1_pet_owner.html">PetOwner</a> &gt;::Register(string(&quot;HumanPetOwner&quot;), new <a class="el" href="classinfact_1_1_human_pet_owner_constructor.html">HumanPetOwnerConstructor</a>())</td></tr>
 </table>
-<hr/><h2>Function Documentation</h2>
+<hr/><a name="details" id="details"></a><h2>Detailed Description</h2>
+<div class="textblock"><p>Determines whether the Error function, and therefore the entire InFact library, throws an exception when an error occurs. </p>
+</div><hr/><h2>Function Documentation</h2>
 <a class="anchor" id="a746fb382cf3fd6cf656f40669d90372c"></a><!-- doxytag: member="infact::Error" ref="a746fb382cf3fd6cf656f40669d90372c" args="(const std::string &amp;message)" -->
 <div class="memitem">
 <div class="memproto">
@@ -207,9 +212,9 @@ Variables</h2></td></tr>
 <div class="memdoc">
 
 <p>Reports an error encountered during parsing and/or construction of an object. </p>
-<p>Optionally throws an exception, according to the value of <a class="el" href="error_8h.html#ad5f153a3ec9cf3f0c9e6a8bffa1777ca">INFACT_THROW_EXCEPTIONS</a>. </p>
+<p>Optionally throws an exception, according to the value of <a class="el" href="">INFACT_THROW_EXCEPTIONS</a>. </p>
 
-<p>Definition at line <a class="el" href="error_8cc_source.html#l00040">40</a> of file <a class="el" href="error_8cc_source.html">error.cc</a>.</p>
+<p>Definition at line <a class="el" href="error_8cc_source.html#l00047">47</a> of file <a class="el" href="error_8cc_source.html">error.cc</a>.</p>
 
 </div>
 </div>
@@ -307,7 +312,7 @@ Variables</h2></td></tr>
 
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Jan 13 2014 14:03:27 for InFact by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Jan 13 2014 17:41:56 for InFact by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.7.6.1
 </small></address>

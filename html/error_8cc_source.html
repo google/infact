@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
-<title>InFact: error.cc Source File</title>
+<title>InFact: src/infact/error.cc Source File</title>
 
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
@@ -77,7 +77,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 <div class="header">
   <div class="headertitle">
-<div class="title">error.cc</div>  </div>
+<div class="title">src/infact/error.cc</div>  </div>
 </div><!--header-->
 <div class="contents">
 <a href="error_8cc.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">// Copyright 2014, Google Inc.</span>
@@ -115,18 +115,25 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00035"></a>00035 
 <a name="l00036"></a>00036 <span class="preprocessor">#include &quot;<a class="code" href="error_8h.html" title="Provides an error handling function that optionally throws an exception.">error.h</a>&quot;</span>
 <a name="l00037"></a>00037 
-<a name="l00038"></a>00038 <span class="keyword">namespace </span>infact {
-<a name="l00039"></a>00039 
-<a name="l00040"></a><a class="code" href="namespaceinfact.html#a746fb382cf3fd6cf656f40669d90372c">00040</a> <span class="keywordtype">void</span> <a class="code" href="namespaceinfact.html#a746fb382cf3fd6cf656f40669d90372c" title="Reports an error encountered during parsing and/or construction of an object.">Error</a>(<span class="keyword">const</span> std::string &amp;message) {
-<a name="l00041"></a>00041 <span class="preprocessor">#ifdef INFACT_THROW_EXCEPTIONS</span>
-<a name="l00042"></a>00042 <span class="preprocessor"></span>  <span class="keywordflow">throw</span> std::runtime_error(message);
-<a name="l00043"></a>00043 <span class="preprocessor">#else</span>
-<a name="l00044"></a>00044 <span class="preprocessor"></span>  std::cerr &lt;&lt; message &lt;&lt; endl;
-<a name="l00045"></a>00045   assert <span class="keyword">false</span>;
-<a name="l00046"></a>00046 <span class="preprocessor">#endif</span>
-<a name="l00047"></a>00047 <span class="preprocessor"></span>}
-<a name="l00048"></a>00048 
-<a name="l00049"></a>00049 }  <span class="comment">// namespace infact</span>
+<a name="l00038"></a>00038 <span class="preprocessor">#ifdef INFACT_THROW_EXCEPTIONS</span>
+<a name="l00039"></a>00039 <span class="preprocessor"></span><span class="preprocessor">#include &lt;stdexcept&gt;</span>
+<a name="l00040"></a>00040 <span class="preprocessor">#else</span>
+<a name="l00041"></a>00041 <span class="preprocessor"></span><span class="preprocessor">#include &lt;cassert&gt;</span>
+<a name="l00042"></a>00042 <span class="preprocessor">#include &lt;iostream&gt;</span>
+<a name="l00043"></a>00043 <span class="preprocessor">#endif</span>
+<a name="l00044"></a>00044 <span class="preprocessor"></span>
+<a name="l00045"></a>00045 <span class="keyword">namespace </span>infact {
+<a name="l00046"></a>00046 
+<a name="l00047"></a><a class="code" href="namespaceinfact.html#a746fb382cf3fd6cf656f40669d90372c">00047</a> <span class="keywordtype">void</span> <a class="code" href="namespaceinfact.html#a746fb382cf3fd6cf656f40669d90372c" title="Reports an error encountered during parsing and/or construction of an object.">Error</a>(<span class="keyword">const</span> std::string &amp;message) {
+<a name="l00048"></a>00048 <span class="preprocessor">#ifdef INFACT_THROW_EXCEPTIONS</span>
+<a name="l00049"></a>00049 <span class="preprocessor"></span>  <span class="keywordflow">throw</span> std::runtime_error(message);
+<a name="l00050"></a>00050 <span class="preprocessor">#else</span>
+<a name="l00051"></a>00051 <span class="preprocessor"></span>  std::cerr &lt;&lt; message &lt;&lt; std::endl;
+<a name="l00052"></a>00052   assert(<span class="keyword">false</span>);
+<a name="l00053"></a>00053 <span class="preprocessor">#endif</span>
+<a name="l00054"></a>00054 <span class="preprocessor"></span>}
+<a name="l00055"></a>00055 
+<a name="l00056"></a>00056 }  <span class="comment">// namespace infact</span>
 </pre></div></div><!-- contents -->
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -145,7 +152,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Jan 13 2014 14:03:27 for InFact by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Jan 13 2014 17:41:56 for InFact by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.7.6.1
 </small></address>
