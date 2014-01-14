@@ -43,6 +43,7 @@
 
 #include <string>
 
+/// The namespace for the entire InFact library.
 namespace infact {
 
 /// Reports an error encountered during parsing and/or construction
