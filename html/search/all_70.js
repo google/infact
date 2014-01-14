@@ -1,12 +1,5 @@
 var searchData=
 [
-  ['package',['PACKAGE',['../config_8h.html#aca8570fb706c81df371b7f9bc454ae03',1,'config.h']]],
-  ['package_5fbugreport',['PACKAGE_BUGREPORT',['../config_8h.html#a1d1d2d7f8d2f95b376954d649ab03233',1,'config.h']]],
-  ['package_5fname',['PACKAGE_NAME',['../config_8h.html#a1c0439e4355794c09b64274849eb0279',1,'config.h']]],
-  ['package_5fstring',['PACKAGE_STRING',['../config_8h.html#ac73e6f903c16eca7710f92e36e1c6fbf',1,'config.h']]],
-  ['package_5ftarname',['PACKAGE_TARNAME',['../config_8h.html#af415af6bfede0e8d5453708afe68651c',1,'config.h']]],
-  ['package_5furl',['PACKAGE_URL',['../config_8h.html#a5c93853116d5a50307b6744f147840aa',1,'config.h']]],
-  ['package_5fversion',['PACKAGE_VERSION',['../config_8h.html#aa326a05d5e30f9e9a4bb0b4469d5d0c0',1,'config.h']]],
   ['peek',['Peek',['../classinfact_1_1_stream_tokenizer.html#a61ec5de244a34de264e5b18e4809d753',1,'infact::StreamTokenizer']]],
   ['peekprev',['PeekPrev',['../classinfact_1_1_stream_tokenizer.html#ac72a1a4fd331f44b850d2600a68a5063',1,'infact::StreamTokenizer']]],
   ['peekprevtokenstart',['PeekPrevTokenStart',['../classinfact_1_1_stream_tokenizer.html#ad7c5c716ebfadf303e8d4371e6bb229b',1,'infact::StreamTokenizer']]],
@@ -16,8 +9,8 @@ var searchData=
   ['peektokentype',['PeekTokenType',['../classinfact_1_1_stream_tokenizer.html#a50a622f50ef6aa800a9c7c15b96bb6cb',1,'infact::StreamTokenizer']]],
   ['person',['Person',['../classinfact_1_1_person.html',1,'infact']]],
   ['person',['Person',['../classinfact_1_1_person.html#a5397db53a6352ebd6c27327299d54b43',1,'infact::Person']]],
-  ['personimpl',['PersonImpl',['../classinfact_1_1_person_impl.html#a93eea8defa90832b2068a1263bb1952b',1,'infact::PersonImpl']]],
   ['personimpl',['PersonImpl',['../classinfact_1_1_person_impl.html',1,'infact']]],
+  ['personimpl',['PersonImpl',['../classinfact_1_1_person_impl.html#a93eea8defa90832b2068a1263bb1952b',1,'infact::PersonImpl']]],
   ['personimpl_5fmy_5fprotoype',['PersonImpl_my_protoype',['../namespaceinfact.html#a67eb06e092d654f588b6e0b4d2124cd8',1,'infact']]],
   ['personimplconstructor',['PersonImplConstructor',['../classinfact_1_1_person_impl_constructor.html',1,'infact']]],
   ['petowner',['PetOwner',['../classinfact_1_1_pet_owner.html',1,'infact']]],

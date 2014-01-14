@@ -4,7 +4,6 @@ var searchData=
   ['clearstatic',['ClearStatic',['../classinfact_1_1_factory.html#a9438277a67d200ca87cc08ec2c46cbde',1,'infact::Factory']]],
   ['cm_5fheight',['cm_height',['../classinfact_1_1_person.html#abceb62cace545c8e3007802ddeca0469',1,'infact::Person::cm_height()'],['../classinfact_1_1_person_impl.html#a0f57e6a613dd050b478948bfa53f2df5',1,'infact::PersonImpl::cm_height()']]],
   ['collectregistered',['CollectRegistered',['../classinfact_1_1_factory_base.html#ad801507cc88948faf540cdfee4e02319',1,'infact::FactoryBase::CollectRegistered()'],['../classinfact_1_1_factory.html#a3076c07068d1eab3de4457897b4ba437',1,'infact::Factory::CollectRegistered()']]],
-  ['config_2eh',['config.h',['../config_8h.html',1,'']]],
   ['const_5fiterator',['const_iterator',['../classinfact_1_1_initializers.html#a4fc9267fb231848052fe96843c1758d1',1,'infact::Initializers']]],
   ['constructor',['Constructor',['../classinfact_1_1_constructor.html',1,'infact']]],
   ['constructor_3c_20animal_20_3e',['Constructor< Animal >',['../classinfact_1_1_constructor.html',1,'infact']]],

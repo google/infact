@@ -9,11 +9,10 @@ var searchData=
   ['varmap',['VarMap',['../classinfact_1_1_var_map.html#a4712a68e792eff0fa86474fbfcfaaaaa',1,'infact::VarMap::VarMap()'],['../classinfact_1_1_var_map_3_01vector_3_01_t_01_4_01_4.html#a108dad6212a87c3784f84c8605a227bd',1,'infact::VarMap&lt; vector&lt; T &gt; &gt;::VarMap()']]],
   ['varmap',['VarMap',['../classinfact_1_1_var_map.html',1,'infact']]],
   ['varmap_3c_20vector_3c_20t_20_3e_20_3e',['VarMap< vector< T > >',['../classinfact_1_1_var_map_3_01vector_3_01_t_01_4_01_4.html',1,'infact']]],
-  ['varmapbase',['VarMapBase',['../classinfact_1_1_var_map_base.html#ad77911e424e70354237ca07bc80259da',1,'infact::VarMapBase']]],
   ['varmapbase',['VarMapBase',['../classinfact_1_1_var_map_base.html',1,'infact']]],
+  ['varmapbase',['VarMapBase',['../classinfact_1_1_var_map_base.html#ad77911e424e70354237ca07bc80259da',1,'infact::VarMapBase']]],
   ['varmapimpl',['VarMapImpl',['../classinfact_1_1_var_map_impl.html#a62772cae1750f255b4292a8aa3a000b4',1,'infact::VarMapImpl']]],
   ['varmapimpl',['VarMapImpl',['../classinfact_1_1_var_map_impl.html',1,'infact']]],
   ['varmapimpl_3c_20t_2c_20varmap_3c_20t_20_3e_20_3e',['VarMapImpl< T, VarMap< T > >',['../classinfact_1_1_var_map_impl.html',1,'infact']]],
-  ['varmapimpl_3c_20vector_3c_20t_20_3e_2c_20varmap_3c_20vector_3c_20t_20_3e_20_3e_20_3e',['VarMapImpl< vector< T >, VarMap< vector< T > > >',['../classinfact_1_1_var_map_impl.html',1,'infact']]],
-  ['version',['VERSION',['../config_8h.html#a1c6d5de492ac61ad29aec7aa9a436bbf',1,'config.h']]]
+  ['varmapimpl_3c_20vector_3c_20t_20_3e_2c_20varmap_3c_20vector_3c_20t_20_3e_20_3e_20_3e',['VarMapImpl< vector< T >, VarMap< vector< T > > >',['../classinfact_1_1_var_map_impl.html',1,'infact']]]
 ];
