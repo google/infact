@@ -280,7 +280,7 @@ main(int argc, char **argv) {
 /// infact::Factory Factory\endlink\<\link
 /// infact::Animal Animal\endlink\> by having
 /// \code REGISTER_ANIMAL(Cow) \endcode
-/// in <tt>cow.C</tt>. That macro expands to \code
+/// in <tt>cow.cc</tt>. That macro expands to \code
 /// REGISTER_NAMED(Cow, Cow, Animal) \endcode
 /// which tells the \link infact::Factory
 /// Factory\endlink\<Animal\> that there is a class
@@ -434,25 +434,25 @@ main(int argc, char **argv) {
 /// &ldquo;<tt>Concky</tt>&rdquo; to that Factory.  Most users
 /// of the InFact Framework are likely only to build concrete
 /// subtypes of abstract classes that already have factories, and so
-/// those users can safely ignore the <tt>abby.H</tt> and <tt>abby.C</tt>
+/// those users can safely ignore the <tt>abby.h</tt> and <tt>abby.cc</tt>
 /// files.
 /// <ul>
-///   <li> <tt>abby.H</tt>
+///   <li> <tt>abby.h</tt>
 /// \code
-/// #include "factory.H"
+/// #include "factory.h"
 /// class Abby : public FactoryConstructible {
 ///   // .. the code for Abby ...
 /// };
 /// #define REGISTER_NAMED_ABBY(TYPE,NAME) REGISTER_NAMED(TYPE,NAME,Abby)
 /// #define REGISTER_ABBY(TYPE) REGISTER_NAMED_ABBY(TYPE,TYPE)
 /// \endcode
-///   <li> <tt>abby.C</tt>
+///   <li> <tt>abby.cc</tt>
 /// \code
 /// IMPLEMENT_FACTORY(Abby)
 /// \endcode
-///   <li> <tt>concky.H</tt>
+///   <li> <tt>concky.h</tt>
 /// \code
-/// #include "abby.H"
+/// #include "abby.h"
 /// class Concky : public Abby {
 ///  public:
 ///    virtual void RegisterInitializers(Initialiizers &initializers) {
@@ -461,7 +461,7 @@ main(int argc, char **argv) {
 ///    }
 /// };
 /// \endcode
-///   <li> <tt> concky.C </tt>
+///   <li> <tt> concky.cc </tt>
 /// \code
 /// REGISTER_ABBY(Concky)
 /// \endcode
