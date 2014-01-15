@@ -386,8 +386,8 @@ main(int argc, char **argv) {
 /// cpp_example "above", intentionally similar to the format
 /// of a C++ constructor&rsquo;s initialization phase.  The names of
 /// class members that can be initialized are specified via repeated
-/// invocations of the various overloaded \link infact::Initializers
-/// \endlink <tt>Add</tt> methods. There is essentially one
+/// invocations of the templated \link infact::Initializers::Add
+/// Initializers::Add \endlink method. There is essentially one
 /// <tt>Add</tt> method per primitive C++ type, as well as an
 /// <tt>Add</tt> method for \link infact::Factory
 /// Factory\endlink-constructible types.
@@ -456,8 +456,8 @@ main(int argc, char **argv) {
 /// class Concky : public Abby {
 ///  public:
 ///    virtual void RegisterInitializers(Initialiizers &initializers) {
-///       // various calls to the overloaded Initializers::Add methods,
-///       // one per data member that the Factory can initialize
+///       // ... various calls to the templated Initializers::Add method,
+///       // one per data member that the Factory can initialize ...
 ///    }
 /// };
 /// \endcode
