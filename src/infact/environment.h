@@ -202,7 +202,7 @@ class ValueString<string> {
   }
 };
 
-/// A partial specialization of the ValueString class to support printing of
+/// A specialization of the ValueString class to support printing of
 /// boolean values.
 template<>
 class ValueString<bool> {
