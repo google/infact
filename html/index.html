@@ -197,7 +197,7 @@ Some nitty gritty details: declaring factories for abstract types and registerin
 The Factory language</h3>
 <p>As we&rsquo;ve seen, the language used to instantiate objects is quite simple. An object is constructed via a <em>specification string</em> of the following form: </p>
 <div class="fragment"><pre class="fragment"> RegisteredClassName(member1(init1), member2(init2), ...) 
-</pre></div><p> where <code>RegisteredClassName</code> is the concrete subtype&rsquo;s name specified with the <a class="el" href="factory_8h.html#a0b09e4aaef613d7556c07875c7d5a029">REGISTER_NAMED</a> macro (or, more likely, one of the convenience macros that is &ldquo;implemented&rdquo; in terms of the <a class="el" href="factory_8h.html#a0b09e4aaef613d7556c07875c7d5a029">REGISTER_NAMED</a> macro, such as <a class="el" href="example_8h.html#a8373608da8a006b760cbb66b6205fffe">REGISTER_ANIMAL</a> or <a class="el" href="example_8h.html#a9533639d16f8b0269c286444897ff13d">REGISTER_PET_OWNER</a>). The comma-separated list inside the outermost set of parentheses is the set of <em>member initializations</em>, which looks, as we saw <a class="el" href="index.html#cpp_example">above</a>, intentionally similar to the format of a C++ constructor&rsquo;s initialization phase. The names of class members that can be initialized are specified via repeated invocations of the various overloaded <a class="el" href="classinfact_1_1_initializers.html">infact::Initializers</a> <code>Add</code> methods. There is essentially one <code>Add</code> method per primitive C++ type, as well as an <code>Add</code> method for <a class="el" href="classinfact_1_1_factory.html">Factory</a>-constructible types.</p>
+</pre></div><p> where <code>RegisteredClassName</code> is the concrete subtype&rsquo;s name specified with the <a class="el" href="factory_8h.html#a0b09e4aaef613d7556c07875c7d5a029">REGISTER_NAMED</a> macro (or, more likely, one of the convenience macros that is &ldquo;implemented&rdquo; in terms of the <a class="el" href="factory_8h.html#a0b09e4aaef613d7556c07875c7d5a029">REGISTER_NAMED</a> macro, such as <a class="el" href="example_8h.html#a8373608da8a006b760cbb66b6205fffe">REGISTER_ANIMAL</a> or <a class="el" href="example_8h.html#a9533639d16f8b0269c286444897ff13d">REGISTER_PET_OWNER</a>). The comma-separated list inside the outermost set of parentheses is the set of <em>member initializations</em>, which looks, as we saw <a class="el" href="index.html#cpp_example">above</a>, intentionally similar to the format of a C++ constructor&rsquo;s initialization phase. The names of class members that can be initialized are specified via repeated invocations of the templated <a class="el" href="classinfact_1_1_initializers.html#a33d96794d73289dd072351a8fa269728">Initializers::Add </a> method. There is essentially one <code>Add</code> method per primitive C++ type, as well as an <code>Add</code> method for <a class="el" href="classinfact_1_1_factory.html">Factory</a>-constructible types.</p>
 <p>If you love Backus-Naur Form specifications, please see the documentation for the <a class="el" href="classinfact_1_1_factory.html#a8b2771ba4fac39a71cb1d0156ddba7b6">Factory::CreateOrDie </a> method for the formal description of the grammar for specification strings.</p>
 <p>To continue our example with <a class="el" href="classinfact_1_1_cow.html">Cow </a>, the following are all legal specification strings for constructing <a class="el" href="classinfact_1_1_cow.html">Cow </a> instances: </p>
 <div class="fragment"><pre class="fragment"> Cow(name(<span class="stringliteral">&quot;brown&quot;</span>))
@@ -230,8 +230,8 @@ Putting it all together</h3>
  <span class="keyword">class </span>Concky : <span class="keyword">public</span> Abby {
   <span class="keyword">public</span>:
     <span class="keyword">virtual</span> <span class="keywordtype">void</span> RegisterInitializers(Initialiizers &amp;initializers) {
-       <span class="comment">// various calls to the overloaded Initializers::Add methods,</span>
-       <span class="comment">// one per data member that the Factory can initialize</span>
+       <span class="comment">// ... various calls to the templated Initializers::Add method,</span>
+       <span class="comment">// one per data member that the Factory can initialize ...</span>
     }
  };
 </pre></div> </li>
@@ -258,7 +258,7 @@ Putting it all together</h3>
 
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Jan 15 2014 08:38:44 for InFact by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Jan 15 2014 08:41:38 for InFact by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.7.6.1
 </small></address>
