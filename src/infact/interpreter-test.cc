@@ -258,7 +258,7 @@ main(int argc, char **argv) {
 /// \code
 ///   IMPLEMENT_FACTORY(Animal)
 /// \endcode
-/// appears in the file <tt>feature-extractor.C</tt>.  (It is
+/// appears in the file <tt>example.cc</tt>.  (It is
 /// unfortunate that we have to resort to using macros, but the point
 /// is that the burden on the programmer to create a factory is
 /// extremely low, and therefore so is the risk of introducing bugs.)
@@ -271,7 +271,7 @@ main(int argc, char **argv) {
 /// that they may be instantiated.  For example, since the \link
 /// infact::Animal Animal \endlink class is an
 /// abstract base class in the InFact Framework that has a \link
-/// infact::Factory Factory\endlink, in feature-extractor.H you
+/// infact::Factory Factory\endlink, in example.h you
 /// can find the declaration of a macro, \link
 /// REGISTER_ANIMAL \endlink.  The \link
 /// infact::Cow Cow \endlink
