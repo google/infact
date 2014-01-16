@@ -467,6 +467,60 @@ main(int argc, char **argv) {
 /// \endcode
 /// </ul>
 ///
+/// Finally, here is an example showing how you can construct an arbitrary
+/// set of C++ objects <i>at run-time</i> without having to touch C++,
+/// using the toy example classes that are declared in <tt>example.h</tt>:
+/// <ul>
+///   <li><tt>pet-owners.infact</tt>
+/// \code
+/// Cow c1 = Cow(name("Bessie"));
+/// // No need to specify variable types, because InFact does type inference.
+/// // We could declare c2 as Cow or Animal, but below we don't.
+/// c2 = Cow(name("Lani Moo"), age(3));
+///
+///
+/// // InFact makes it easy to have arbitrary object graphs.
+/// // Below, both PetOwner p1 and p2 hold references to Cow c1.
+/// p1 = HumanPetOwner(pets({c1, c2}));
+/// // Note how we can construct an object in situ, just like in C++.
+/// p2 = HumanPetOwner(pets({c1, Sheep(name("Fluffy"))}));
+/// \endcode
+///   <li><tt>my-pet-application.cc</tt>
+/// \code
+/// #include <iostream>
+/// #include <memory>
+///
+/// #include "example.h"
+/// #include "interpreter.h"
+///
+/// using namespace infact;
+/// using namespace std;
+///
+/// void PrintPetOwnerInfo(const char *varname, shared_ptr<PetOwner> p) {
+///   cout << "Pet owner " << varname << " has " << p->GetNumberOfPets()
+///        << " pets." << endl;
+///   for (int i = 0; i < p->GetNumberOfPets(); ++i) {
+///     cout << "\tpet name: " << p->GetPet(i)->name() << endl;
+///   }
+/// }
+///
+/// int main(int argc, char **argv) {
+///   Interpreter interpreter;
+///   // See also: Interpreter::EvalString.
+///   interpreter.Eval("pet-owners.infact");
+///
+///   // Now, let's extract the values for variables that should exist
+///   // in the Interpreter's environment.
+///   shared_ptr<PetOwner> pet_owner;
+///   if (interpreter.Get("p1", &pet_owner)) {
+///     PrintPetOwnerInfo("p1", pet_owner);
+///   }
+///   if (interpreter.Get("p2", &pet_owner)) {
+///     PrintPetOwnerInfo("p2", pet_owner);
+///   }
+/// }
+/// \endcode
+///
 /// So what about Greenspun&rsquo;s Tenth Rule?  Well, the idea that
 /// initialization strings can themselves contain specification
 /// strings suggests that there is a full-blown language being
