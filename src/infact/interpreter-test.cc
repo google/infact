@@ -520,6 +520,7 @@ main(int argc, char **argv) {
 ///   }
 /// }
 /// \endcode
+/// </ul>
 ///
 /// So what about Greenspun&rsquo;s Tenth Rule?  Well, the idea that
 /// initialization strings can themselves contain specification
