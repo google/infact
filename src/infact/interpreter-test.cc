@@ -478,7 +478,6 @@ main(int argc, char **argv) {
 /// // We could declare c2 as Cow or Animal, but below we don't.
 /// c2 = Cow(name("Lani Moo"), age(3));
 ///
-///
 /// // InFact makes it easy to have arbitrary object graphs.
 /// // Below, both PetOwner p1 and p2 hold references to Cow c1.
 /// p1 = HumanPetOwner(pets({c1, c2}));
