@@ -431,11 +431,7 @@ main(int argc, char **argv) {
 /// Here is a template illustrating how one creates a \link
 /// infact::Factory Factory \endlink for an abstract base class
 /// called &ldquo;<tt>Abby</tt>&rdquo; and declares a concrete subtype
-/// &ldquo;<tt>Concky</tt>&rdquo; to that Factory.  Most users
-/// of the InFact Framework are likely only to build concrete
-/// subtypes of abstract classes that already have factories, and so
-/// those users can safely ignore the <tt>abby.h</tt> and <tt>abby.cc</tt>
-/// files.
+/// &ldquo;<tt>Concky</tt>&rdquo; to that Factory.
 /// <ul>
 ///   <li> <tt>abby.h</tt>
 /// \code
