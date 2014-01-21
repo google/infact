@@ -152,7 +152,7 @@ class EnvironmentImpl;
 ///   <td valign=top><tt>\<value\></tt></td>
 ///   <td valign=top><tt>::=</tt></td>
 ///   <td valign=top><tt>\<literal\> | '{' \<literal_list\> '}' |<br>
-///                      \<spec\> | '{' \<spec_list\> '}'</tt>
+///                      \<spec_or_null\> | '{' \<spec_list\> '}'</tt>
 ///   </td>
 /// </tr>
 /// </table>
