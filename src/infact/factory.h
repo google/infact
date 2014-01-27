@@ -915,7 +915,7 @@ class Factory : public FactoryBase {
 /// \p
 /// This is a helper macro used only by the <tt>REGISTER</tt> macro.
 #define DEFINE_CONS_CLASS(TYPE,NAME,BASE) \
-  class NAME ## Constructor : public Constructor<BASE> { \
+  class NAME ## Constructor : public infact::Constructor<BASE> { \
    public: virtual BASE *NewInstance() const { return new TYPE(); } };
 
 /// This macro registers the concrete subtype \a TYPE with the
@@ -930,16 +930,16 @@ class Factory : public FactoryBase {
 /// class).
 #define REGISTER_NAMED(TYPE,NAME,BASE)  \
   DEFINE_CONS_CLASS(TYPE,NAME,BASE) \
-  const Constructor<BASE> *NAME ## _my_protoype = \
-      Factory<BASE>::Register(string(#NAME), new NAME ## Constructor());
+  const infact::Constructor<BASE> *NAME ## _my_protoype = \
+      infact::Factory<BASE>::Register(string(#NAME), new NAME ## Constructor());
 
 /// Provides the necessary implementation for a factory for the specified
 /// <tt>BASE</tt> class type.
 #define IMPLEMENT_FACTORY(BASE) \
-  template<> int Factory<BASE>::initialized_ = 0; \
-  template<> unordered_map<string, const Constructor<BASE> *> * \
-    Factory<BASE>::cons_table_ = 0; \
-  template<> const char *Factory<BASE>::base_name_ = #BASE;
+  template<> int infact::Factory<BASE>::initialized_ = 0; \
+  template<> std::unordered_map<string, const infact::Constructor<BASE> *> * \
+    infact::Factory<BASE>::cons_table_ = 0; \
+  template<> const char *infact::Factory<BASE>::base_name_ = #BASE;
 
 }  // namespace infact
 
