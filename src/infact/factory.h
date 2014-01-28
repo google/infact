@@ -908,6 +908,12 @@ class Factory : public FactoryBase {
   static const char *base_name_;
 };
 
+// Initialize the templated static data member cons_table_ right here,
+// since the compiler will happily remove the duplicate definitions.
+template <typename T>
+unordered_map<string, const Constructor<T> *> *
+Factory<T>::cons_table_ = 0;
+
 /// A macro to define a subclass of \link infact::Constructor
 /// Constructor \endlink whose NewInstance method constructs an
 /// instance of \a TYPE, a concrete subclass of \a BASE.  The concrete
@@ -930,15 +936,13 @@ class Factory : public FactoryBase {
 /// class).
 #define REGISTER_NAMED(TYPE,NAME,BASE)  \
   DEFINE_CONS_CLASS(TYPE,NAME,BASE) \
-  const infact::Constructor<BASE> *NAME ## _my_protoype = \
+  static const infact::Constructor<BASE> *NAME ## _my_protoype = \
       infact::Factory<BASE>::Register(string(#NAME), new NAME ## Constructor());
 
 /// Provides the necessary implementation for a factory for the specified
 /// <tt>BASE</tt> class type.
 #define IMPLEMENT_FACTORY(BASE) \
   template<> int infact::Factory<BASE>::initialized_ = 0; \
-  template<> std::unordered_map<string, const infact::Constructor<BASE> *> * \
-    infact::Factory<BASE>::cons_table_ = 0; \
   template<> const char *infact::Factory<BASE>::base_name_ = #BASE;
 
 }  // namespace infact
