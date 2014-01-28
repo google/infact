@@ -878,8 +878,15 @@ class Factory : public FactoryBase {
       initialized_ = 1;
       FactoryContainer::Add(new Factory<T>());
     }
-    (*cons_table_)[type] = p;
-    return p;
+    typename unordered_map<string, const Constructor<T> *>::iterator cons_it =
+        cons_table_->find(type);
+    if (cons_it == cons_table_->end()) {
+      (*cons_table_)[type] = p;
+      return p;
+    } else {
+      delete p;
+      return cons_it->second;
+    }
   }
 
   /// Clears all static data associated with this class.
