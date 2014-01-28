@@ -14,7 +14,6 @@ var searchData=
   ['counts',['counts',['../classinfact_1_1_sheep.html#a7311016b4dfbc9d6e63628bbbe574e1e',1,'infact::Sheep']]],
   ['cow',['Cow',['../classinfact_1_1_cow.html#aed06eeb55e758e22684621260b886fc5',1,'infact::Cow']]],
   ['cow',['Cow',['../classinfact_1_1_cow.html',1,'infact']]],
-  ['cow_5fmy_5fprotoype',['Cow_my_protoype',['../namespaceinfact.html#ad1d86e7b920bf6cccc66aef25423ad50',1,'infact']]],
   ['cowconstructor',['CowConstructor',['../classinfact_1_1_cow_constructor.html',1,'infact']]],
   ['createempty',['CreateEmpty',['../classinfact_1_1_environment.html#ac155016aa1651ef2303906fa24976771',1,'infact::Environment']]],
   ['createordie',['CreateOrDie',['../classinfact_1_1_factory.html#a8b2771ba4fac39a71cb1d0156ddba7b6',1,'infact::Factory::CreateOrDie(StreamTokenizer &amp;st, Environment *env=nullptr)'],['../classinfact_1_1_factory.html#a8442aa06c928e31110fd25b9c80b006d',1,'infact::Factory::CreateOrDie(const string &amp;spec, const string err_msg, Environment *env=nullptr)']]],

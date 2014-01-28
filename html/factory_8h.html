@@ -182,13 +182,13 @@ Defines</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
-<b>Value:</b><div class="fragment"><pre class="fragment"><span class="keyword">class </span>NAME ## Constructor : <span class="keyword">public</span> Constructor&lt;BASE&gt; { \
+<b>Value:</b><div class="fragment"><pre class="fragment"><span class="keyword">class </span>NAME ## Constructor : <span class="keyword">public</span> infact::Constructor&lt;BASE&gt; { \
    public: <span class="keyword">virtual</span> BASE *NewInstance()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <span class="keyword">new</span> TYPE(); } };
 </pre></div>
 <p>A macro to define a subclass of <a class="el" href="classinfact_1_1_constructor.html">Constructor </a> whose NewInstance method constructs an instance of <em>TYPE</em>, a concrete subclass of <em>BASE</em>. </p>
 <p>The concrete subclass <em>TYPE</em> must have a no-argument constructor. <code>This</code> is a helper macro used only by the <code>REGISTER</code> macro. </p>
 
-<p>Definition at line <a class="el" href="factory_8h_source.html#l00917">917</a> of file <a class="el" href="factory_8h_source.html">factory.h</a>.</p>
+<p>Definition at line <a class="el" href="factory_8h_source.html#l00923">923</a> of file <a class="el" href="factory_8h_source.html">factory.h</a>.</p>
 
 </div>
 </div>
@@ -206,14 +206,12 @@ Defines</h2></td></tr>
       </table>
 </div>
 <div class="memdoc">
-<b>Value:</b><div class="fragment"><pre class="fragment"><span class="keyword">template</span>&lt;&gt; <span class="keywordtype">int</span> Factory&lt;BASE&gt;::initialized_ = 0; \
-  template&lt;&gt; unordered_map&lt;string, const Constructor&lt;BASE&gt; *&gt; * \
-    Factory&lt;BASE&gt;::cons_table_ = 0; \
-  template&lt;&gt; <span class="keyword">const</span> <span class="keywordtype">char</span> *Factory&lt;BASE&gt;::base_name_ = #BASE;
+<b>Value:</b><div class="fragment"><pre class="fragment"><span class="keyword">template</span>&lt;&gt; <span class="keywordtype">int</span> <a class="code" href="classinfact_1_1_factory.html" title="Factory for dynamically created instance of the specified type.">infact::Factory&lt;BASE&gt;::initialized_</a> = 0; \
+  template&lt;&gt; <span class="keyword">const</span> <span class="keywordtype">char</span> *<a class="code" href="classinfact_1_1_factory.html" title="Factory for dynamically created instance of the specified type.">infact::Factory&lt;BASE&gt;::base_name_</a> = #BASE;
 </pre></div>
 <p>Provides the necessary implementation for a factory for the specified <code>BASE</code> class type. </p>
 
-<p>Definition at line <a class="el" href="factory_8h_source.html#l00938">938</a> of file <a class="el" href="factory_8h_source.html">factory.h</a>.</p>
+<p>Definition at line <a class="el" href="factory_8h_source.html#l00944">944</a> of file <a class="el" href="factory_8h_source.html">factory.h</a>.</p>
 
 </div>
 </div>
@@ -248,13 +246,13 @@ Defines</h2></td></tr>
 </div>
 <div class="memdoc">
 <b>Value:</b><div class="fragment"><pre class="fragment"><a class="code" href="factory_8h.html#a0440aa6c8d7080a9daa203766dae388d" title="A macro to define a subclass of Constructor  whose NewInstance method constructs an instance of TYPE...">DEFINE_CONS_CLASS</a>(TYPE,NAME,BASE) \
-  const Constructor&lt;BASE&gt; *NAME ## _my_protoype = \
-      Factory&lt;BASE&gt;::Register(<span class="keywordtype">string</span>(#NAME), <span class="keyword">new</span> NAME ## Constructor());
+  static <span class="keyword">const</span> <a class="code" href="classinfact_1_1_constructor.html" title="An interface with a single virtual method that constructs a concrete instance of the abstract type T...">infact::Constructor&lt;BASE&gt;</a> *NAME ## _my_protoype = <a class="code" href="classinfact_1_1_factory.html#a39e6a67a0a3f5ba160195bd23826d8aa" title="The method used by the REGISTER_NAMED macro to ensure that subclasses add themselves to the factory...">\</a>
+<a class="code" href="classinfact_1_1_factory.html#a39e6a67a0a3f5ba160195bd23826d8aa" title="The method used by the REGISTER_NAMED macro to ensure that subclasses add themselves to the factory...">      infact::Factory&lt;BASE&gt;::Register</a>(<span class="keywordtype">string</span>(#NAME), <span class="keyword">new</span> NAME ## Constructor());
 </pre></div>
 <p>This macro registers the concrete subtype <em>TYPE</em> with the specified factory for instances of type <em>BASE</em>; the <em>TYPE</em> is associated with the specified <em>NAME</em>. </p>
 <p>This macro&mdash;or a macro defined using this macro&mdash;should be used in the implementation file for a concrete subclass <em>TYPE</em> of the baseclass <em>BASE</em>. Often, <em>TYPE</em> and <em>NAME</em> may be the exact same string; however, they must be different when <em>TYPE</em> contains characters that may not appear in C++ identifiers, such as colons (<em>e.g.</em>, when <em>TYPE</em> is the fully-qualified name of an inner class). </p>
 
-<p>Definition at line <a class="el" href="factory_8h_source.html#l00931">931</a> of file <a class="el" href="factory_8h_source.html">factory.h</a>.</p>
+<p>Definition at line <a class="el" href="factory_8h_source.html#l00937">937</a> of file <a class="el" href="factory_8h_source.html">factory.h</a>.</p>
 
 </div>
 </div>
@@ -276,7 +274,7 @@ Defines</h2></td></tr>
 
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Jan 21 2014 09:39:13 for InFact by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Jan 28 2014 09:03:07 for InFact by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.7.6.1
 </small></address>

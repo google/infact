@@ -4,7 +4,6 @@ var searchData=
   ['date',['Date',['../classinfact_1_1_date.html#a51d58e539330606fefcf1d59ca4c92ea',1,'infact::Date']]],
   ['dateimpl',['DateImpl',['../classinfact_1_1_date_impl.html',1,'infact']]],
   ['dateimpl',['DateImpl',['../classinfact_1_1_date_impl.html#a09cd6f78d193d97ec2dfffe97d218d30',1,'infact::DateImpl']]],
-  ['dateimpl_5fmy_5fprotoype',['DateImpl_my_protoype',['../namespaceinfact.html#a70b4eb720c3a947f73d82ce711be262b',1,'infact']]],
   ['dateimplconstructor',['DateImplConstructor',['../classinfact_1_1_date_impl_constructor.html',1,'infact']]],
   ['day',['day',['../classinfact_1_1_date.html#a2927247ca4955ff4bf9706f7687327e1',1,'infact::Date::day()'],['../classinfact_1_1_date_impl.html#ad80baba5993e72543cfa0eb03b4e6aec',1,'infact::DateImpl::day()']]],
   ['default_5freserved_5fchars',['DEFAULT_RESERVED_CHARS',['../stream-tokenizer_8h.html#aa6dcca782316d8f09a268865ae5f924b',1,'stream-tokenizer.h']]],

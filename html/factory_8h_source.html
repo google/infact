@@ -603,24 +603,28 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00908"></a>00908   <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span> *base_name_;
 <a name="l00909"></a>00909 };
 <a name="l00910"></a>00910 
-<a name="l00917"></a><a class="code" href="factory_8h.html#a0440aa6c8d7080a9daa203766dae388d">00917</a> <span class="preprocessor">#define DEFINE_CONS_CLASS(TYPE,NAME,BASE) \</span>
-<a name="l00918"></a>00918 <span class="preprocessor">  class NAME ## Constructor : public Constructor&lt;BASE&gt; { \</span>
-<a name="l00919"></a>00919 <span class="preprocessor">   public: virtual BASE *NewInstance() const { return new TYPE(); } };</span>
-<a name="l00920"></a>00920 <span class="preprocessor"></span>
-<a name="l00931"></a><a class="code" href="factory_8h.html#a0b09e4aaef613d7556c07875c7d5a029">00931</a> <span class="preprocessor">#define REGISTER_NAMED(TYPE,NAME,BASE)  \</span>
-<a name="l00932"></a>00932 <span class="preprocessor">  DEFINE_CONS_CLASS(TYPE,NAME,BASE) \</span>
-<a name="l00933"></a>00933 <span class="preprocessor">  const Constructor&lt;BASE&gt; *NAME ## _my_protoype = \</span>
-<a name="l00934"></a>00934 <span class="preprocessor">      Factory&lt;BASE&gt;::Register(string(#NAME), new NAME ## Constructor());</span>
-<a name="l00935"></a>00935 <span class="preprocessor"></span>
-<a name="l00938"></a><a class="code" href="factory_8h.html#a01b208854b036ee1381a9289186ff3c2">00938</a> <span class="preprocessor">#define IMPLEMENT_FACTORY(BASE) \</span>
-<a name="l00939"></a>00939 <span class="preprocessor">  template&lt;&gt; int Factory&lt;BASE&gt;::initialized_ = 0; \</span>
-<a name="l00940"></a>00940 <span class="preprocessor">  template&lt;&gt; unordered_map&lt;string, const Constructor&lt;BASE&gt; *&gt; * \</span>
-<a name="l00941"></a>00941 <span class="preprocessor">    Factory&lt;BASE&gt;::cons_table_ = 0; \</span>
-<a name="l00942"></a>00942 <span class="preprocessor">  template&lt;&gt; const char *Factory&lt;BASE&gt;::base_name_ = #BASE;</span>
-<a name="l00943"></a>00943 <span class="preprocessor"></span>
-<a name="l00944"></a>00944 }  <span class="comment">// namespace infact</span>
-<a name="l00945"></a>00945 
-<a name="l00946"></a>00946 <span class="preprocessor">#endif</span>
+<a name="l00911"></a>00911 <span class="comment">// Initialize the templated static data member cons_table_ right here,</span>
+<a name="l00912"></a>00912 <span class="comment">// since the compiler will happily remove the duplicate definitions.</span>
+<a name="l00913"></a>00913 <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;
+<a name="l00914"></a>00914 unordered_map&lt;string, const Constructor&lt;T&gt; *&gt; *
+<a name="l00915"></a>00915 Factory&lt;T&gt;::cons_table_ = 0;
+<a name="l00916"></a>00916 
+<a name="l00923"></a><a class="code" href="factory_8h.html#a0440aa6c8d7080a9daa203766dae388d">00923</a> <span class="preprocessor">#define DEFINE_CONS_CLASS(TYPE,NAME,BASE) \</span>
+<a name="l00924"></a>00924 <span class="preprocessor">  class NAME ## Constructor : public infact::Constructor&lt;BASE&gt; { \</span>
+<a name="l00925"></a>00925 <span class="preprocessor">   public: virtual BASE *NewInstance() const { return new TYPE(); } };</span>
+<a name="l00926"></a>00926 <span class="preprocessor"></span>
+<a name="l00937"></a><a class="code" href="factory_8h.html#a0b09e4aaef613d7556c07875c7d5a029">00937</a> <span class="preprocessor">#define REGISTER_NAMED(TYPE,NAME,BASE)  \</span>
+<a name="l00938"></a>00938 <span class="preprocessor">  DEFINE_CONS_CLASS(TYPE,NAME,BASE) \</span>
+<a name="l00939"></a>00939 <span class="preprocessor">  static const infact::Constructor&lt;BASE&gt; *NAME ## _my_protoype = \</span>
+<a name="l00940"></a>00940 <span class="preprocessor">      infact::Factory&lt;BASE&gt;::Register(string(#NAME), new NAME ## Constructor());</span>
+<a name="l00941"></a>00941 <span class="preprocessor"></span>
+<a name="l00944"></a><a class="code" href="factory_8h.html#a01b208854b036ee1381a9289186ff3c2">00944</a> <span class="preprocessor">#define IMPLEMENT_FACTORY(BASE) \</span>
+<a name="l00945"></a>00945 <span class="preprocessor">  template&lt;&gt; int infact::Factory&lt;BASE&gt;::initialized_ = 0; \</span>
+<a name="l00946"></a>00946 <span class="preprocessor">  template&lt;&gt; const char *infact::Factory&lt;BASE&gt;::base_name_ = #BASE;</span>
+<a name="l00947"></a>00947 <span class="preprocessor"></span>
+<a name="l00948"></a>00948 }  <span class="comment">// namespace infact</span>
+<a name="l00949"></a>00949 
+<a name="l00950"></a>00950 <span class="preprocessor">#endif</span>
 </pre></div></div><!-- contents -->
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -639,7 +643,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Jan 21 2014 09:39:13 for InFact by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Jan 28 2014 09:03:07 for InFact by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.7.6.1
 </small></address>
