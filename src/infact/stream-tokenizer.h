@@ -161,7 +161,6 @@ class StreamTokenizer {
 
   /// Destroys this instance.
   virtual ~StreamTokenizer() {
-    delete[] reserved_chars_;
   }
 
   /// Returns the entire sequence of characters read so far by this
