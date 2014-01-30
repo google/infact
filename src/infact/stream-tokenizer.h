@@ -161,6 +161,7 @@ class StreamTokenizer {
 
   /// Destroys this instance.
   virtual ~StreamTokenizer() {
+    delete[] reserved_chars_;
   }
 
   /// Returns the entire sequence of characters read so far by this
@@ -272,7 +273,7 @@ class StreamTokenizer {
  private:
   void Init(const char *reserved_chars) {
     num_reserved_chars_ = strlen(reserved_chars);
-    reserved_chars_ = new char[num_reserved_chars_];
+    reserved_chars_ = new char[num_reserved_chars_ + 1];
     strcpy(reserved_chars_, reserved_chars);
     int num_reserved_words = sizeof(default_reserved_words)/sizeof(const char*);
     for (int i = 0; i < num_reserved_words; ++i) {
