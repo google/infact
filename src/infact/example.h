@@ -71,7 +71,7 @@ class Date : public FactoryConstructible {
 /// An implementation of the Date interface that can be constructed by
 /// a \link Factory \endlink (because of the
 /// <tt>REGISTER_DATE(DateImpl)</tt> declaration in
-/// <tt>example.C</tt>).
+/// <tt>example.cc</tt>).
 class DateImpl : public Date {
  public:
   /// Constructs this instance.
@@ -81,10 +81,9 @@ class DateImpl : public Date {
 
   /// Registers three required initializers.
   virtual void RegisterInitializers(Initializers &initializers) {
-    bool required = true;
-    initializers.Add("year",  &year_,  required);
-    initializers.Add("month", &month_, required);
-    initializers.Add("day",   &day_,   required);
+    INFACT_ADD_REQUIRED_PARAM_(year);
+    INFACT_ADD_REQUIRED_PARAM_(month);
+    INFACT_ADD_REQUIRED_PARAM_(day);
   }
 
   /// \copydoc Date::year
@@ -126,7 +125,7 @@ class Person : public FactoryConstructible {
 /// A concrete implementation of the Person interface that can be
 /// constructed by a \link Factory \endlink (because of the
 /// <tt>REGISTER_PERSON(PersonImpl)</tt> declaration in
-/// <tt>example.C</tt>).
+/// <tt>example.cc</tt>).
 class PersonImpl : public Person {
  public:
   /// Constructs this person.
@@ -136,10 +135,9 @@ class PersonImpl : public Person {
 
   /// Registers one required and two optional initializers.
   virtual void RegisterInitializers(Initializers &initializers) {
-    bool required = true;
-    initializers.Add("name",      &name_,      required);
-    initializers.Add("cm_height", &cm_height_);
-    initializers.Add("birthday",  &birthday_);
+    INFACT_ADD_REQUIRED_PARAM_(name);
+    INFACT_ADD_PARAM_(cm_height);
+    INFACT_ADD_PARAM_(birthday);
   }
 
   /// \copydoc Person::name
@@ -189,9 +187,8 @@ public:
   virtual ~Cow() {}
 
   virtual void RegisterInitializers(Initializers &initializers) {
-    bool required = true;
-    initializers.Add("name", &name_, required);
-    initializers.Add("age",  &age_);
+    INFACT_ADD_REQUIRED_PARAM_(name);
+    INFACT_ADD_PARAM_(age);
   }
 
   /// Returns the name of this animal.
@@ -202,7 +199,11 @@ private:
   int age_;
 };
 
-/// A sheep.
+/// A sheep.  Unlike other animals, sheep are always twice the age you
+/// specify (for the purposes of this example, anyway).  Please see
+/// how we do this by looking at the implementations of the \link
+/// infact::Sheep::RegisterInitializers RegisterInitializers \endlink
+/// and \link infact::Sheep::PostInit PostInit \endlink methods.
 class Sheep : public Animal {
  public:
   /// Constructs a sheep.
@@ -210,21 +211,27 @@ class Sheep : public Animal {
   /// Destroys a sheep.
   virtual ~Sheep() {}
 
-  /// Registers one required and two optional inititalizers.
+  /// Registers one required and two optional inititalizers.  Please
+  /// note the use of a temporary variable being initialized in this
+  /// method, for use inside the \link infact::Sheep::PostInit
+  /// PostInit \endlink method.
   virtual void RegisterInitializers(Initializers &initializers) {
-    bool required = true;
-    initializers.Add("name", &name_, required);
-    initializers.Add("counts", &counts_);
+    INFACT_ADD_REQUIRED_PARAM_(name);
+    INFACT_ADD_PARAM_(counts);
     // We can pass in a nullptr, if we don't want to directly
     // initialize a data member of this class, but instead want to
     // simply grab something from the Environment after this method
-    // has been invoked; see the Init method declared below (defined
-    // in example.C).
-    initializers.Add("age", (int *)nullptr);
+    // has been invoked; see the PostInit method declared below
+    // (defined in example.cc).
+    //
+    // As of v1.0.6, the new INFACT_ADD_TEMPORARY macro makes it very
+    // easy to add such temporary variables in a very readable way.
+    INFACT_ADD_TEMPORARY(int, age);
   }
 
   /// Grabs the variable named "age" from the Environment (set up by
-  /// RegisterInitializers, above) and sets this sheep&rsquo;s age to
+  /// \link infact::Sheep::RegisterInitializers
+  /// RegisterInitializers\endlink) and sets this sheep&rsquo;s age to
   /// be twice that value.
   virtual void PostInit(const Environment *env, const string &init_str);
 

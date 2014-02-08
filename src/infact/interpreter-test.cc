@@ -369,6 +369,20 @@ main(int argc, char **argv) {
 /// <tt>&quot;age&quot;</tt>, and that is not required to be present in a
 /// <i>specification string</i> for an \link infact::Cow Cow\endlink.
 ///
+/// As of InFact v1.0.6, there are now some macros to make it even easier
+/// and more readable when registering parameters for initialization.  The
+/// above code can now be written as follows:
+/// \code
+/// virtual void RegisterInitializers(Initializers &initializers) {
+///   INFACT_ADD_REQUIRED_PARAM_(name);
+///   INFACT_ADD_PARAM_(age);
+/// }
+/// \endcode
+/// Please see the documentation for the \link
+/// INFACT_ADD_PARAM\endlink, \link
+/// INFACT_ADD_REQUIRED_PARAM \endlink  and \link INFACT_ADD_TEMPORARY
+/// \endlink macros for more information.
+///
 /// \subsection language The Factory language
 ///
 /// As we&rsquo;ve seen, the language used to instantiate objects is

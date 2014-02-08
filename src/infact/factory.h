@@ -48,6 +48,82 @@
 #include "error.h"
 #include "stream-tokenizer.h"
 
+/// A macro to make it easy to register a parameter for initialization
+/// inside a <tt>RegisterInitializers</tt> implementation, in a very
+/// readable way.  This macro assumes that you want to register a
+/// parameter with the name <b><tt>"param"</tt></b> for a data member
+/// with the <i>underscore-initial</i> name <b><tt>_param</tt></b>.
+/// It also asumes that the sole parameter in your \link
+/// infact::FactoryConstructible::RegisterInitializers
+/// FactoryConstructible::RegisterInitializers \endlink implementation
+/// is called <tt>initializers</tt>.
+///
+/// \see infact::FactoryConstructible::RegisterInitializers
+#define INFACT_ADD_PARAM(param) initializers.Add(#param, &_ ## param)
+
+/// A macro to make it easy to register a parameter for initialization
+/// inside a <tt>RegisterInitializers</tt> implementation, in a very
+/// readable way.  This macro assumes that you want to register a
+/// parameter with the name <b><tt>"param"</tt></b> for a data member
+/// with the <i>underscore-final</i> name <b><tt>param_</tt></b>.  It
+/// also asumes that the sole parameter in your \link
+/// infact::FactoryConstructible::RegisterInitializers
+/// FactoryConstructible::RegisterInitializers \endlink implementation
+/// is called <tt>initializers</tt>.
+///
+/// \see infact::FactoryConstructible::RegisterInitializers
+#define INFACT_ADD_PARAM_(param) initializers.Add(#param, &param ## _)
+
+/// Identical to \link INFACT_ADD_PARAM \endlink but for a required
+/// parameter.
+#define INFACT_ADD_REQUIRED_PARAM(param) \
+  initializers.Add(#param, &_ ## param, true)
+
+/// Identical to \link INFACT_ADD_PARAM_ \endlink but for a required parameter.
+#define INFACT_ADD_REQUIRED_PARAM_(param) \
+  initializers.Add(#param, &param ## _, true)
+
+/// A macro to make it easier to register a temporary variable inside
+/// a <tt>RegisterInitializers</tt> implementation, for extraction from
+/// the \link infact::Environment Environment \endlink inside a
+/// <tt>PostInit</tt> implementation.
+///
+/// \see infact::FactoryConstructible::RegisterInitializers
+/// \see infact::FactoryConstructible::PostInit
+#define INFACT_ADD_TEMPORARY(type, var) \
+  initializers.Add(#var, static_cast<type *>(nullptr))
+
+/// Identical to \link INFACT_ADD_TEMPORARY \endlink but for a
+/// required temporary.  While the phrase &ldquo;required
+/// temporary&rdquo; might sound like an oxymoron, it is not; rather,
+/// it simply refers to a named variable that <i>must</i> be specified
+/// when constructing a particular type of \link infact::Factory
+/// Factory\endlink-constructible object, but still a variable that
+/// can only be accessed from the \link infact::Environment
+/// Environment \endlink available in that class&rsquo;
+/// <tt>PostInit</tt> method.  For example, the current definition of
+/// \link infact::Sheep::RegisterInitializers
+/// Sheep::RegisterInitializers \endlink has a variable named
+/// <tt>"age"</tt> that is a non-required temporary.  As such, it need
+/// not be specified when constructing a <tt>Sheep</tt>:
+/// \code
+/// s = Sheep(name("Sleepy"));  // A currently legal Sheep spec.
+/// \endcode
+/// If we changed the line in \link
+/// infact::Sheep::RegisterInitializers Sheep::RegisterInitializers
+/// \endlink from <code>INFACT_ADD_TEMPORARY(int, age)</code> to be
+/// <code>INFACT_ADD_REQUIRED_TEMPORARY(int, age)</code> then the
+/// above would cause an error:
+/// \code
+/// // Sheep specs if age were a required temporary.
+/// s = Sheep(name("Sleepy"));          // illegal: age not specified
+/// s = Sheep(name("Sleepy"), age(3));  // legal
+/// \endcode
+///
+/// \see infact::FactoryConstructible::PostInit
+#define INFACT_ADD_REQUIRED_TEMPORARY(type, var) \
+  initializers.Add(#var, static_cast<type *>(nullptr), true)
+
 namespace infact {
 
 using std::cerr;
@@ -458,8 +534,18 @@ class Constructor {
   virtual T *NewInstance() const = 0;
 };
 
-/// An interface to make it easier to implement Factory-constructible
-/// types by implementing both required methods to do nothing.
+/// An interface simply to make it easier to implement \link
+/// infact::Factory Factory\endlink-constructible types by
+/// implementing both required methods to do nothing (use of
+/// this interface is completely optional; read more for more
+/// information).
+///
+/// The \link infact::Factory Factory \endlink class simply
+/// requires its template type to have the two methods defined in this
+/// class, and so it is <b>not</b> a <i>requirement</i> that all \link
+/// infact::Factory Factory\endlink-constructible classes derive from
+/// this class; they must merely have methods with the exact
+/// signatures of the methods of this class.
 class FactoryConstructible {
  public:
   /// Destroys this instance.
