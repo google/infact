@@ -298,7 +298,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160; <span class="keyword">private</span>:</div>
 <div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;  <span class="keywordtype">void</span> Init(<span class="keyword">const</span> <span class="keywordtype">char</span> *reserved_chars) {</div>
 <div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;    num_reserved_chars_ = strlen(reserved_chars);</div>
-<div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;    reserved_chars_ = <span class="keyword">new</span> <span class="keywordtype">char</span>[num_reserved_chars_];</div>
+<div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;    reserved_chars_ = <span class="keyword">new</span> <span class="keywordtype">char</span>[num_reserved_chars_ + 1];</div>
 <div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160;    strcpy(reserved_chars_, reserved_chars);</div>
 <div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160;    <span class="keywordtype">int</span> num_reserved_words = <span class="keyword">sizeof</span>(default_reserved_words)/<span class="keyword">sizeof</span>(<span class="keyword">const</span> <span class="keywordtype">char</span>*);</div>
 <div class="line"><a name="l00279"></a><span class="lineno">  279</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; num_reserved_words; ++i) {</div>
@@ -395,7 +395,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Feb 8 2014 12:07:39 for InFact by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Feb 8 2014 12:09:15 for InFact by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.5
 </small></address>

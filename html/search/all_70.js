@@ -11,7 +11,6 @@ var searchData=
   ['person',['Person',['../classinfact_1_1_person.html#a5397db53a6352ebd6c27327299d54b43',1,'infact::Person']]],
   ['personimpl',['PersonImpl',['../classinfact_1_1_person_impl.html',1,'infact']]],
   ['personimpl',['PersonImpl',['../classinfact_1_1_person_impl.html#a93eea8defa90832b2068a1263bb1952b',1,'infact::PersonImpl']]],
-  ['personimpl_5fmy_5fprotoype',['PersonImpl_my_protoype',['../namespaceinfact.html#a67eb06e092d654f588b6e0b4d2124cd8',1,'infact']]],
   ['personimplconstructor',['PersonImplConstructor',['../classinfact_1_1_person_impl_constructor.html',1,'infact']]],
   ['petowner',['PetOwner',['../classinfact_1_1_pet_owner.html',1,'infact']]],
   ['petowner',['PetOwner',['../classinfact_1_1_pet_owner.html#a8320220c05b1fc762503e02044c4f809',1,'infact::PetOwner']]],

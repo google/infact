@@ -203,6 +203,13 @@ Some nitty gritty details: declaring factories for abstract types and registerin
 <div class="line">*  }</div>
 <div class="line">*  </div>
 </div><!-- fragment --><p> The above code says that the <a class="el" href="classinfact_1_1_cow.html">Cow </a> has a data member <code>name_</code>, which happens to be an <code>string</code>, that is required to be initialized when an <a class="el" href="classinfact_1_1_cow.html">Cow </a> instance is constructed by a <a class="el" href="classinfact_1_1_factory.html">Factory</a>, and that the name of this variable will be <code>"name"</code> as far as the factory is concerned (<em>i.e.</em>, no underscore character, which is the convention). It also says that it has a data member <code>age_</code>, which happens to be of type <code>int</code>, whose factory name will be <code>"age"</code>, and that is not required to be present in a <em>specification string</em> for an <a class="el" href="classinfact_1_1_cow.html">Cow</a>.</p>
+<p>As of InFact v1.0.6, there are now some macros to make it even easier and more readable when registering parameters for initialization. The above code can now be written as follows: </p>
+<div class="fragment"><div class="line">*  <span class="keyword">virtual</span> <span class="keywordtype">void</span> RegisterInitializers(Initializers &amp;initializers) {</div>
+<div class="line">*    <a class="code" href="factory_8h.html#ad079b320f02a7a940b66c2e10162e321">INFACT_ADD_REQUIRED_PARAM_</a>(name);</div>
+<div class="line">*    <a class="code" href="factory_8h.html#a6398dd334cb48923f39b26dbcf2497b9">INFACT_ADD_PARAM_</a>(age);</div>
+<div class="line">*  }</div>
+<div class="line">*  </div>
+</div><!-- fragment --><p> Please see the documentation for the <a class="el" href="factory_8h.html#ac51fe909a3ebeed75d2995096306c7cb">INFACT_ADD_PARAM</a>, <a class="el" href="factory_8h.html#a3d20c0cb4655d546c046123a8b70806f">INFACT_ADD_REQUIRED_PARAM</a> and <a class="el" href="factory_8h.html#ae1e1f80dddb9011fa00e128c3eccc7bd">INFACT_ADD_TEMPORARY</a> macros for more information.</p>
 <h2><a class="anchor" id="language"></a>
 The Factory language</h2>
 <p>As we&rsquo;ve seen, the language used to instantiate objects is quite simple. An object is constructed via a <em>specification string</em> of the following form:</p>
@@ -224,7 +231,7 @@ The Factory language</h2>
 </div><!-- fragment --><p> In the first two cases, the specification strings are missing the required variable <code>name</code>, and in the final case, the optional <code>age</code> member is being initialized, but with an <code>string</code> literal instead of a <code>int</code> literal.</p>
 <h2><a class="anchor" id="putting_together"></a>
 Putting it all together</h2>
-<p>Here is a template illustrating how one creates a <a class="el" href="classinfact_1_1_factory.html">Factory </a> for an abstract base class called &ldquo;<code>Abby</code>&rdquo; and declares a concrete subtype &ldquo;<code>Concky</code>&rdquo; to that Factory. Most users of the InFact Framework are likely only to build concrete subtypes of abstract classes that already have factories, and so those users can safely ignore the <code>abby.h</code> and <code>abby.cc</code> files. </p>
+<p>Here is a template illustrating how one creates a <a class="el" href="classinfact_1_1_factory.html">Factory </a> for an abstract base class called &ldquo;<code>Abby</code>&rdquo; and declares a concrete subtype &ldquo;<code>Concky</code>&rdquo; to that Factory. </p>
 <ul>
 <li>
 <code>abby.h</code> <div class="fragment"><div class="line">*  #include <span class="stringliteral">&quot;factory.h&quot;</span></div>
@@ -255,11 +262,62 @@ Putting it all together</h2>
 <div class="line">*  </div>
 </div><!-- fragment --> </li>
 </ul>
+<p>Finally, here is an example showing how you can construct an arbitrary set of C++ objects <em>at run-time</em> without having to touch C++, using the toy example classes that are declared in <code><a class="el" href="example_8h.html" title="Provides various example class headers. ">example.h</a></code>: </p>
+<ul>
+<li>
+<code>pet-owners.infact</code> <div class="fragment"><div class="line">*  Cow c1 = Cow(name(<span class="stringliteral">&quot;Bessie&quot;</span>));</div>
+<div class="line">*  <span class="comment">// No need to specify variable types, because InFact does type inference.</span></div>
+<div class="line">*  <span class="comment">// We could declare c2 as Cow or Animal, but below we don&#39;t.</span></div>
+<div class="line">*  c2 = Cow(name(<span class="stringliteral">&quot;Lani Moo&quot;</span>), age(3));</div>
+<div class="line">* </div>
+<div class="line">*  <span class="comment">// InFact makes it easy to have arbitrary object graphs.</span></div>
+<div class="line">*  <span class="comment">// Below, both PetOwner p1 and p2 hold references to Cow c1.</span></div>
+<div class="line">*  p1 = HumanPetOwner(pets({c1, c2}));</div>
+<div class="line">*  <span class="comment">// Note how we can construct an object in situ, just like in C++.</span></div>
+<div class="line">*  p2 = HumanPetOwner(pets({c1, Sheep(name(<span class="stringliteral">&quot;Fluffy&quot;</span>))}));</div>
+<div class="line">*  </div>
+</div><!-- fragment --> </li>
+<li>
+<code>my-pet-application.cc</code> <div class="fragment"><div class="line">*  #include &lt;iostream&gt;</div>
+<div class="line">*  #include &lt;memory&gt;</div>
+<div class="line">* </div>
+<div class="line">*  #include <span class="stringliteral">&quot;example.h&quot;</span></div>
+<div class="line">*  #include <span class="stringliteral">&quot;interpreter.h&quot;</span></div>
+<div class="line">* </div>
+<div class="line">*  <span class="keyword">using namespace </span>infact;</div>
+<div class="line">*  <span class="keyword">using namespace </span>std;</div>
+<div class="line">* </div>
+<div class="line">*  <span class="keywordtype">void</span> PrintPetOwnerInfo(<span class="keyword">const</span> <span class="keywordtype">char</span> *varname, shared_ptr&lt;PetOwner&gt; p) {</div>
+<div class="line">*    cout &lt;&lt; <span class="stringliteral">&quot;Pet owner &quot;</span> &lt;&lt; varname &lt;&lt; <span class="stringliteral">&quot; has &quot;</span> &lt;&lt; p-&gt;GetNumberOfPets()</div>
+<div class="line">*         &lt;&lt; <span class="stringliteral">&quot; pets.&quot;</span> &lt;&lt; endl;</div>
+<div class="line">*    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; p-&gt;GetNumberOfPets(); ++i) {</div>
+<div class="line">*      cout &lt;&lt; <span class="stringliteral">&quot;\tpet name: &quot;</span> &lt;&lt; p-&gt;GetPet(i)-&gt;name() &lt;&lt; endl;</div>
+<div class="line">*    }</div>
+<div class="line">*  }</div>
+<div class="line">* </div>
+<div class="line">*  <span class="keywordtype">int</span> <a class="code" href="environment-test_8cc.html#a3c04138a5bfe5d72780bb7e82a18e627">main</a>(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span> **argv) {</div>
+<div class="line">*    <a class="code" href="classinfact_1_1_interpreter.html">Interpreter</a> interpreter;</div>
+<div class="line">*    <span class="comment">// See also: Interpreter::EvalString.</span></div>
+<div class="line">*    interpreter.<a class="code" href="classinfact_1_1_interpreter.html#a1e82f597745d93f313d487a33357aedc">Eval</a>(<span class="stringliteral">&quot;pet-owners.infact&quot;</span>);</div>
+<div class="line">* </div>
+<div class="line">*    <span class="comment">// Now, let&#39;s extract the values for variables that should exist</span></div>
+<div class="line">*    <span class="comment">// in the Interpreter&#39;s environment.</span></div>
+<div class="line">*    shared_ptr&lt;PetOwner&gt; pet_owner;</div>
+<div class="line">*    <span class="keywordflow">if</span> (interpreter.<a class="code" href="classinfact_1_1_interpreter.html#ae9a966d8b7d4fc9c112070d133407c41">Get</a>(<span class="stringliteral">&quot;p1&quot;</span>, &amp;pet_owner)) {</div>
+<div class="line">*      PrintPetOwnerInfo(<span class="stringliteral">&quot;p1&quot;</span>, pet_owner);</div>
+<div class="line">*    }</div>
+<div class="line">*    <span class="keywordflow">if</span> (interpreter.<a class="code" href="classinfact_1_1_interpreter.html#ae9a966d8b7d4fc9c112070d133407c41">Get</a>(<span class="stringliteral">&quot;p2&quot;</span>, &amp;pet_owner)) {</div>
+<div class="line">*      PrintPetOwnerInfo(<span class="stringliteral">&quot;p2&quot;</span>, pet_owner);</div>
+<div class="line">*    }</div>
+<div class="line">*  }</div>
+<div class="line">*  </div>
+</div><!-- fragment --> </li>
+</ul>
 <p>So what about Greenspun&rsquo;s Tenth Rule? Well, the idea that initialization strings can themselves contain specification strings suggests that there is a full-blown language being interpreted here, complete with a proper tokenizer and a recursive-descent parser. There is. It is a simple language, and one that is formally specified. To the extent that it mirrors the way C++ does things, it is not quite <em>ad hoc</em>; rather, it is (close to being) an exceedingly small subset of C++ that can be executed dynamically. We <em>hope</em> it is not bug-ridden, but we&rsquo;ll let you, the user, be the judge of that. </p>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Feb 8 2014 12:07:39 for InFact by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Feb 8 2014 12:09:16 for InFact by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.5
 </small></address>

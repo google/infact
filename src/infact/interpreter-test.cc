@@ -369,6 +369,20 @@ main(int argc, char **argv) {
 /// <tt>&quot;age&quot;</tt>, and that is not required to be present in a
 /// <i>specification string</i> for an \link infact::Cow Cow\endlink.
 ///
+/// As of InFact v1.0.6, there are now some macros to make it even easier
+/// and more readable when registering parameters for initialization.  The
+/// above code can now be written as follows:
+/// \code
+/// virtual void RegisterInitializers(Initializers &initializers) {
+///   INFACT_ADD_REQUIRED_PARAM_(name);
+///   INFACT_ADD_PARAM_(age);
+/// }
+/// \endcode
+/// Please see the documentation for the \link
+/// INFACT_ADD_PARAM\endlink, \link
+/// INFACT_ADD_REQUIRED_PARAM \endlink  and \link INFACT_ADD_TEMPORARY
+/// \endlink macros for more information.
+///
 /// \subsection language The Factory language
 ///
 /// As we&rsquo;ve seen, the language used to instantiate objects is
@@ -431,11 +445,7 @@ main(int argc, char **argv) {
 /// Here is a template illustrating how one creates a \link
 /// infact::Factory Factory \endlink for an abstract base class
 /// called &ldquo;<tt>Abby</tt>&rdquo; and declares a concrete subtype
-/// &ldquo;<tt>Concky</tt>&rdquo; to that Factory.  Most users
-/// of the InFact Framework are likely only to build concrete
-/// subtypes of abstract classes that already have factories, and so
-/// those users can safely ignore the <tt>abby.h</tt> and <tt>abby.cc</tt>
-/// files.
+/// &ldquo;<tt>Concky</tt>&rdquo; to that Factory.
 /// <ul>
 ///   <li> <tt>abby.h</tt>
 /// \code
@@ -464,6 +474,60 @@ main(int argc, char **argv) {
 ///   <li> <tt> concky.cc </tt>
 /// \code
 /// REGISTER_ABBY(Concky)
+/// \endcode
+/// </ul>
+///
+/// Finally, here is an example showing how you can construct an arbitrary
+/// set of C++ objects <i>at run-time</i> without having to touch C++,
+/// using the toy example classes that are declared in <tt>example.h</tt>:
+/// <ul>
+///   <li><tt>pet-owners.infact</tt>
+/// \code
+/// Cow c1 = Cow(name("Bessie"));
+/// // No need to specify variable types, because InFact does type inference.
+/// // We could declare c2 as Cow or Animal, but below we don't.
+/// c2 = Cow(name("Lani Moo"), age(3));
+///
+/// // InFact makes it easy to have arbitrary object graphs.
+/// // Below, both PetOwner p1 and p2 hold references to Cow c1.
+/// p1 = HumanPetOwner(pets({c1, c2}));
+/// // Note how we can construct an object in situ, just like in C++.
+/// p2 = HumanPetOwner(pets({c1, Sheep(name("Fluffy"))}));
+/// \endcode
+///   <li><tt>my-pet-application.cc</tt>
+/// \code
+/// #include <iostream>
+/// #include <memory>
+///
+/// #include "example.h"
+/// #include "interpreter.h"
+///
+/// using namespace infact;
+/// using namespace std;
+///
+/// void PrintPetOwnerInfo(const char *varname, shared_ptr<PetOwner> p) {
+///   cout << "Pet owner " << varname << " has " << p->GetNumberOfPets()
+///        << " pets." << endl;
+///   for (int i = 0; i < p->GetNumberOfPets(); ++i) {
+///     cout << "\tpet name: " << p->GetPet(i)->name() << endl;
+///   }
+/// }
+///
+/// int main(int argc, char **argv) {
+///   Interpreter interpreter;
+///   // See also: Interpreter::EvalString.
+///   interpreter.Eval("pet-owners.infact");
+///
+///   // Now, let's extract the values for variables that should exist
+///   // in the Interpreter's environment.
+///   shared_ptr<PetOwner> pet_owner;
+///   if (interpreter.Get("p1", &pet_owner)) {
+///     PrintPetOwnerInfo("p1", pet_owner);
+///   }
+///   if (interpreter.Get("p2", &pet_owner)) {
+///     PrintPetOwnerInfo("p2", pet_owner);
+///   }
+/// }
 /// \endcode
 /// </ul>
 ///

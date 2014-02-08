@@ -106,7 +106,7 @@ Inheritance diagram for infact::Sheep:</div>
   <img src="classinfact_1_1_sheep.png" usemap="#infact::Sheep_map" alt=""/>
   <map id="infact::Sheep_map" name="infact::Sheep_map">
 <area href="classinfact_1_1_animal.html" title="A very simple class to represent an animal. " alt="infact::Animal" shape="rect" coords="0,56,167,80"/>
-<area href="classinfact_1_1_factory_constructible.html" title="An interface to make it easier to implement Factory-constructible types by implementing both required..." alt="infact::FactoryConstructible" shape="rect" coords="0,0,167,24"/>
+<area href="classinfact_1_1_factory_constructible.html" title="An interface simply to make it easier to implement Factory-constructible types by implementing both r..." alt="infact::FactoryConstructible" shape="rect" coords="0,0,167,24"/>
 </map>
  </div></div>
 <table class="memberdecls">
@@ -122,7 +122,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a5fc9522fe9d8cb71ef61ddb732aff63f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Registers one required and two optional inititalizers.  <a href="#a5fc9522fe9d8cb71ef61ddb732aff63f">More...</a><br/></td></tr>
 <tr class="separator:a5fc9522fe9d8cb71ef61ddb732aff63f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a69f798764ffea946753bd06e678407cf"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classinfact_1_1_sheep.html#a69f798764ffea946753bd06e678407cf">PostInit</a> (const <a class="el" href="classinfact_1_1_environment.html">Environment</a> *env, const string &amp;init_str)</td></tr>
-<tr class="memdesc:a69f798764ffea946753bd06e678407cf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Grabs the variable named "age" from the <a class="el" href="classinfact_1_1_environment.html" title="An interface for an environment in which variables of various types are mapped to their values...">Environment</a> (set up by RegisterInitializers, above) and sets this sheep&rsquo;s age to be twice that value.  <a href="#a69f798764ffea946753bd06e678407cf">More...</a><br/></td></tr>
+<tr class="memdesc:a69f798764ffea946753bd06e678407cf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Grabs the variable named "age" from the <a class="el" href="classinfact_1_1_environment.html" title="An interface for an environment in which variables of various types are mapped to their values...">Environment</a> (set up by <a class="el" href="classinfact_1_1_sheep.html#a5fc9522fe9d8cb71ef61ddb732aff63f">RegisterInitializers</a>) and sets this sheep&rsquo;s age to be twice that value.  <a href="#a69f798764ffea946753bd06e678407cf">More...</a><br/></td></tr>
 <tr class="separator:a69f798764ffea946753bd06e678407cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2fbf359eb99794a182fea7a7b1e00469"><td class="memItemLeft" align="right" valign="top">virtual const string &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classinfact_1_1_sheep.html#a2fbf359eb99794a182fea7a7b1e00469">name</a> () const </td></tr>
 <tr class="memdesc:a2fbf359eb99794a182fea7a7b1e00469"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the name of this animal.  <a href="#a2fbf359eb99794a182fea7a7b1e00469">More...</a><br/></td></tr>
@@ -147,8 +147,9 @@ Public Member Functions</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>A sheep. </p>
+<p>Unlike other animals, sheep are always twice the age you specify (for the purposes of this example, anyway). Please see how we do this by looking at the implementations of the <a class="el" href="classinfact_1_1_sheep.html#a5fc9522fe9d8cb71ef61ddb732aff63f">RegisterInitializers </a> and <a class="el" href="classinfact_1_1_sheep.html#a69f798764ffea946753bd06e678407cf">PostInit </a> methods. </p>
 
-<p>Definition at line <a class="el" href="example_8h_source.html#l00206">206</a> of file <a class="el" href="example_8h_source.html">example.h</a>.</p>
+<p>Definition at line <a class="el" href="example_8h_source.html#l00207">207</a> of file <a class="el" href="example_8h_source.html">example.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a98ac95da1aff69c590b62ecc64fec605"></a>
 <div class="memitem">
@@ -173,7 +174,7 @@ Public Member Functions</h2></td></tr>
 
 <p>Constructs a sheep. </p>
 
-<p>Definition at line <a class="el" href="example_8h_source.html#l00209">209</a> of file <a class="el" href="example_8h_source.html">example.h</a>.</p>
+<p>Definition at line <a class="el" href="example_8h_source.html#l00210">210</a> of file <a class="el" href="example_8h_source.html">example.h</a>.</p>
 
 </div>
 </div>
@@ -200,7 +201,7 @@ Public Member Functions</h2></td></tr>
 
 <p>Destroys a sheep. </p>
 
-<p>Definition at line <a class="el" href="example_8h_source.html#l00211">211</a> of file <a class="el" href="example_8h_source.html">example.h</a>.</p>
+<p>Definition at line <a class="el" href="example_8h_source.html#l00212">212</a> of file <a class="el" href="example_8h_source.html">example.h</a>.</p>
 
 </div>
 </div>
@@ -230,7 +231,7 @@ Public Member Functions</h2></td></tr>
 
 <p>Implements <a class="el" href="classinfact_1_1_animal.html#a1819fb004f01e261bf4205fb0c8dd8f3">infact::Animal</a>.</p>
 
-<p>Definition at line <a class="el" href="example_8h_source.html#l00234">234</a> of file <a class="el" href="example_8h_source.html">example.h</a>.</p>
+<p>Definition at line <a class="el" href="example_8h_source.html#l00241">241</a> of file <a class="el" href="example_8h_source.html">example.h</a>.</p>
 
 </div>
 </div>
@@ -257,7 +258,7 @@ Public Member Functions</h2></td></tr>
 
 <p>Returns the counts of this sheep. </p>
 
-<p>Definition at line <a class="el" href="example_8h_source.html#l00238">238</a> of file <a class="el" href="example_8h_source.html">example.h</a>.</p>
+<p>Definition at line <a class="el" href="example_8h_source.html#l00245">245</a> of file <a class="el" href="example_8h_source.html">example.h</a>.</p>
 
 </div>
 </div>
@@ -286,7 +287,7 @@ Public Member Functions</h2></td></tr>
 
 <p>Implements <a class="el" href="classinfact_1_1_animal.html#a4a4d3b54ae6ac6a7cafc1ea0406d0e91">infact::Animal</a>.</p>
 
-<p>Definition at line <a class="el" href="example_8h_source.html#l00232">232</a> of file <a class="el" href="example_8h_source.html">example.h</a>.</p>
+<p>Definition at line <a class="el" href="example_8h_source.html#l00239">239</a> of file <a class="el" href="example_8h_source.html">example.h</a>.</p>
 
 </div>
 </div>
@@ -322,7 +323,7 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Grabs the variable named "age" from the <a class="el" href="classinfact_1_1_environment.html" title="An interface for an environment in which variables of various types are mapped to their values...">Environment</a> (set up by RegisterInitializers, above) and sets this sheep&rsquo;s age to be twice that value. </p>
+<p>Grabs the variable named "age" from the <a class="el" href="classinfact_1_1_environment.html" title="An interface for an environment in which variables of various types are mapped to their values...">Environment</a> (set up by <a class="el" href="classinfact_1_1_sheep.html#a5fc9522fe9d8cb71ef61ddb732aff63f">RegisterInitializers</a>) and sets this sheep&rsquo;s age to be twice that value. </p>
 
 <p>Reimplemented from <a class="el" href="classinfact_1_1_factory_constructible.html#abbcefaf8b2137f888ef133807cefe083">infact::FactoryConstructible</a>.</p>
 
@@ -353,10 +354,11 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Registers one required and two optional inititalizers. </p>
+<p>Please note the use of a temporary variable being initialized in this method, for use inside the <a class="el" href="classinfact_1_1_sheep.html#a69f798764ffea946753bd06e678407cf">PostInit </a> method. </p>
 
 <p>Reimplemented from <a class="el" href="classinfact_1_1_factory_constructible.html#a1c186ded6db298b7a84e5767e87c740f">infact::FactoryConstructible</a>.</p>
 
-<p>Definition at line <a class="el" href="example_8h_source.html#l00214">214</a> of file <a class="el" href="example_8h_source.html">example.h</a>.</p>
+<p>Definition at line <a class="el" href="example_8h_source.html#l00218">218</a> of file <a class="el" href="example_8h_source.html">example.h</a>.</p>
 
 </div>
 </div>
@@ -367,7 +369,7 @@ Public Member Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Feb 8 2014 12:07:39 for InFact by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Feb 8 2014 12:09:15 for InFact by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.5
 </small></address>

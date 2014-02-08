@@ -128,16 +128,16 @@ lib_libinfact_a_AR = $(AR) $(ARFLAGS)
 lib_libinfact_a_LIBADD =
 am__objects_1 = error.$(OBJEXT) stream-tokenizer.$(OBJEXT) \
 	environment.$(OBJEXT) environment-impl.$(OBJEXT) \
-	factory.$(OBJEXT) interpreter.$(OBJEXT) example.$(OBJEXT)
+	factory.$(OBJEXT) interpreter.$(OBJEXT)
 am_lib_libinfact_a_OBJECTS = $(am__objects_1)
 lib_libinfact_a_OBJECTS = $(am_lib_libinfact_a_OBJECTS)
 am__dirstamp = $(am__leading_dot)dirstamp
 PROGRAMS = $(test_PROGRAMS)
-am_bin_environment_test_OBJECTS = $(am__objects_1) \
+am_bin_environment_test_OBJECTS = $(am__objects_1) example.$(OBJEXT) \
 	environment-test.$(OBJEXT)
 bin_environment_test_OBJECTS = $(am_bin_environment_test_OBJECTS)
 bin_environment_test_LDADD = $(LDADD)
-am_bin_interpreter_test_OBJECTS = $(am__objects_1) \
+am_bin_interpreter_test_OBJECTS = $(am__objects_1) example.$(OBJEXT) \
 	interpreter-test.$(OBJEXT)
 bin_interpreter_test_OBJECTS = $(am_bin_interpreter_test_OBJECTS)
 bin_interpreter_test_LDADD = $(LDADD)
@@ -305,15 +305,15 @@ top_srcdir = @top_srcdir@
 AM_CPPFLAGS = -I. -Wall
 testdir = ${exec_prefix}/test-bin
 SRCS = error.cc stream-tokenizer.cc environment.cc environment-impl.cc \
-	factory.cc interpreter.cc example.cc
+	factory.cc interpreter.cc
 
 lib_LIBRARIES = lib/libinfact.a
 lib_libinfact_a_SOURCES = $(SRCS)
 
 # The following are test executables (similar to unit tescibts).
 bin_stream_tokenizer_test_SOURCES = $(SRCS) stream-tokenizer-test.cc
-bin_environment_test_SOURCES = $(SRCS) environment-test.cc
-bin_interpreter_test_SOURCES = $(SRCS) interpreter-test.cc
+bin_environment_test_SOURCES = $(SRCS) example.cc environment-test.cc
+bin_interpreter_test_SOURCES = $(SRCS) example.cc interpreter-test.cc
 all: all-am
 
 .SUFFIXES:
