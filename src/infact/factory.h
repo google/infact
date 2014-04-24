@@ -835,7 +835,8 @@ class Factory : public FactoryBase {
       if (st.Peek() != "(") {
         ostringstream err_ss;
         err_ss << "Factory<" << BaseName() << ">: "
-               << "error: expected '(' at stream position "
+               << "error initializing member " << member_name << ": "
+               << "expected '(' at stream position "
                << st.PeekTokenStart() << " but found \"" << st.Peek() << "\"";
         Error(err_ss.str());
       }
@@ -848,7 +849,8 @@ class Factory : public FactoryBase {
       if (st.Peek() != ")") {
         ostringstream err_ss;
         err_ss << "Factory<" << BaseName() << ">: "
-               << "error: expected ')' at stream position "
+               << "error initializing member " << member_name << ": "
+               << "expected ')' at stream position "
                << st.PeekTokenStart() << " but found \"" << st.Peek() << "\"";
         Error(err_ss.str());
       }
@@ -859,7 +861,8 @@ class Factory : public FactoryBase {
       if (st.Peek() != ","  && st.Peek() != ")") {
         ostringstream err_ss;
         err_ss << "Factory<" << BaseName() << ">: "
-               << "error: expected ',' or ')' at stream position "
+               << "error initializing member " << member_name << ": "
+               << "expected ',' or ')' at stream position "
                << st.PeekTokenStart() << " but found \"" << st.Peek() << "\"";
         Error(err_ss.str());
       }
@@ -873,7 +876,8 @@ class Factory : public FactoryBase {
     if (st.Peek() != ")") {
       ostringstream err_ss;
       err_ss << "Factory<" << BaseName() << ">: "
-             << "error: expected ')' at stream position "
+             << "error at initializer list end: "
+             << "expected ')' at stream position "
              << st.PeekTokenStart() << " but found \"" << st.Peek() << "\"";
       Error(err_ss.str());
     }
