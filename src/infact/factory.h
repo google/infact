@@ -312,10 +312,10 @@ class TypedMemberInitializer : public MemberInitializer {
       VarMapBase *var_map = env->GetVarMap(Name());
       VarMap<T> *typed_var_map = dynamic_cast<VarMap<T> *>(var_map);
       if (typed_var_map != nullptr) {
-	bool success = typed_var_map->Get(Name(), member_);
-	if (success) {
-	  ++initialized_;
-	}
+        bool success = typed_var_map->Get(Name(), member_);
+        if (success) {
+          ++initialized_;
+        }
       }
     } else {
       // When the goal is simply to modify the environment, we say that this
@@ -680,7 +680,8 @@ class Factory : public FactoryBase {
   /// <tr>
   ///   <td><tt>\<primitive_init\></tt></td>
   ///   <td><tt>::=</tt></td>
-  ///   <td><tt>\<member_name\> '(' \<literal\> ')'</tt></td>
+  ///   <td><tt>\<member_name\> [ '(' \<literal\> ')' |
+  ///                             '=' \<literal\> ]</tt></td>
   /// </tr>
   /// <tr>
   ///   <td><tt>\<member_name\></tt></td>
@@ -721,7 +722,8 @@ class Factory : public FactoryBase {
   /// <tr>
   ///   <td><tt>\<primitive_vector_init></tt></td>
   ///   <td><tt>::=</tt></td>
-  ///   <td><tt>\<member_name\> '(' '{' \<literal_list\> '}' ')'</tt></td>
+  ///   <td><tt>\<member_name\> [ '(' '{' \<literal_list\> '}' ')' |
+  ///                             '=' '{' \<literal_list\> '}'</tt></td>
   /// </tr>
   /// <tr>
   ///   <td valign=top><tt>\<literal_list\></tt></td>
@@ -735,12 +737,14 @@ class Factory : public FactoryBase {
   /// <tr>
   ///   <td><tt>\<factory_init\></tt></td>
   ///   <td><tt>::=</tt></td>
-  ///   <td><tt>\<member_name\> '(' \<spec_or_null\> ')'</tt></td>
+  ///   <td><tt>\<member_name\> [ '(' \<spec_or_null\> ')' |
+  ///                             '=' \<spec_or_null\> ] </tt></td>
   /// </tr>
   /// <tr>
   ///   <td><tt>\<factory_vector_init\></tt></td>
   ///   <td><tt>::=</tt></td>
-  ///   <td><tt>\<member_name\> '(' '{' \<spec_list\> '}' ')'</tt></td>
+  ///   <td><tt>\<member_name\> [ '(' '{' \<spec_list\> '}' ')' |
+  ///                             '=' '{' \<spec_list\> '}'</tt></td>
   /// </tr>
   /// <tr>
   ///   <td valign=top><tt>\<spec_list\></tt></td>
@@ -765,7 +769,7 @@ class Factory : public FactoryBase {
     size_t start = st.PeekTokenStart();
     StreamTokenizer::TokenType token_type = st.PeekTokenType();
     if (token_type == StreamTokenizer::RESERVED_WORD &&
-	(st.Peek() == "nullptr" || st.Peek() == "NULL")) {
+        (st.Peek() == "nullptr" || st.Peek() == "NULL")) {
       // Consume the nullptr.
       st.Next();
       return shared_ptr<T>();
@@ -831,12 +835,15 @@ class Factory : public FactoryBase {
       }
       MemberInitializer *member_initializer = init_it->second;
 
-      // Read open parenthesis.
-      if (st.Peek() != "(") {
+      // Read open parenthesis or equals sign.
+      size_t member_init_start = st.PeekTokenStart();
+      bool saw_member_init_open_paren = st.Peek() == "(";
+      bool saw_member_init_equals_sign = st.Peek() == "=";
+      if (!saw_member_init_open_paren && !saw_member_init_equals_sign) {
         ostringstream err_ss;
         err_ss << "Factory<" << BaseName() << ">: "
                << "error initializing member " << member_name << ": "
-               << "expected '(' at stream position "
+               << "expected '(' or '=' at stream position "
                << st.PeekTokenStart() << " but found \"" << st.Peek() << "\"";
         Error(err_ss.str());
       }
@@ -845,16 +852,19 @@ class Factory : public FactoryBase {
       // Initialize member based on following token(s).
       member_initializer->Init(st, env_ptr.get());
 
-      // Read close parenthesis for current member initializer.
-      if (st.Peek() != ")") {
-        ostringstream err_ss;
-        err_ss << "Factory<" << BaseName() << ">: "
-               << "error initializing member " << member_name << ": "
-               << "expected ')' at stream position "
-               << st.PeekTokenStart() << " but found \"" << st.Peek() << "\"";
-        Error(err_ss.str());
+      // If an open parenthesis was seen, read close parenthesis.
+      if (saw_member_init_open_paren) {
+        if (st.Peek() != ")") {
+          ostringstream err_ss;
+          err_ss << "Factory<" << BaseName() << ">: "
+              << "error initializing member " << member_name << ": "
+              << "saw '(' at stream position " << member_init_start
+              << "; expected ')' at stream position "
+              << st.PeekTokenStart() << " but found \"" << st.Peek() << "\"";
+          Error(err_ss.str());
+        }
+        st.Next();
       }
-      st.Next();
 
       // Each member initializer must be followed by a comma or the final
       // closing parenthesis.
