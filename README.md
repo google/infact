@@ -3,8 +3,8 @@
 InFact provides an interpreter and factory for the construction of
 instances of C++ classes. The syntax is very much like that of C++
 itself, and objects may be created that wrap other objects, just like
-in C++. It supports all the common primitive types (bool, int, double,
-string), as well as vectors of primitives or of Factory-constructible
+in C++. It supports all the common primitive types (`bool`, `int`, `double`,
+`string`), as well as vectors of primitives or of Factory-constructible
 objects. Here's what it looks like:
 
 ```
@@ -22,7 +22,7 @@ PetOwner p = HumanPetOwner(pets({c1, c2}));
 Feeding the above to InFact’s
 [Interpreter](http://google.github.io/infact/classinfact_1_1_interpreter.html)
 class will construct three new objects at run-time (the referents of
-c1, c2 and p) _without any new C++ code_.
+`c1`, `c2` and `p`) _without any new C++ code_.
 
 While being very powerful, the library is also quite lightweight: it
 is a simple recursive-descent parser with a single token of
