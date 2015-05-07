@@ -65,7 +65,7 @@ EnvironmentImpl::EnvironmentImpl(int debug) {
     VarMapBase *obj_var_map = (*factory_it)->CreateVarMap(this);
     var_map_[obj_var_map->Name()] = obj_var_map;
 
-    if (debug_ >= 2) {
+    if (debug_ >= 3) {
       cerr << "Environment: created VarMap for " << obj_var_map->Name()
            << endl;
     }
@@ -74,7 +74,7 @@ EnvironmentImpl::EnvironmentImpl(int debug) {
     VarMapBase *obj_vector_var_map = (*factory_it)->CreateVectorVarMap(this);
     var_map_[obj_vector_var_map->Name()] = obj_vector_var_map;
 
-    if (debug_ >= 2) {
+    if (debug_ >= 3) {
       cerr << "Environment: created VarMap for " << obj_vector_var_map->Name()
            << endl;
     }
@@ -96,7 +96,7 @@ EnvironmentImpl::EnvironmentImpl(int debug) {
       }
       concrete_to_factory_type_[concrete_type_name] = base_name;
 
-      if (debug_ >= 2) {
+      if (debug_ >= 3) {
         cerr << "Environment: associating concrete typename "
              << concrete_type_name
              << " with factory for " << base_name << endl;
@@ -136,7 +136,7 @@ EnvironmentImpl::ReadAndSet(const string &varname, StreamTokenizer &st,
     next_tok = st.Peek();
   }
 
-  if (debug_ >= 1) {
+  if (debug_ >= 2) {
     cerr << "Environment::ReadAndSet: next_tok=\"" << next_tok
          << "\"; explicit type=\"" << type << "\"; "
          << "inferred_type=\"" << inferred_type << "\"" << endl;
@@ -204,7 +204,7 @@ EnvironmentImpl::InferType(const string &varname,
             types_.find(next_tok);
         if (factory_type_it != concrete_to_factory_type_.end()) {
           // Set type to be abstract factory type.
-          if (debug_ >= 1) {
+          if (debug_ >= 2) {
             cerr << "Environment::InferType: concrete type is " << next_tok
                  << "; mapping to abstract Factory type "
                  << factory_type_it->second << endl;
@@ -213,7 +213,7 @@ EnvironmentImpl::InferType(const string &varname,
           *is_object_type = true;
           type = is_vector ? type + "[]" : type;
 
-          if (debug_ >= 1) {
+          if (debug_ >= 2) {
             cerr << "Environment::InferType: type "
                  << (is_vector ? "is" : "isn't")
                  << " a vector, so final inferred type is " << type << endl;
@@ -224,7 +224,7 @@ EnvironmentImpl::InferType(const string &varname,
           // based on the variable's type string.
           string append = is_vector ? "[]" : "";
           type = var_type_it->second + append;
-          if (debug_ >= 1) {
+          if (debug_ >= 2) {
             cerr << "Environment::InferType: found variable "
                  << var_type_it->first << " of type " << var_type_it->second
                  << "; type is " << type << endl;

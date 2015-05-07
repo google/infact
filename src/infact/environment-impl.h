@@ -178,7 +178,7 @@ EnvironmentImpl::Get(const string &varname, T *value) const {
   unordered_map<string, string>::const_iterator type_it =
       types_.find(varname);
   if (type_it == types_.end()) {
-    if (debug_ >= 1) {
+    if (debug_ >= 2) {
       ostringstream err_ss;
       err_ss << "Environment::Get: error: no value for variable "
              << varname;

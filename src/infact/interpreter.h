@@ -39,6 +39,7 @@
 
 #include <iostream>
 #include <fstream>
+#include <memory>
 #include <string>
 #include <unordered_map>
 #include <unordered_set>
@@ -47,8 +48,26 @@
 
 namespace infact {
 
-using std::iostream;
 using std::ifstream;
+using std::istream;
+using std::unique_ptr;
+
+/// An interface for classes that can build istreams for named files.
+class IStreamBuilder {
+ public:
+  virtual unique_ptr<istream> Build(
+      const string &filename,
+      std::ios_base::openmode mode = std::ios_base::in) const = 0;
+};
+
+/// The default implementation for the IStreamBuilder interface, returning
+/// std::ifstream instances.
+class DefaultIStreamBuilder : public IStreamBuilder {
+ public:
+  unique_ptr<istream> Build(const string &filename,
+                            std::ios_base::openmode mode = std::ios_base::in)
+      const override;
+};
 
 class EnvironmentImpl;
 
@@ -167,21 +186,27 @@ class Interpreter {
   /// Constructs a new instance with the specified debug level.  The
   /// wrapped \link infact::Environment Environment \endlink will
   /// also have the specified debug level.
-  Interpreter(int debug = 0) {
-    env_ = new EnvironmentImpl(debug);
-  }
+  Interpreter(int debug = 0) :
+      Interpreter(new DefaultIStreamBuilder(), debug) { }
+
+  /// Constructs a new instance with the specified IStreamBuilder and
+  /// debug level.  The wrapped \link infact::Environment Environment
+  /// \endlink will also have the specified debug level.
+  Interpreter(IStreamBuilder *istream_builder, int debug = 0) :
+      env_(new EnvironmentImpl(debug)),
+      istream_builder_(istream_builder),
+      debug_(debug) { }
 
   /// Destroys this interpreter.
-  virtual ~Interpreter() {
-    delete env_;
+  virtual ~Interpreter() = default;
+
+  /// Sets the IStreamBuilder object, to be owned by this object.
+  void SetIStreamBuilder(IStreamBuilder *istream_builder) {
+    istream_builder_.reset(istream_builder);
   }
 
   /// Evaluates the statements in the specified text file.
-  void Eval(const string &filename) {
-    filename_ = filename;
-    ifstream file(filename_.c_str());
-    Eval(file);
-  }
+  void Eval(const string &filename);
 
   /// Evaluates the statements in the specified string.
   void EvalString(const string& input) {
@@ -194,7 +219,6 @@ class Interpreter {
     StreamTokenizer st(is);
     Eval(st);
   }
-
 
   void PrintEnv(ostream &os) const {
     env_->Print(os);
@@ -224,33 +248,64 @@ class Interpreter {
   /// EnvironmentImpl\endlink, so that its templated \link
   /// infact::EnvironmentImpl::Get EnvironmentImpl::Get \endlink
   /// method may be invoked.
-  EnvironmentImpl *env() { return env_; }
+  EnvironmentImpl *env() { return env_.get(); }
 
  private:
+  bool CanReadFile(const string &filename) const;
+
+  /// Evaluates the expressions contained the named file.
+  void EvalFile(const string &filename);
+
   /// Evalutes the expressions contained in the specified token stream.
   void Eval(StreamTokenizer &st);
 
-  void WrongTokenError(size_t pos,
+  /// Returns the name of the current file being interpreted, or the empty
+  /// string if there is no such file.
+  string curr_filename() const {
+    return filenames_.size() > 0 ? filenames_.back() : "";
+  }
+
+  /// Returns a human-readable form of the stack of filenames, useful for
+  /// error messages and/or debugging.
+  ///
+  /// \param st  the current StreamTokenizer
+  /// \param pos the stream position of the current file (at the top
+  ///            of the statck)
+  string filestack(StreamTokenizer &st, size_t pos) const;
+
+  void WrongTokenError(StreamTokenizer &st,
+                       size_t pos,
                        const string &expected,
                        const string &found,
                        StreamTokenizer::TokenType found_type) const;
 
-  void WrongTokenTypeError(size_t pos,
+  void WrongTokenTypeError(StreamTokenizer &st,
+                           size_t pos,
                            StreamTokenizer::TokenType expected,
                            StreamTokenizer::TokenType found,
                            const string &token) const;
 
-  void WrongTokenTypeError(size_t pos,
+  void WrongTokenTypeError(StreamTokenizer &st,
+                           size_t pos,
                            const string &expected_type,
                            const string &found_type,
                            const string &token) const;
 
   /// The environment of this interpreter.
-  EnvironmentImpl *env_;
+  unique_ptr<EnvironmentImpl> env_;
 
-  /// The name of the file being interpreted, or the empty string if there
-  /// is no file associated with the stream being interpreted.
-  string filename_;
+  /// The stack of files being interpreted, where the back of the
+  /// vector is the top of the stack. The string on the top of the
+  /// stack is the name of the current file being interpreted, or the
+  /// empty string if there is no file associated with the stream
+  /// being interpreted.
+  vector<string> filenames_;
+
+  // The object for building new istream objects from named files.
+  unique_ptr<IStreamBuilder> istream_builder_;
+
+  // The debug level of this interpreter.
+  int debug_;
 };
 
 }  // namespace infact

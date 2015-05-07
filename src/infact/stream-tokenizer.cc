@@ -48,6 +48,7 @@ StreamTokenizer::ConsumeChar(char c) {
   ++num_read_;
   if (c == '\n') {
     ++line_number_;
+    line_start_pos_ = num_read_;
   }
 }
 
@@ -93,6 +94,7 @@ StreamTokenizer::GetNext(Token *next) {
   // the two stream state data available now.
   next->start = num_read_ - 1;
   next->line_number = line_number_;
+  next->line_start_pos = line_start_pos_;
 
   bool next_tok_complete = false;
   next->tok.clear();
@@ -172,6 +174,28 @@ StreamTokenizer::GetNext(Token *next) {
   next->curr_pos = num_read_;
 
   return true;
+}
+
+namespace {
+
+/// Returns the line beginning at \c pos.
+string getline(const string &str, size_t pos) {
+  string curr_line;
+  for (; pos < str.length() && str[pos] != '\n'; ++pos) {
+    curr_line += str[pos];
+  }
+  return curr_line;
+}
+
+}
+
+string
+StreamTokenizer::line() {
+  if (HasPrev()) {
+    return getline(str(), token_[next_token_idx_ - 1].line_start_pos);
+  } else {
+    return "";
+  }
 }
 
 }  // namespace infact

@@ -66,6 +66,7 @@ static const char *default_reserved_words[] = {
   "-",
   "nullptr",
   "NULL",
+  "import",
   "false",
   "true",
   "bool",
@@ -122,6 +123,8 @@ class StreamTokenizer {
     size_t start;
     /// The line number of the first byte of the token in the underlying stream.
     size_t line_number;
+    /// The stream position of the start of the line of this token.
+    size_t line_start_pos;
     /// The current position in the underlying stream just after reading this
     /// token.
     size_t curr_pos;
@@ -135,8 +138,7 @@ class StreamTokenizer {
   ///                       &ldquo;reserved characters&rdquo;
   StreamTokenizer(istream &is,
                   const char *reserved_chars = DEFAULT_RESERVED_CHARS) :
-      is_(is), num_read_(0), line_number_(0), eof_reached_(false),
-      next_token_idx_(0) {
+      is_(is) {
     Init(reserved_chars);
   }
 
@@ -148,8 +150,7 @@ class StreamTokenizer {
   ///                       &ldquo;reserved characters&rdquo;
   StreamTokenizer(const string &s,
                   const char *reserved_chars = DEFAULT_RESERVED_CHARS) :
-      sstream_(s), is_(sstream_), num_read_(0), line_number_(0),
-      eof_reached_(false), next_token_idx_(0) {
+      sstream_(s), is_(sstream_) {
     Init(reserved_chars);
   }
 
@@ -182,6 +183,19 @@ class StreamTokenizer {
     return HasNext() ? token_[next_token_idx_].line_number : line_number_;
   }
 
+  /// Returns a string consisting of the characters read so far of the current
+  /// line containing the most recently returned token, or the empty string
+  /// if no tokens have been read yet.
+  string line();
+
+  /// Returns the stream position of the current line in the underlying
+  /// byte stream.  This value may be equal to the number of bytes read
+  /// if the most recently consumed character is a newline and there are
+  /// no more tokens in the stream.
+  size_t line_start() {
+    return HasNext() ? token_[next_token_idx_].line_start_pos : 0;
+  }
+
   /// Returns whether there is another token in the token stream.
   bool HasNext() const { return next_token_idx_ < token_.size(); }
 
@@ -189,6 +203,13 @@ class StreamTokenizer {
 
   string PeekPrev() const {
     return HasPrev() ? token_[next_token_idx_ - 1].tok : "";
+  }
+
+  /// Returns the stream position of the most recent line start of the
+  /// previous token, or 0 if this stream is just about to return the
+  /// first token.
+  size_t PeekPrevTokenLineStart() const {
+    return HasPrev() ? token_[next_token_idx_ - 1].line_start_pos : 0;
   }
 
   size_t PeekPrevTokenStart() const {
@@ -324,9 +345,10 @@ class StreamTokenizer {
   set<string> reserved_words_;
 
   // Information about the current state of the underlying byte stream.
-  size_t num_read_;
-  size_t line_number_;
-  bool eof_reached_;
+  size_t num_read_ = 0;
+  size_t line_number_ = 0;
+  size_t line_start_pos_ = 0;
+  bool eof_reached_ = false;
   ostringstream oss_;
 
   // The sequence of tokens read so far.
@@ -335,7 +357,7 @@ class StreamTokenizer {
   // The index of the next token in this stream in token_, or token_.size()
   // if there are no more tokens left in this stream.  Note that invocations
   // of the Rewind and Putback methods alter this data member.
-  size_t next_token_idx_;
+  size_t next_token_idx_ = 0;
 };
 
 }  // namespace infact
