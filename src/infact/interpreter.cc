@@ -52,9 +52,28 @@ DefaultIStreamBuilder::Build(const string &filename,
 }
 
 bool
+Interpreter::IsAbsolute(const string &filename) const {
+  return filename.length() > 0 && filename[0] == '/';
+}
+
+bool
 Interpreter::CanReadFile(const string &filename) const {
   unique_ptr<istream> file = std::move(istream_builder_->Build(filename));
   return file->good();
+}
+
+bool
+Interpreter::CanReadFile(const string &f1, const string &f2,
+                         string *filename) const {
+  if (CanReadFile(f1)) {
+    *filename = f1;
+    return true;
+  } else if (CanReadFile(f2)) {
+    *filename = f2;
+    return true;
+  } else {
+    return false;
+  }
 }
 
 void
@@ -81,6 +100,71 @@ Interpreter::EvalFile(const string &filename) {
 }
 
 void
+Interpreter::Import(StreamTokenizer &st) {
+  // Consume reserved word "import".
+  st.Next();
+
+  if (st.PeekTokenType() != StreamTokenizer::STRING) {
+    string expected_type =
+        string(StreamTokenizer::TypeName(StreamTokenizer::RESERVED_WORD));
+    string found_type = StreamTokenizer::TypeName(st.PeekTokenType());
+    WrongTokenTypeError(st, st.PeekTokenStart(), expected_type, found_type,
+                        st.Peek());
+  }
+
+  if (debug_ >= 1) {
+    std::cerr << "infact::Interpreter: from file \"" << curr_filename()
+              << "\" importing \"" << st.Peek() << "\"\n";
+  }
+
+  // Grab the string naming the file to be imported.
+  string original_import_filename = st.Next();
+  string relative_import_filename = original_import_filename;
+
+  // Test to see if the named file exists.  If the path is not
+  // absolute, we try to get the dirname of current file, if it
+  // exists, and create a relative path, which takes precedence
+  // over a path relative to the current working directory.
+  if (!IsAbsolute(original_import_filename)) {
+    string dirname = "";
+    size_t slash_pos = curr_filename().find('/');
+    if (slash_pos != string::npos) {
+      dirname = curr_filename().substr(0, slash_pos);
+      relative_import_filename = dirname + '/' + original_import_filename;
+    }
+  }
+
+  string import_filename;
+  if (!CanReadFile(relative_import_filename, original_import_filename,
+                   &import_filename)) {
+    ostringstream err_ss;
+    err_ss << "infact::Interpreter: " << filestack(st, st.tellg())
+           << "error: cannot read file \"" << import_filename << "\" "
+           << "(or file does not exist)\n";
+    Error(err_ss.str());
+  } else {
+    if (debug_ >= 1) {
+      std::cerr << "infact::Interpreter: tested paths \""
+                << relative_import_filename << "\" and \""
+                << original_import_filename << "\" and found that \""
+                << import_filename << "\" exists and is readable\n";
+    }
+  }
+
+  // Finally, evaluate file using the private EvalFile method.  The imported
+  // file gets interpreted using the current Environment.
+  EvalFile(import_filename);
+
+  if (st.Peek() != ";") {
+    WrongTokenError(st, st.PeekTokenStart(), ";", st.Peek(),
+                    st.PeekTokenType());
+  }
+
+  // Consume semicolon.
+  st.Next();
+}
+
+void
 Interpreter::Eval(StreamTokenizer &st) {
   // Keeps reading import or assignment statements until there are no
   // more tokens.
@@ -91,42 +175,7 @@ Interpreter::Eval(StreamTokenizer &st) {
     StreamTokenizer::TokenType token_type = st.PeekTokenType();
     // First, see if we have an import statement.
     if (token_type == StreamTokenizer::RESERVED_WORD && st.Peek() == "import") {
-      // Consume reserved word "import".
-      st.Next();
-      if (st.PeekTokenType() != StreamTokenizer::STRING) {
-        string expected_type =
-            string(StreamTokenizer::TypeName(StreamTokenizer::RESERVED_WORD));
-        string found_type = StreamTokenizer::TypeName(st.PeekTokenType());
-        WrongTokenTypeError(st, st.PeekTokenStart(), expected_type, found_type,
-                            st.Peek());
-      }
-      // Interpret the imported file using the same environment.
-      if (debug_ >= 1) {
-        std::cerr << "infact::Interpreter: from file \"" << curr_filename()
-                  << "\" importing \"" << st.Peek() << "\"\n";
-      }
-      string import_filename = st.Next();
-
-      // Test to see if file exists.
-      if (!CanReadFile(import_filename)) {
-        ostringstream err_ss;
-        err_ss << "infact::Interpreter: " << filestack(st, st.tellg())
-               << "error: cannot read file \"" << import_filename << "\" "
-               << "(or file does not exist)\n";
-        Error(err_ss.str());
-      }
-
-      // Finally, evaluate file using the private EvalFile method.
-      EvalFile(import_filename);
-
-      if (st.Peek() != ";") {
-        WrongTokenError(st, st.PeekTokenStart(), ";", st.Peek(),
-                        st.PeekTokenType());
-      }
-
-      // Consume semicolon.
-      st.Next();
-
+      Import(st);
       // Now continue this loop reading either assignment or import statements.
       continue;
     }

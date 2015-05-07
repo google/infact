@@ -55,6 +55,8 @@ using std::unique_ptr;
 /// An interface for classes that can build istreams for named files.
 class IStreamBuilder {
  public:
+  virtual ~IStreamBuilder() = default;
+
   virtual unique_ptr<istream> Build(
       const string &filename,
       std::ios_base::openmode mode = std::ios_base::in) const = 0;
@@ -64,6 +66,8 @@ class IStreamBuilder {
 /// std::ifstream instances.
 class DefaultIStreamBuilder : public IStreamBuilder {
  public:
+  ~DefaultIStreamBuilder() override = default;
+
   unique_ptr<istream> Build(const string &filename,
                             std::ios_base::openmode mode = std::ios_base::in)
       const override;
@@ -251,13 +255,33 @@ class Interpreter {
   EnvironmentImpl *env() { return env_.get(); }
 
  private:
+  /// Returns whether \c filename is an absolute path.
+  bool IsAbsolute(const string &filename) const;
+
+  /// Returns wheterh \c filename is a file that exists and can be read.
   bool CanReadFile(const string &filename) const;
+
+  /// Returns whether either f1 or f2 can be read, trying them in that
+  /// order.  If one of them can be read (according to the result of
+  /// <code>CanReadFile(const string &)</code>), then the resulting
+  /// name is output to filename.
+  ///
+  /// \param[in]  f1 the first filename to check for readability
+  /// \param[in]  f2 the second filename to check for readability
+  /// \param[out] filename the name of the readable file, either \c f1 or \c f2
+  ///
+  /// \return whether either \c f1 or \c f2 are readable and the
+  ///         output parameter \c filename has been set
+  bool CanReadFile(const string &f1, const string &f2, string *filename) const;
 
   /// Evaluates the expressions contained the named file.
   void EvalFile(const string &filename);
 
   /// Evalutes the expressions contained in the specified token stream.
   void Eval(StreamTokenizer &st);
+
+  /// Reads and evaluates an import statement.
+  void Import(StreamTokenizer &st);
 
   /// Returns the name of the current file being interpreted, or the empty
   /// string if there is no such file.
