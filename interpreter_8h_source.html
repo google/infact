@@ -195,79 +195,98 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;    env_-&gt;PrintFactories(os);</div>
 <div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;  }</div>
 <div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;</div>
-<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;  <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</div>
-<div class="line"><a name="l00269"></a><span class="lineno"><a class="line" href="classinfact_1_1_interpreter.html#ae9a966d8b7d4fc9c112070d133407c41">  269</a></span>&#160;  <span class="keywordtype">bool</span> <a class="code" href="classinfact_1_1_interpreter.html#ae9a966d8b7d4fc9c112070d133407c41">Get</a>(<span class="keyword">const</span> <span class="keywordtype">string</span> &amp;varname, T *value)<span class="keyword"> const </span>{</div>
-<div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;    <span class="keywordflow">return</span> env_-&gt;Get(varname, value);</div>
-<div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;  }</div>
-<div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;</div>
-<div class="line"><a name="l00279"></a><span class="lineno"><a class="line" href="classinfact_1_1_interpreter.html#a049fcfcf061bf478002d971f10c78b1a">  279</a></span>&#160;  <a class="code" href="classinfact_1_1_environment_impl.html">EnvironmentImpl</a> *<a class="code" href="classinfact_1_1_interpreter.html#a049fcfcf061bf478002d971f10c78b1a">env</a>() { <span class="keywordflow">return</span> env_.get(); }</div>
-<div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160;</div>
-<div class="line"><a name="l00281"></a><span class="lineno">  281</span>&#160; <span class="keyword">private</span>:</div>
-<div class="line"><a name="l00283"></a><span class="lineno">  283</span>&#160;  <span class="keywordtype">bool</span> IsAbsolute(<span class="keyword">const</span> <span class="keywordtype">string</span> &amp;filename) <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00284"></a><span class="lineno">  284</span>&#160;</div>
-<div class="line"><a name="l00286"></a><span class="lineno">  286</span>&#160;  <span class="keywordtype">bool</span> CanReadFile(<span class="keyword">const</span> <span class="keywordtype">string</span> &amp;filename) <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00287"></a><span class="lineno">  287</span>&#160;</div>
-<div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160;  <span class="keywordtype">bool</span> CanReadFile(<span class="keyword">const</span> <span class="keywordtype">string</span> &amp;f1, <span class="keyword">const</span> <span class="keywordtype">string</span> &amp;f2, <span class="keywordtype">string</span> *filename) <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160;</div>
-<div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160;  <span class="keywordtype">void</span> EvalFile(<span class="keyword">const</span> <span class="keywordtype">string</span> &amp;filename);</div>
-<div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160;</div>
-<div class="line"><a name="l00305"></a><span class="lineno">  305</span>&#160;  <span class="keywordtype">void</span> <a class="code" href="classinfact_1_1_interpreter.html#a1e82f597745d93f313d487a33357aedc">Eval</a>(<a class="code" href="classinfact_1_1_stream_tokenizer.html">StreamTokenizer</a> &amp;st);</div>
-<div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160;</div>
-<div class="line"><a name="l00308"></a><span class="lineno">  308</span>&#160;  <span class="keywordtype">void</span> Import(<a class="code" href="classinfact_1_1_stream_tokenizer.html">StreamTokenizer</a> &amp;st);</div>
-<div class="line"><a name="l00309"></a><span class="lineno">  309</span>&#160;</div>
-<div class="line"><a name="l00312"></a><span class="lineno">  312</span>&#160;  <span class="keywordtype">string</span> curr_filename()<span class="keyword"> const </span>{</div>
-<div class="line"><a name="l00313"></a><span class="lineno">  313</span>&#160;    <span class="keywordflow">return</span> filenames_.size() &gt; 0 ? filenames_.back() : <span class="stringliteral">&quot;&quot;</span>;</div>
-<div class="line"><a name="l00314"></a><span class="lineno">  314</span>&#160;  }</div>
-<div class="line"><a name="l00315"></a><span class="lineno">  315</span>&#160;</div>
-<div class="line"><a name="l00322"></a><span class="lineno">  322</span>&#160;  <span class="keywordtype">string</span> filestack(StreamTokenizer &amp;st, <span class="keywordtype">size_t</span> pos) <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00323"></a><span class="lineno">  323</span>&#160;</div>
-<div class="line"><a name="l00324"></a><span class="lineno">  324</span>&#160;  <span class="keywordtype">void</span> WrongTokenError(StreamTokenizer &amp;st,</div>
-<div class="line"><a name="l00325"></a><span class="lineno">  325</span>&#160;                       <span class="keywordtype">size_t</span> pos,</div>
-<div class="line"><a name="l00326"></a><span class="lineno">  326</span>&#160;                       <span class="keyword">const</span> <span class="keywordtype">string</span> &amp;expected,</div>
-<div class="line"><a name="l00327"></a><span class="lineno">  327</span>&#160;                       <span class="keyword">const</span> <span class="keywordtype">string</span> &amp;found,</div>
-<div class="line"><a name="l00328"></a><span class="lineno">  328</span>&#160;                       <a class="code" href="classinfact_1_1_stream_tokenizer.html#ac6e5b0b274a66a2a504ac4fd425c57b3">StreamTokenizer::TokenType</a> found_type) <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00329"></a><span class="lineno">  329</span>&#160;</div>
-<div class="line"><a name="l00330"></a><span class="lineno">  330</span>&#160;  <span class="keywordtype">void</span> WrongTokenTypeError(StreamTokenizer &amp;st,</div>
-<div class="line"><a name="l00331"></a><span class="lineno">  331</span>&#160;                           <span class="keywordtype">size_t</span> pos,</div>
-<div class="line"><a name="l00332"></a><span class="lineno">  332</span>&#160;                           <a class="code" href="classinfact_1_1_stream_tokenizer.html#ac6e5b0b274a66a2a504ac4fd425c57b3">StreamTokenizer::TokenType</a> expected,</div>
-<div class="line"><a name="l00333"></a><span class="lineno">  333</span>&#160;                           <a class="code" href="classinfact_1_1_stream_tokenizer.html#ac6e5b0b274a66a2a504ac4fd425c57b3">StreamTokenizer::TokenType</a> found,</div>
-<div class="line"><a name="l00334"></a><span class="lineno">  334</span>&#160;                           <span class="keyword">const</span> <span class="keywordtype">string</span> &amp;token) <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00335"></a><span class="lineno">  335</span>&#160;</div>
-<div class="line"><a name="l00336"></a><span class="lineno">  336</span>&#160;  <span class="keywordtype">void</span> WrongTokenTypeError(StreamTokenizer &amp;st,</div>
-<div class="line"><a name="l00337"></a><span class="lineno">  337</span>&#160;                           <span class="keywordtype">size_t</span> pos,</div>
-<div class="line"><a name="l00338"></a><span class="lineno">  338</span>&#160;                           <span class="keyword">const</span> <span class="keywordtype">string</span> &amp;expected_type,</div>
-<div class="line"><a name="l00339"></a><span class="lineno">  339</span>&#160;                           <span class="keyword">const</span> <span class="keywordtype">string</span> &amp;found_type,</div>
-<div class="line"><a name="l00340"></a><span class="lineno">  340</span>&#160;                           <span class="keyword">const</span> <span class="keywordtype">string</span> &amp;token) <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00341"></a><span class="lineno">  341</span>&#160;</div>
-<div class="line"><a name="l00343"></a><span class="lineno">  343</span>&#160;  unique_ptr&lt;EnvironmentImpl&gt; env_;</div>
-<div class="line"><a name="l00344"></a><span class="lineno">  344</span>&#160;</div>
-<div class="line"><a name="l00350"></a><span class="lineno">  350</span>&#160;  vector&lt;string&gt; filenames_;</div>
-<div class="line"><a name="l00351"></a><span class="lineno">  351</span>&#160;</div>
-<div class="line"><a name="l00352"></a><span class="lineno">  352</span>&#160;  <span class="comment">// The object for building new istream objects from named files.</span></div>
-<div class="line"><a name="l00353"></a><span class="lineno">  353</span>&#160;  unique_ptr&lt;IStreamBuilder&gt; istream_builder_;</div>
-<div class="line"><a name="l00354"></a><span class="lineno">  354</span>&#160;</div>
-<div class="line"><a name="l00355"></a><span class="lineno">  355</span>&#160;  <span class="comment">// The debug level of this interpreter.</span></div>
-<div class="line"><a name="l00356"></a><span class="lineno">  356</span>&#160;  <span class="keywordtype">int</span> debug_;</div>
-<div class="line"><a name="l00357"></a><span class="lineno">  357</span>&#160;};</div>
-<div class="line"><a name="l00358"></a><span class="lineno">  358</span>&#160;</div>
-<div class="line"><a name="l00359"></a><span class="lineno">  359</span>&#160;}  <span class="comment">// namespace infact</span></div>
-<div class="line"><a name="l00360"></a><span class="lineno">  360</span>&#160;</div>
-<div class="line"><a name="l00361"></a><span class="lineno">  361</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00260"></a><span class="lineno"><a class="line" href="classinfact_1_1_interpreter.html#ad2f9b4f584739468e7202c30a5f8e76c">  260</a></span>&#160;  <span class="keywordtype">bool</span> <a class="code" href="classinfact_1_1_interpreter.html#ad2f9b4f584739468e7202c30a5f8e76c">GetMany</a>() { <span class="keywordflow">return</span> <span class="keyword">true</span>; }</div>
+<div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;</div>
+<div class="line"><a name="l00292"></a><span class="lineno">  292</span>&#160;  <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T, <span class="keyword">typename</span>... Args&gt;</div>
+<div class="line"><a name="l00293"></a><span class="lineno"><a class="line" href="classinfact_1_1_interpreter.html#ace1bded7b258854a0dca1476dbe3177c">  293</a></span>&#160;  <span class="keywordtype">bool</span> <a class="code" href="classinfact_1_1_interpreter.html#ace1bded7b258854a0dca1476dbe3177c">GetMany</a>(<span class="keyword">const</span> <span class="keywordtype">string</span> &amp;varname, T *var,</div>
+<div class="line"><a name="l00294"></a><span class="lineno">  294</span>&#160;               Args &amp;&amp;...rest) {</div>
+<div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160;    <span class="keywordtype">bool</span> success = <a class="code" href="classinfact_1_1_interpreter.html#ae9a966d8b7d4fc9c112070d133407c41">Get</a>(varname, var);</div>
+<div class="line"><a name="l00296"></a><span class="lineno">  296</span>&#160;    <span class="keywordflow">if</span> (!success) {</div>
+<div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160;      std::ostringstream err_ss;</div>
+<div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160;      err_ss &lt;&lt; <span class="stringliteral">&quot;infact::Interpreter: no variable with name &#39;&quot;</span></div>
+<div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160;             &lt;&lt; varname &lt;&lt; <span class="stringliteral">&quot;&#39;&quot;</span>;</div>
+<div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160;      <a class="code" href="namespaceinfact.html#a746fb382cf3fd6cf656f40669d90372c">Error</a>(err_ss.str());</div>
+<div class="line"><a name="l00301"></a><span class="lineno">  301</span>&#160;      <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160;    }</div>
+<div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="classinfact_1_1_interpreter.html#ad2f9b4f584739468e7202c30a5f8e76c">GetMany</a>(std::forward&lt;Args&gt;(rest)...);  <span class="comment">// compile-time recursion ftw</span></div>
+<div class="line"><a name="l00304"></a><span class="lineno">  304</span>&#160;  }</div>
+<div class="line"><a name="l00305"></a><span class="lineno">  305</span>&#160;</div>
+<div class="line"><a name="l00315"></a><span class="lineno">  315</span>&#160;  <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a name="l00316"></a><span class="lineno"><a class="line" href="classinfact_1_1_interpreter.html#ae9a966d8b7d4fc9c112070d133407c41">  316</a></span>&#160;  <span class="keywordtype">bool</span> <a class="code" href="classinfact_1_1_interpreter.html#ae9a966d8b7d4fc9c112070d133407c41">Get</a>(<span class="keyword">const</span> <span class="keywordtype">string</span> &amp;varname, T *value)<span class="keyword"> const </span>{</div>
+<div class="line"><a name="l00317"></a><span class="lineno">  317</span>&#160;    <span class="keywordflow">return</span> env_-&gt;Get(varname, value);</div>
+<div class="line"><a name="l00318"></a><span class="lineno">  318</span>&#160;  }</div>
+<div class="line"><a name="l00319"></a><span class="lineno">  319</span>&#160;</div>
+<div class="line"><a name="l00326"></a><span class="lineno"><a class="line" href="classinfact_1_1_interpreter.html#a049fcfcf061bf478002d971f10c78b1a">  326</a></span>&#160;  <a class="code" href="classinfact_1_1_environment_impl.html">EnvironmentImpl</a> *<a class="code" href="classinfact_1_1_interpreter.html#a049fcfcf061bf478002d971f10c78b1a">env</a>() { <span class="keywordflow">return</span> env_.get(); }</div>
+<div class="line"><a name="l00327"></a><span class="lineno">  327</span>&#160;</div>
+<div class="line"><a name="l00328"></a><span class="lineno">  328</span>&#160; <span class="keyword">private</span>:</div>
+<div class="line"><a name="l00330"></a><span class="lineno">  330</span>&#160;  <span class="keywordtype">bool</span> IsAbsolute(<span class="keyword">const</span> <span class="keywordtype">string</span> &amp;filename) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00331"></a><span class="lineno">  331</span>&#160;</div>
+<div class="line"><a name="l00333"></a><span class="lineno">  333</span>&#160;  <span class="keywordtype">bool</span> CanReadFile(<span class="keyword">const</span> <span class="keywordtype">string</span> &amp;filename) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00334"></a><span class="lineno">  334</span>&#160;</div>
+<div class="line"><a name="l00346"></a><span class="lineno">  346</span>&#160;  <span class="keywordtype">bool</span> CanReadFile(<span class="keyword">const</span> <span class="keywordtype">string</span> &amp;f1, <span class="keyword">const</span> <span class="keywordtype">string</span> &amp;f2, <span class="keywordtype">string</span> *filename) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00347"></a><span class="lineno">  347</span>&#160;</div>
+<div class="line"><a name="l00349"></a><span class="lineno">  349</span>&#160;  <span class="keywordtype">void</span> EvalFile(<span class="keyword">const</span> <span class="keywordtype">string</span> &amp;filename);</div>
+<div class="line"><a name="l00350"></a><span class="lineno">  350</span>&#160;</div>
+<div class="line"><a name="l00352"></a><span class="lineno">  352</span>&#160;  <span class="keywordtype">void</span> <a class="code" href="classinfact_1_1_interpreter.html#a1e82f597745d93f313d487a33357aedc">Eval</a>(<a class="code" href="classinfact_1_1_stream_tokenizer.html">StreamTokenizer</a> &amp;st);</div>
+<div class="line"><a name="l00353"></a><span class="lineno">  353</span>&#160;</div>
+<div class="line"><a name="l00355"></a><span class="lineno">  355</span>&#160;  <span class="keywordtype">void</span> Import(<a class="code" href="classinfact_1_1_stream_tokenizer.html">StreamTokenizer</a> &amp;st);</div>
+<div class="line"><a name="l00356"></a><span class="lineno">  356</span>&#160;</div>
+<div class="line"><a name="l00359"></a><span class="lineno">  359</span>&#160;  <span class="keywordtype">string</span> curr_filename()<span class="keyword"> const </span>{</div>
+<div class="line"><a name="l00360"></a><span class="lineno">  360</span>&#160;    <span class="keywordflow">return</span> filenames_.size() &gt; 0 ? filenames_.back() : <span class="stringliteral">&quot;&quot;</span>;</div>
+<div class="line"><a name="l00361"></a><span class="lineno">  361</span>&#160;  }</div>
+<div class="line"><a name="l00362"></a><span class="lineno">  362</span>&#160;</div>
+<div class="line"><a name="l00369"></a><span class="lineno">  369</span>&#160;  <span class="keywordtype">string</span> filestack(StreamTokenizer &amp;st, <span class="keywordtype">size_t</span> pos) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00370"></a><span class="lineno">  370</span>&#160;</div>
+<div class="line"><a name="l00371"></a><span class="lineno">  371</span>&#160;  <span class="keywordtype">void</span> WrongTokenError(StreamTokenizer &amp;st,</div>
+<div class="line"><a name="l00372"></a><span class="lineno">  372</span>&#160;                       <span class="keywordtype">size_t</span> pos,</div>
+<div class="line"><a name="l00373"></a><span class="lineno">  373</span>&#160;                       <span class="keyword">const</span> <span class="keywordtype">string</span> &amp;expected,</div>
+<div class="line"><a name="l00374"></a><span class="lineno">  374</span>&#160;                       <span class="keyword">const</span> <span class="keywordtype">string</span> &amp;found,</div>
+<div class="line"><a name="l00375"></a><span class="lineno">  375</span>&#160;                       <a class="code" href="classinfact_1_1_stream_tokenizer.html#ac6e5b0b274a66a2a504ac4fd425c57b3">StreamTokenizer::TokenType</a> found_type) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00376"></a><span class="lineno">  376</span>&#160;</div>
+<div class="line"><a name="l00377"></a><span class="lineno">  377</span>&#160;  <span class="keywordtype">void</span> WrongTokenTypeError(StreamTokenizer &amp;st,</div>
+<div class="line"><a name="l00378"></a><span class="lineno">  378</span>&#160;                           <span class="keywordtype">size_t</span> pos,</div>
+<div class="line"><a name="l00379"></a><span class="lineno">  379</span>&#160;                           <a class="code" href="classinfact_1_1_stream_tokenizer.html#ac6e5b0b274a66a2a504ac4fd425c57b3">StreamTokenizer::TokenType</a> expected,</div>
+<div class="line"><a name="l00380"></a><span class="lineno">  380</span>&#160;                           <a class="code" href="classinfact_1_1_stream_tokenizer.html#ac6e5b0b274a66a2a504ac4fd425c57b3">StreamTokenizer::TokenType</a> found,</div>
+<div class="line"><a name="l00381"></a><span class="lineno">  381</span>&#160;                           <span class="keyword">const</span> <span class="keywordtype">string</span> &amp;token) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00382"></a><span class="lineno">  382</span>&#160;</div>
+<div class="line"><a name="l00383"></a><span class="lineno">  383</span>&#160;  <span class="keywordtype">void</span> WrongTokenTypeError(StreamTokenizer &amp;st,</div>
+<div class="line"><a name="l00384"></a><span class="lineno">  384</span>&#160;                           <span class="keywordtype">size_t</span> pos,</div>
+<div class="line"><a name="l00385"></a><span class="lineno">  385</span>&#160;                           <span class="keyword">const</span> <span class="keywordtype">string</span> &amp;expected_type,</div>
+<div class="line"><a name="l00386"></a><span class="lineno">  386</span>&#160;                           <span class="keyword">const</span> <span class="keywordtype">string</span> &amp;found_type,</div>
+<div class="line"><a name="l00387"></a><span class="lineno">  387</span>&#160;                           <span class="keyword">const</span> <span class="keywordtype">string</span> &amp;token) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00388"></a><span class="lineno">  388</span>&#160;</div>
+<div class="line"><a name="l00390"></a><span class="lineno">  390</span>&#160;  unique_ptr&lt;EnvironmentImpl&gt; env_;</div>
+<div class="line"><a name="l00391"></a><span class="lineno">  391</span>&#160;</div>
+<div class="line"><a name="l00397"></a><span class="lineno">  397</span>&#160;  vector&lt;string&gt; filenames_;</div>
+<div class="line"><a name="l00398"></a><span class="lineno">  398</span>&#160;</div>
+<div class="line"><a name="l00399"></a><span class="lineno">  399</span>&#160;  <span class="comment">// The object for building new istream objects from named files.</span></div>
+<div class="line"><a name="l00400"></a><span class="lineno">  400</span>&#160;  unique_ptr&lt;IStreamBuilder&gt; istream_builder_;</div>
+<div class="line"><a name="l00401"></a><span class="lineno">  401</span>&#160;</div>
+<div class="line"><a name="l00402"></a><span class="lineno">  402</span>&#160;  <span class="comment">// The debug level of this interpreter.</span></div>
+<div class="line"><a name="l00403"></a><span class="lineno">  403</span>&#160;  <span class="keywordtype">int</span> debug_;</div>
+<div class="line"><a name="l00404"></a><span class="lineno">  404</span>&#160;};</div>
+<div class="line"><a name="l00405"></a><span class="lineno">  405</span>&#160;</div>
+<div class="line"><a name="l00406"></a><span class="lineno">  406</span>&#160;}  <span class="comment">// namespace infact</span></div>
+<div class="line"><a name="l00407"></a><span class="lineno">  407</span>&#160;</div>
+<div class="line"><a name="l00408"></a><span class="lineno">  408</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="ttc" id="classinfact_1_1_interpreter_html_a3a7ee283e07ca542a0b732706383f35a"><div class="ttname"><a href="classinfact_1_1_interpreter.html#a3a7ee283e07ca542a0b732706383f35a">infact::Interpreter::PrintFactories</a></div><div class="ttdeci">void PrintFactories(ostream &amp;os) const </div><div class="ttdef"><b>Definition:</b> <a href="interpreter_8h_source.html#l00255">interpreter.h:255</a></div></div>
 <div class="ttc" id="classinfact_1_1_interpreter_html_a430a384e6bc0f4d125ea10d17ce9227b"><div class="ttname"><a href="classinfact_1_1_interpreter.html#a430a384e6bc0f4d125ea10d17ce9227b">infact::Interpreter::EvalString</a></div><div class="ttdeci">void EvalString(const string &amp;input)</div><div class="ttdoc">Evaluates the statements in the specified string. </div><div class="ttdef"><b>Definition:</b> <a href="interpreter_8h_source.html#l00240">interpreter.h:240</a></div></div>
 <div class="ttc" id="classinfact_1_1_default_i_stream_builder_html_a2a067163795801b085ad035add053f93"><div class="ttname"><a href="classinfact_1_1_default_i_stream_builder.html#a2a067163795801b085ad035add053f93">infact::DefaultIStreamBuilder::~DefaultIStreamBuilder</a></div><div class="ttdeci">~DefaultIStreamBuilder() override=default</div></div>
 <div class="ttc" id="classinfact_1_1_i_stream_builder_html_a0be8ac8e86edac488c30ba612cbe8321"><div class="ttname"><a href="classinfact_1_1_i_stream_builder.html#a0be8ac8e86edac488c30ba612cbe8321">infact::IStreamBuilder::Build</a></div><div class="ttdeci">virtual unique_ptr&lt; istream &gt; Build(const string &amp;filename, std::ios_base::openmode mode=std::ios_base::in) const =0</div></div>
 <div class="ttc" id="classinfact_1_1_interpreter_html_a0a3235e25844e43f8400abad67dab96c"><div class="ttname"><a href="classinfact_1_1_interpreter.html#a0a3235e25844e43f8400abad67dab96c">infact::Interpreter::Eval</a></div><div class="ttdeci">void Eval(istream &amp;is)</div><div class="ttdoc">Evaluates the statements in the specified stream. </div><div class="ttdef"><b>Definition:</b> <a href="interpreter_8h_source.html#l00246">interpreter.h:246</a></div></div>
 <div class="ttc" id="classinfact_1_1_interpreter_html_a428b5a4d3a8b864fbdb1e07c10c8af75"><div class="ttname"><a href="classinfact_1_1_interpreter.html#a428b5a4d3a8b864fbdb1e07c10c8af75">infact::Interpreter::SetIStreamBuilder</a></div><div class="ttdeci">void SetIStreamBuilder(IStreamBuilder *istream_builder)</div><div class="ttdoc">Sets the IStreamBuilder object, to be owned by this object. </div><div class="ttdef"><b>Definition:</b> <a href="interpreter_8h_source.html#l00232">interpreter.h:232</a></div></div>
+<div class="ttc" id="classinfact_1_1_interpreter_html_ad2f9b4f584739468e7202c30a5f8e76c"><div class="ttname"><a href="classinfact_1_1_interpreter.html#ad2f9b4f584739468e7202c30a5f8e76c">infact::Interpreter::GetMany</a></div><div class="ttdeci">bool GetMany()</div><div class="ttdoc">The base case for the variadic template method GetMany defined below. </div><div class="ttdef"><b>Definition:</b> <a href="interpreter_8h_source.html#l00260">interpreter.h:260</a></div></div>
 <div class="ttc" id="classinfact_1_1_interpreter_html_a1e82f597745d93f313d487a33357aedc"><div class="ttname"><a href="classinfact_1_1_interpreter.html#a1e82f597745d93f313d487a33357aedc">infact::Interpreter::Eval</a></div><div class="ttdeci">void Eval(const string &amp;filename)</div><div class="ttdoc">Evaluates the statements in the specified text file. </div><div class="ttdef"><b>Definition:</b> <a href="interpreter_8cc_source.html#l00080">interpreter.cc:80</a></div></div>
 <div class="ttc" id="classinfact_1_1_interpreter_html_a4c283a42da4bbb23db373a1a0d391d0e"><div class="ttname"><a href="classinfact_1_1_interpreter.html#a4c283a42da4bbb23db373a1a0d391d0e">infact::Interpreter::Interpreter</a></div><div class="ttdeci">Interpreter(IStreamBuilder *istream_builder, int debug=0)</div><div class="ttdoc">Constructs a new instance with the specified IStreamBuilder and debug level. </div><div class="ttdef"><b>Definition:</b> <a href="interpreter_8h_source.html#l00223">interpreter.h:223</a></div></div>
 <div class="ttc" id="classinfact_1_1_interpreter_html_a50760a633f99a2e0fc0c461eaf75708e"><div class="ttname"><a href="classinfact_1_1_interpreter.html#a50760a633f99a2e0fc0c461eaf75708e">infact::Interpreter::~Interpreter</a></div><div class="ttdeci">virtual ~Interpreter()=default</div><div class="ttdoc">Destroys this interpreter. </div></div>
 <div class="ttc" id="classinfact_1_1_default_i_stream_builder_html"><div class="ttname"><a href="classinfact_1_1_default_i_stream_builder.html">infact::DefaultIStreamBuilder</a></div><div class="ttdoc">The default implementation for the IStreamBuilder interface, returning std::ifstream instances...</div><div class="ttdef"><b>Definition:</b> <a href="interpreter_8h_source.html#l00067">interpreter.h:67</a></div></div>
-<div class="ttc" id="classinfact_1_1_interpreter_html_a049fcfcf061bf478002d971f10c78b1a"><div class="ttname"><a href="classinfact_1_1_interpreter.html#a049fcfcf061bf478002d971f10c78b1a">infact::Interpreter::env</a></div><div class="ttdeci">EnvironmentImpl * env()</div><div class="ttdoc">Returns a pointer to the environment of this interpreter. </div><div class="ttdef"><b>Definition:</b> <a href="interpreter_8h_source.html#l00279">interpreter.h:279</a></div></div>
+<div class="ttc" id="classinfact_1_1_interpreter_html_a049fcfcf061bf478002d971f10c78b1a"><div class="ttname"><a href="classinfact_1_1_interpreter.html#a049fcfcf061bf478002d971f10c78b1a">infact::Interpreter::env</a></div><div class="ttdeci">EnvironmentImpl * env()</div><div class="ttdoc">Returns a pointer to the environment of this interpreter. </div><div class="ttdef"><b>Definition:</b> <a href="interpreter_8h_source.html#l00326">interpreter.h:326</a></div></div>
 <div class="ttc" id="classinfact_1_1_interpreter_html_ae1eba88a0c9df9e0069f20ef5f44d2db"><div class="ttname"><a href="classinfact_1_1_interpreter.html#ae1eba88a0c9df9e0069f20ef5f44d2db">infact::Interpreter::Interpreter</a></div><div class="ttdeci">Interpreter(int debug=0)</div><div class="ttdoc">Constructs a new instance with the specified debug level. </div><div class="ttdef"><b>Definition:</b> <a href="interpreter_8h_source.html#l00217">interpreter.h:217</a></div></div>
-<div class="ttc" id="classinfact_1_1_interpreter_html_ae9a966d8b7d4fc9c112070d133407c41"><div class="ttname"><a href="classinfact_1_1_interpreter.html#ae9a966d8b7d4fc9c112070d133407c41">infact::Interpreter::Get</a></div><div class="ttdeci">bool Get(const string &amp;varname, T *value) const </div><div class="ttdoc">Retrieves the value of the specified variable. </div><div class="ttdef"><b>Definition:</b> <a href="interpreter_8h_source.html#l00269">interpreter.h:269</a></div></div>
+<div class="ttc" id="classinfact_1_1_interpreter_html_ae9a966d8b7d4fc9c112070d133407c41"><div class="ttname"><a href="classinfact_1_1_interpreter.html#ae9a966d8b7d4fc9c112070d133407c41">infact::Interpreter::Get</a></div><div class="ttdeci">bool Get(const string &amp;varname, T *value) const </div><div class="ttdoc">Retrieves the value of the specified variable. </div><div class="ttdef"><b>Definition:</b> <a href="interpreter_8h_source.html#l00316">interpreter.h:316</a></div></div>
+<div class="ttc" id="classinfact_1_1_interpreter_html_ace1bded7b258854a0dca1476dbe3177c"><div class="ttname"><a href="classinfact_1_1_interpreter.html#ace1bded7b258854a0dca1476dbe3177c">infact::Interpreter::GetMany</a></div><div class="ttdeci">bool GetMany(const string &amp;varname, T *var, Args &amp;&amp;...rest)</div><div class="ttdoc">Retrieves values for many variables, specified as a sequence of pairs of arguments. </div><div class="ttdef"><b>Definition:</b> <a href="interpreter_8h_source.html#l00293">interpreter.h:293</a></div></div>
 <div class="ttc" id="classinfact_1_1_stream_tokenizer_html"><div class="ttname"><a href="classinfact_1_1_stream_tokenizer.html">infact::StreamTokenizer</a></div><div class="ttdoc">A simple class for tokenizing a stream of tokens for the formally specified language used to construc...</div><div class="ttdef"><b>Definition:</b> <a href="stream-tokenizer_8h_source.html#l00090">stream-tokenizer.h:90</a></div></div>
 <div class="ttc" id="classinfact_1_1_interpreter_html_a4c225c44bea24ee7661bf4cd0121ac04"><div class="ttname"><a href="classinfact_1_1_interpreter.html#a4c225c44bea24ee7661bf4cd0121ac04">infact::Interpreter::PrintEnv</a></div><div class="ttdeci">void PrintEnv(ostream &amp;os) const </div><div class="ttdef"><b>Definition:</b> <a href="interpreter_8h_source.html#l00251">interpreter.h:251</a></div></div>
+<div class="ttc" id="namespaceinfact_html_a746fb382cf3fd6cf656f40669d90372c"><div class="ttname"><a href="namespaceinfact.html#a746fb382cf3fd6cf656f40669d90372c">infact::Error</a></div><div class="ttdeci">void Error(const std::string &amp;message)</div><div class="ttdoc">Reports an error encountered during parsing and/or construction of an object. </div><div class="ttdef"><b>Definition:</b> <a href="error_8cc_source.html#l00047">error.cc:47</a></div></div>
 <div class="ttc" id="environment-impl_8h_html"><div class="ttname"><a href="environment-impl_8h.html">environment-impl.h</a></div><div class="ttdoc">Provides an environment for variables and their values, either primitive or Factory-constructible obj...</div></div>
 <div class="ttc" id="classinfact_1_1_i_stream_builder_html_ac1be9edbd34a2909d15738936fe626e3"><div class="ttname"><a href="classinfact_1_1_i_stream_builder.html#ac1be9edbd34a2909d15738936fe626e3">infact::IStreamBuilder::~IStreamBuilder</a></div><div class="ttdeci">virtual ~IStreamBuilder()=default</div></div>
 <div class="ttc" id="classinfact_1_1_stream_tokenizer_html_ac6e5b0b274a66a2a504ac4fd425c57b3"><div class="ttname"><a href="classinfact_1_1_stream_tokenizer.html#ac6e5b0b274a66a2a504ac4fd425c57b3">infact::StreamTokenizer::TokenType</a></div><div class="ttdeci">TokenType</div><div class="ttdoc">The set of types of tokens read by this stream tokenizer. </div><div class="ttdef"><b>Definition:</b> <a href="stream-tokenizer_8h_source.html#l00095">stream-tokenizer.h:95</a></div></div>
@@ -278,7 +297,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu May 7 2015 14:22:44 for InFact by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu May 7 2015 15:36:01 for InFact by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

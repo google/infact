@@ -127,6 +127,13 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a4c225c44bea24ee7661bf4cd0121ac04"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3a7ee283e07ca542a0b732706383f35a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classinfact_1_1_interpreter.html#a3a7ee283e07ca542a0b732706383f35a">PrintFactories</a> (ostream &amp;os) const </td></tr>
 <tr class="separator:a3a7ee283e07ca542a0b732706383f35a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad2f9b4f584739468e7202c30a5f8e76c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classinfact_1_1_interpreter.html#ad2f9b4f584739468e7202c30a5f8e76c">GetMany</a> ()</td></tr>
+<tr class="memdesc:ad2f9b4f584739468e7202c30a5f8e76c"><td class="mdescLeft">&#160;</td><td class="mdescRight">The base case for the variadic template method GetMany defined below.  <a href="#ad2f9b4f584739468e7202c30a5f8e76c">More...</a><br/></td></tr>
+<tr class="separator:ad2f9b4f584739468e7202c30a5f8e76c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ace1bded7b258854a0dca1476dbe3177c"><td class="memTemplParams" colspan="2">template&lt;typename T , typename... Args&gt; </td></tr>
+<tr class="memitem:ace1bded7b258854a0dca1476dbe3177c"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classinfact_1_1_interpreter.html#ace1bded7b258854a0dca1476dbe3177c">GetMany</a> (const string &amp;varname, T *var, Args &amp;&amp;...rest)</td></tr>
+<tr class="memdesc:ace1bded7b258854a0dca1476dbe3177c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves values for many variables, specified as a sequence of pairs of arguments.  <a href="#ace1bded7b258854a0dca1476dbe3177c">More...</a><br/></td></tr>
+<tr class="separator:ace1bded7b258854a0dca1476dbe3177c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae9a966d8b7d4fc9c112070d133407c41"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
 <tr class="memitem:ae9a966d8b7d4fc9c112070d133407c41"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classinfact_1_1_interpreter.html#ae9a966d8b7d4fc9c112070d133407c41">Get</a> (const string &amp;varname, T *value) const </td></tr>
 <tr class="memdesc:ae9a966d8b7d4fc9c112070d133407c41"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves the value of the specified variable.  <a href="#ae9a966d8b7d4fc9c112070d133407c41">More...</a><br/></td></tr>
@@ -325,7 +332,7 @@ Public Member Functions</h2></td></tr>
 <p>Returns a pointer to the environment of this interpreter. </p>
 <p>Crucially, this method returns a pointer to the <a class="el" href="classinfact_1_1_environment.html" title="An interface for an environment in which variables of various types are mapped to their values...">Environment</a> implementation class, <a class="el" href="classinfact_1_1_environment_impl.html">EnvironmentImpl</a>, so that its templated <a class="el" href="classinfact_1_1_environment_impl.html#a4c7040cdaade112f6cef88cff8c4ee6c">EnvironmentImpl::Get </a> method may be invoked. </p>
 
-<p>Definition at line <a class="el" href="interpreter_8h_source.html#l00279">279</a> of file <a class="el" href="interpreter_8h_source.html">interpreter.h</a>.</p>
+<p>Definition at line <a class="el" href="interpreter_8h_source.html#l00326">326</a> of file <a class="el" href="interpreter_8h_source.html">interpreter.h</a>.</p>
 
 </div>
 </div>
@@ -455,7 +462,105 @@ template&lt;typename T &gt; </div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="interpreter_8h_source.html#l00269">269</a> of file <a class="el" href="interpreter_8h_source.html">interpreter.h</a>.</p>
+<p>Definition at line <a class="el" href="interpreter_8h_source.html#l00316">316</a> of file <a class="el" href="interpreter_8h_source.html">interpreter.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ad2f9b4f584739468e7202c30a5f8e76c"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool infact::Interpreter::GetMany </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The base case for the variadic template method GetMany defined below. </p>
+
+<p>Definition at line <a class="el" href="interpreter_8h_source.html#l00260">260</a> of file <a class="el" href="interpreter_8h_source.html">interpreter.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ace1bded7b258854a0dca1476dbe3177c"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T , typename... Args&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool infact::Interpreter::GetMany </td>
+          <td>(</td>
+          <td class="paramtype">const string &amp;&#160;</td>
+          <td class="paramname"><em>varname</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">T *&#160;</td>
+          <td class="paramname"><em>var</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Args &amp;&amp;...&#160;</td>
+          <td class="paramname"><em>rest</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Retrieves values for many variables, specified as a sequence of pairs of arguments. </p>
+<p>It is an error to invoke this method with an odd number of arguments.</p>
+<p>Example: </p>
+<div class="fragment"><div class="line"><a class="code" href="classinfact_1_1_interpreter.html#ae1eba88a0c9df9e0069f20ef5f44d2db">Interpreter</a> i;</div>
+<div class="line"></div>
+<div class="line"><span class="comment">// Evaluate a short string defining two variables.</span></div>
+<div class="line">i.EvalString(<span class="stringliteral">&quot;i = 6; f = \&quot;foo\&quot;;&quot;</span>);</div>
+<div class="line"><span class="keywordtype">int</span> my_int;</div>
+<div class="line"><span class="keywordtype">string</span> my_string;</div>
+<div class="line">i.GetMany(<span class="stringliteral">&quot;i&quot;</span>, &amp;my_int, <span class="stringliteral">&quot;f&quot;</span>, &amp;my_string);</div>
+</div><!-- fragment --><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">varname</td><td>the name of a variable to be retrieved </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">var</td><td>a pointer to a value for the variable named by <code>varname</code> </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">rest</td><td>the remaining arguments</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T</td><td>the type of value to be assigned; the value of <code>varname</code>, if it has a binding in the <a class="el" href="classinfact_1_1_environment.html" title="An interface for an environment in which variables of various types are mapped to their values...">Environment</a>, must be assignable to <code>T</code> </td></tr>
+    <tr><td class="paramname">Args</td><td>a variadic list of arguments, where each successive pair of arguments must be a variable name of type <code>const string &amp;</code> and a pointer to an arbitrary type T to which the value of the variable may be assigned</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>whether this method has succeeded in assigning values to all named variables </dd></dl>
+
+<p>Definition at line <a class="el" href="interpreter_8h_source.html#l00293">293</a> of file <a class="el" href="interpreter_8h_source.html">interpreter.h</a>.</p>
 
 </div>
 </div>
@@ -546,7 +651,7 @@ template&lt;typename T &gt; </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu May 7 2015 14:22:45 for InFact by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu May 7 2015 15:36:02 for InFact by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>
