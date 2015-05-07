@@ -127,7 +127,7 @@ Interpreter::Import(StreamTokenizer &st) {
   // over a path relative to the current working directory.
   if (!IsAbsolute(original_import_filename)) {
     string dirname = "";
-    size_t slash_pos = curr_filename().find('/');
+    size_t slash_pos = curr_filename().rfind('/');
     if (slash_pos != string::npos) {
       dirname = curr_filename().substr(0, slash_pos);
       relative_import_filename = dirname + '/' + original_import_filename;
