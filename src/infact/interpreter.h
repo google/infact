@@ -286,6 +286,9 @@ class Interpreter {
   ///              <code>const string &</code> and a pointer to an
   ///              arbitrary type T to
   ///              which the value of the variable may be assigned
+  ///
+  /// \return whether this method has succeeded in assigning values to
+  ///         all named variables
   template<typename T, typename... Args>
   bool GetMany(const string &varname, T *var,
                Args &&...rest) {
