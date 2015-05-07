@@ -256,6 +256,50 @@ class Interpreter {
     env_->PrintFactories(os);
   }
 
+  /// The base case for the GetMany method defined below.
+  bool GetMany() { return true; }
+
+  /// Retrieves values for many variables, specified as a sequence of
+  /// pairs of arguments.  It is an error to invoke this method with
+  /// an odd number of arguments.
+  ///
+  /// Example:
+  /// \code
+  /// Interpreter i;
+  ///
+  /// // Evaluate a short string defining two variables.
+  /// i.EvalString("i = 6; f = \"foo\";");
+  /// int my_int;
+  /// string my_string;
+  /// i.GetMany("i", &my_int, "f", &my_string);
+  /// \endcode
+  ///
+  /// \param[in]   varname the name of a variable to be retrieved
+  /// \param[out]  var a pointer to a value for the variable named by \c varname
+  /// \param       rest the remaining arguments
+  ///
+  /// \tparam T    the type of value to be assigned; the value of
+  ///              \c varname, if it has a binding in the Environment,
+  ///              must be assignable to \c T
+  /// \tparam Args a variadic list of arguments, where each successive
+  ///              pair of arguments must be a variable name of type
+  ///              <code>const string &</code> and a pointer to an
+  ///              arbitrary type T to
+  ///              which the value of the variable may be assigned
+  template<typename T, typename... Args>
+  bool GetMany(const string &varname, T *var,
+               Args &&...rest) {
+    bool success = Get(varname, var);
+    if (!success) {
+      std::ostringstream err_ss;
+      err_ss << "infact::Interpreter: no variable with name '"
+             << varname << "'";
+      Error(err_ss.str());
+      return false;
+    }
+    return GetMany(std::forward<Args>(rest)...);  // compile-time recursion ftw
+  }
+
   /// Retrieves the value of the specified variable.  It is an error
   /// if the type of the specified pointer to a value object is different
   /// from the specified variable in this interpreter&rsquo;s environment.
