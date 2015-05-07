@@ -145,7 +145,17 @@ class EnvironmentImpl;
 /// <tr>
 ///   <td><tt>\<statement_list\></tt></td>
 ///   <td><tt>::=</tt></td>
-///   <td><tt>[ \<statement\> ]*</tt></td>
+///   <td><tt>[ \<import_or_statement\> ]*</tt></td>
+/// </tr>
+/// <tr>
+///   <td><tt>\<import_or_statement\></tt></td>
+///   <td><tt>::=</tt></td>
+///   <td><tt>[ \<import\> | \<statement\> ]</tt></td>
+/// </tr>
+/// <tr>
+///   <td><tt>\<import\></tt></td>
+///   <td><tt>::=</tt></td>
+///   <td><tt>'import' \<string_literal\> ';' </tt></td>
 /// </tr>
 /// <tr>
 ///   <td><tt>\<statement\></tt></td>
@@ -185,6 +195,20 @@ class EnvironmentImpl;
 /// they do in C++, i.e., everything after the <tt>//</tt> to the end
 /// of the current line is treated as a comment and ignored.  There
 /// are no C-style comments in this language.
+///
+/// There are very simple rules for finding the files specified by
+/// imports: if a path is absolute, the Interpreter tries the path as-is.
+/// If it is relative, the Interpreter tries the path relative to the
+/// directory of the file with the import statement.  If that does not
+/// succeed, the system simply tries the relative path as-is.
+///
+/// An imported file is evaluated <i>in situ</i>, meaning it is
+/// evaluated in the current Environment; it is just as though you
+/// pasted the contents of the imported file right at the import
+/// statement.  As such, an imported file can refer to variables that
+/// might be set prior to the import being evaluated.  As a corollary,
+/// if an imported file uses the name of an unset variable, it is an
+/// error.
 class Interpreter {
  public:
   /// Constructs a new instance with the specified debug level.  The
