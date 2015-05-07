@@ -114,6 +114,9 @@ Public Attributes</h2></td></tr>
 <tr class="memitem:a08b8a9e4a700aef306fcb1a32f5bdfac"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structinfact_1_1_stream_tokenizer_1_1_token.html#a08b8a9e4a700aef306fcb1a32f5bdfac">line_number</a></td></tr>
 <tr class="memdesc:a08b8a9e4a700aef306fcb1a32f5bdfac"><td class="mdescLeft">&#160;</td><td class="mdescRight">The line number of the first byte of the token in the underlying stream.  <a href="#a08b8a9e4a700aef306fcb1a32f5bdfac">More...</a><br/></td></tr>
 <tr class="separator:a08b8a9e4a700aef306fcb1a32f5bdfac"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abd4ede012c00a6f589c31529aa66c96d"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structinfact_1_1_stream_tokenizer_1_1_token.html#abd4ede012c00a6f589c31529aa66c96d">line_start_pos</a></td></tr>
+<tr class="memdesc:abd4ede012c00a6f589c31529aa66c96d"><td class="mdescLeft">&#160;</td><td class="mdescRight">The stream position of the start of the line of this token.  <a href="#abd4ede012c00a6f589c31529aa66c96d">More...</a><br/></td></tr>
+<tr class="separator:abd4ede012c00a6f589c31529aa66c96d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a39463d4c73522c5a8724e2c72984ce44"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structinfact_1_1_stream_tokenizer_1_1_token.html#a39463d4c73522c5a8724e2c72984ce44">curr_pos</a></td></tr>
 <tr class="memdesc:a39463d4c73522c5a8724e2c72984ce44"><td class="mdescLeft">&#160;</td><td class="mdescRight">The current position in the underlying stream just after reading this token.  <a href="#a39463d4c73522c5a8724e2c72984ce44">More...</a><br/></td></tr>
 <tr class="separator:a39463d4c73522c5a8724e2c72984ce44"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -121,7 +124,7 @@ Public Attributes</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Information about a token read from the underlying stream. </p>
 
-<p>Definition at line <a class="el" href="stream-tokenizer_8h_source.html#l00112">112</a> of file <a class="el" href="stream-tokenizer_8h_source.html">stream-tokenizer.h</a>.</p>
+<p>Definition at line <a class="el" href="stream-tokenizer_8h_source.html#l00113">113</a> of file <a class="el" href="stream-tokenizer_8h_source.html">stream-tokenizer.h</a>.</p>
 </div><h2 class="groupheader">Member Data Documentation</h2>
 <a class="anchor" id="a39463d4c73522c5a8724e2c72984ce44"></a>
 <div class="memitem">
@@ -135,7 +138,7 @@ Public Attributes</h2></td></tr>
 
 <p>The current position in the underlying stream just after reading this token. </p>
 
-<p>Definition at line <a class="el" href="stream-tokenizer_8h_source.html#l00127">127</a> of file <a class="el" href="stream-tokenizer_8h_source.html">stream-tokenizer.h</a>.</p>
+<p>Definition at line <a class="el" href="stream-tokenizer_8h_source.html#l00130">130</a> of file <a class="el" href="stream-tokenizer_8h_source.html">stream-tokenizer.h</a>.</p>
 
 </div>
 </div>
@@ -151,7 +154,23 @@ Public Attributes</h2></td></tr>
 
 <p>The line number of the first byte of the token in the underlying stream. </p>
 
-<p>Definition at line <a class="el" href="stream-tokenizer_8h_source.html#l00124">124</a> of file <a class="el" href="stream-tokenizer_8h_source.html">stream-tokenizer.h</a>.</p>
+<p>Definition at line <a class="el" href="stream-tokenizer_8h_source.html#l00125">125</a> of file <a class="el" href="stream-tokenizer_8h_source.html">stream-tokenizer.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="abd4ede012c00a6f589c31529aa66c96d"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t infact::StreamTokenizer::Token::line_start_pos</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>The stream position of the start of the line of this token. </p>
+
+<p>Definition at line <a class="el" href="stream-tokenizer_8h_source.html#l00127">127</a> of file <a class="el" href="stream-tokenizer_8h_source.html">stream-tokenizer.h</a>.</p>
 
 </div>
 </div>
@@ -167,7 +186,7 @@ Public Attributes</h2></td></tr>
 
 <p>The starting byte of the token in the underlying stream. </p>
 
-<p>Definition at line <a class="el" href="stream-tokenizer_8h_source.html#l00122">122</a> of file <a class="el" href="stream-tokenizer_8h_source.html">stream-tokenizer.h</a>.</p>
+<p>Definition at line <a class="el" href="stream-tokenizer_8h_source.html#l00123">123</a> of file <a class="el" href="stream-tokenizer_8h_source.html">stream-tokenizer.h</a>.</p>
 
 </div>
 </div>
@@ -183,7 +202,7 @@ Public Attributes</h2></td></tr>
 
 <p>The token itself. </p>
 
-<p>Definition at line <a class="el" href="stream-tokenizer_8h_source.html#l00114">114</a> of file <a class="el" href="stream-tokenizer_8h_source.html">stream-tokenizer.h</a>.</p>
+<p>Definition at line <a class="el" href="stream-tokenizer_8h_source.html#l00115">115</a> of file <a class="el" href="stream-tokenizer_8h_source.html">stream-tokenizer.h</a>.</p>
 
 </div>
 </div>
@@ -199,7 +218,7 @@ Public Attributes</h2></td></tr>
 
 <p>The token&rsquo;s type. </p>
 
-<p>Definition at line <a class="el" href="stream-tokenizer_8h_source.html#l00116">116</a> of file <a class="el" href="stream-tokenizer_8h_source.html">stream-tokenizer.h</a>.</p>
+<p>Definition at line <a class="el" href="stream-tokenizer_8h_source.html#l00117">117</a> of file <a class="el" href="stream-tokenizer_8h_source.html">stream-tokenizer.h</a>.</p>
 
 </div>
 </div>
@@ -209,7 +228,7 @@ Public Attributes</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Apr 21 2015 16:34:13 for InFact by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu May 7 2015 14:22:45 for InFact by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

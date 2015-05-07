@@ -105,9 +105,15 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ae1eba88a0c9df9e0069f20ef5f44d2db"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classinfact_1_1_interpreter.html#ae1eba88a0c9df9e0069f20ef5f44d2db">Interpreter</a> (int debug=0)</td></tr>
 <tr class="memdesc:ae1eba88a0c9df9e0069f20ef5f44d2db"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a new instance with the specified debug level.  <a href="#ae1eba88a0c9df9e0069f20ef5f44d2db">More...</a><br/></td></tr>
 <tr class="separator:ae1eba88a0c9df9e0069f20ef5f44d2db"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7da9d4002fd19283fe1725dc70709931"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classinfact_1_1_interpreter.html#a7da9d4002fd19283fe1725dc70709931">~Interpreter</a> ()</td></tr>
-<tr class="memdesc:a7da9d4002fd19283fe1725dc70709931"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destroys this interpreter.  <a href="#a7da9d4002fd19283fe1725dc70709931">More...</a><br/></td></tr>
-<tr class="separator:a7da9d4002fd19283fe1725dc70709931"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4c283a42da4bbb23db373a1a0d391d0e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classinfact_1_1_interpreter.html#a4c283a42da4bbb23db373a1a0d391d0e">Interpreter</a> (<a class="el" href="classinfact_1_1_i_stream_builder.html">IStreamBuilder</a> *istream_builder, int debug=0)</td></tr>
+<tr class="memdesc:a4c283a42da4bbb23db373a1a0d391d0e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a new instance with the specified <a class="el" href="classinfact_1_1_i_stream_builder.html" title="An interface for classes that can build istreams for named files. ">IStreamBuilder</a> and debug level.  <a href="#a4c283a42da4bbb23db373a1a0d391d0e">More...</a><br/></td></tr>
+<tr class="separator:a4c283a42da4bbb23db373a1a0d391d0e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a50760a633f99a2e0fc0c461eaf75708e"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classinfact_1_1_interpreter.html#a50760a633f99a2e0fc0c461eaf75708e">~Interpreter</a> ()=default</td></tr>
+<tr class="memdesc:a50760a633f99a2e0fc0c461eaf75708e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destroys this interpreter.  <a href="#a50760a633f99a2e0fc0c461eaf75708e">More...</a><br/></td></tr>
+<tr class="separator:a50760a633f99a2e0fc0c461eaf75708e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a428b5a4d3a8b864fbdb1e07c10c8af75"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classinfact_1_1_interpreter.html#a428b5a4d3a8b864fbdb1e07c10c8af75">SetIStreamBuilder</a> (<a class="el" href="classinfact_1_1_i_stream_builder.html">IStreamBuilder</a> *istream_builder)</td></tr>
+<tr class="memdesc:a428b5a4d3a8b864fbdb1e07c10c8af75"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the <a class="el" href="classinfact_1_1_i_stream_builder.html" title="An interface for classes that can build istreams for named files. ">IStreamBuilder</a> object, to be owned by this object.  <a href="#a428b5a4d3a8b864fbdb1e07c10c8af75">More...</a><br/></td></tr>
+<tr class="separator:a428b5a4d3a8b864fbdb1e07c10c8af75"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1e82f597745d93f313d487a33357aedc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classinfact_1_1_interpreter.html#a1e82f597745d93f313d487a33357aedc">Eval</a> (const string &amp;filename)</td></tr>
 <tr class="memdesc:a1e82f597745d93f313d487a33357aedc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Evaluates the statements in the specified text file.  <a href="#a1e82f597745d93f313d487a33357aedc">More...</a><br/></td></tr>
 <tr class="separator:a1e82f597745d93f313d487a33357aedc"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -174,7 +180,11 @@ Public Member Functions</h2></td></tr>
 </div><!-- fragment --><p>More formally, a statement in this language must conform to the following grammar, defined on top of the BNF syntax in the documentation of the <a class="el" href="classinfact_1_1_factory.html#a8b2771ba4fac39a71cb1d0156ddba7b6">Factory::CreateOrDie </a> method: </p>
 <table  border="0">
 <tr>
-<td><code>&lt;statement_list&gt;</code> </td><td><code>::=</code> </td><td><code>[ &lt;statement&gt; ]*</code>  </td></tr>
+<td><code>&lt;statement_list&gt;</code> </td><td><code>::=</code> </td><td><code>[ &lt;import_or_statement&gt; ]*</code>  </td></tr>
+<tr>
+<td><code>&lt;import_or_statement&gt;</code> </td><td><code>::=</code> </td><td><code>[ &lt;import&gt; | &lt;statement&gt; ]</code>  </td></tr>
+<tr>
+<td><code>&lt;import&gt;</code> </td><td><code>::=</code> </td><td><code>'import' &lt;string_literal&gt; ';' </code>  </td></tr>
 <tr>
 <td><code>&lt;statement&gt;</code> </td><td><code>::=</code> </td><td><code>[ &lt;type_specifier&gt; ] &lt;variable_name&gt; '=' &lt;value&gt; ';' </code>   </td></tr>
 <tr>
@@ -191,9 +201,11 @@ Public Member Functions</h2></td></tr>
 <td valign="top"><code>&lt;value&gt;</code> </td><td valign="top"><code>::=</code> </td><td valign="top"><code>&lt;literal&gt; | '{' &lt;literal_list&gt; '}' |<br/>
  &lt;spec_or_null&gt; | '{' &lt;spec_list&gt; '}'</code>   </td></tr>
 </table>
-<p>The above grammar doesn&rsquo;t contain rules covering C++ style line comments, but they have the same behavior in this language as they do in C++, i.e., everything after the <code>//</code> to the end of the current line is treated as a comment and ignored. There are no C-style comments in this language. </p>
+<p>The above grammar doesn&rsquo;t contain rules covering C++ style line comments, but they have the same behavior in this language as they do in C++, i.e., everything after the <code>//</code> to the end of the current line is treated as a comment and ignored. There are no C-style comments in this language.</p>
+<p>There are very simple rules for finding the files specified by imports: if a path is absolute, the <a class="el" href="classinfact_1_1_interpreter.html" title="Provides an interpreter for assigning primitives and Factory-constructible objects to named variables...">Interpreter</a> tries the path as-is. If it is relative, the <a class="el" href="classinfact_1_1_interpreter.html" title="Provides an interpreter for assigning primitives and Factory-constructible objects to named variables...">Interpreter</a> tries the path relative to the directory of the file with the import statement. If that does not succeed, the system simply tries the relative path as-is.</p>
+<p>An imported file is evaluated <em>in situ</em>, meaning it is evaluated in the current <a class="el" href="classinfact_1_1_environment.html" title="An interface for an environment in which variables of various types are mapped to their values...">Environment</a>; it is just as though you pasted the contents of the imported file right at the import statement. As such, an imported file can refer to variables that might be set prior to the import being evaluated. As a corollary, if an imported file uses the name of an unset variable, it is an error. </p>
 
-<p>Definition at line <a class="el" href="interpreter_8h_source.html#l00165">165</a> of file <a class="el" href="interpreter_8h_source.html">interpreter.h</a>.</p>
+<p>Definition at line <a class="el" href="interpreter_8h_source.html#l00212">212</a> of file <a class="el" href="interpreter_8h_source.html">interpreter.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="ae1eba88a0c9df9e0069f20ef5f44d2db"></a>
 <div class="memitem">
@@ -220,11 +232,50 @@ Public Member Functions</h2></td></tr>
 <p>Constructs a new instance with the specified debug level. </p>
 <p>The wrapped <a class="el" href="classinfact_1_1_environment.html">Environment </a> will also have the specified debug level. </p>
 
-<p>Definition at line <a class="el" href="interpreter_8h_source.html#l00170">170</a> of file <a class="el" href="interpreter_8h_source.html">interpreter.h</a>.</p>
+<p>Definition at line <a class="el" href="interpreter_8h_source.html#l00217">217</a> of file <a class="el" href="interpreter_8h_source.html">interpreter.h</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a7da9d4002fd19283fe1725dc70709931"></a>
+<a class="anchor" id="a4c283a42da4bbb23db373a1a0d391d0e"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">infact::Interpreter::Interpreter </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classinfact_1_1_i_stream_builder.html">IStreamBuilder</a> *&#160;</td>
+          <td class="paramname"><em>istream_builder</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>debug</em> = <code>0</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Constructs a new instance with the specified <a class="el" href="classinfact_1_1_i_stream_builder.html" title="An interface for classes that can build istreams for named files. ">IStreamBuilder</a> and debug level. </p>
+<p>The wrapped <a class="el" href="classinfact_1_1_environment.html">Environment </a> will also have the specified debug level. </p>
+
+<p>Definition at line <a class="el" href="interpreter_8h_source.html#l00223">223</a> of file <a class="el" href="interpreter_8h_source.html">interpreter.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a50760a633f99a2e0fc0c461eaf75708e"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -240,14 +291,12 @@ Public Member Functions</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+<span class="mlabels"><span class="mlabel">virtual</span><span class="mlabel">default</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
 <p>Destroys this interpreter. </p>
-
-<p>Definition at line <a class="el" href="interpreter_8h_source.html#l00175">175</a> of file <a class="el" href="interpreter_8h_source.html">interpreter.h</a>.</p>
 
 </div>
 </div>
@@ -276,16 +325,13 @@ Public Member Functions</h2></td></tr>
 <p>Returns a pointer to the environment of this interpreter. </p>
 <p>Crucially, this method returns a pointer to the <a class="el" href="classinfact_1_1_environment.html" title="An interface for an environment in which variables of various types are mapped to their values...">Environment</a> implementation class, <a class="el" href="classinfact_1_1_environment_impl.html">EnvironmentImpl</a>, so that its templated <a class="el" href="classinfact_1_1_environment_impl.html#a4c7040cdaade112f6cef88cff8c4ee6c">EnvironmentImpl::Get </a> method may be invoked. </p>
 
-<p>Definition at line <a class="el" href="interpreter_8h_source.html#l00227">227</a> of file <a class="el" href="interpreter_8h_source.html">interpreter.h</a>.</p>
+<p>Definition at line <a class="el" href="interpreter_8h_source.html#l00279">279</a> of file <a class="el" href="interpreter_8h_source.html">interpreter.h</a>.</p>
 
 </div>
 </div>
 <a class="anchor" id="a1e82f597745d93f313d487a33357aedc"></a>
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">void infact::Interpreter::Eval </td>
@@ -295,16 +341,11 @@ Public Member Functions</h2></td></tr>
           <td></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
 <p>Evaluates the statements in the specified text file. </p>
 
-<p>Definition at line <a class="el" href="interpreter_8h_source.html#l00180">180</a> of file <a class="el" href="interpreter_8h_source.html">interpreter.h</a>.</p>
+<p>Definition at line <a class="el" href="interpreter_8cc_source.html#l00080">80</a> of file <a class="el" href="interpreter_8cc_source.html">interpreter.cc</a>.</p>
 
 </div>
 </div>
@@ -332,7 +373,7 @@ Public Member Functions</h2></td></tr>
 
 <p>Evaluates the statements in the specified stream. </p>
 
-<p>Definition at line <a class="el" href="interpreter_8h_source.html#l00193">193</a> of file <a class="el" href="interpreter_8h_source.html">interpreter.h</a>.</p>
+<p>Definition at line <a class="el" href="interpreter_8h_source.html#l00246">246</a> of file <a class="el" href="interpreter_8h_source.html">interpreter.h</a>.</p>
 
 </div>
 </div>
@@ -360,7 +401,7 @@ Public Member Functions</h2></td></tr>
 
 <p>Evaluates the statements in the specified string. </p>
 
-<p>Definition at line <a class="el" href="interpreter_8h_source.html#l00187">187</a> of file <a class="el" href="interpreter_8h_source.html">interpreter.h</a>.</p>
+<p>Definition at line <a class="el" href="interpreter_8h_source.html#l00240">240</a> of file <a class="el" href="interpreter_8h_source.html">interpreter.h</a>.</p>
 
 </div>
 </div>
@@ -414,7 +455,7 @@ template&lt;typename T &gt; </div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="interpreter_8h_source.html#l00217">217</a> of file <a class="el" href="interpreter_8h_source.html">interpreter.h</a>.</p>
+<p>Definition at line <a class="el" href="interpreter_8h_source.html#l00269">269</a> of file <a class="el" href="interpreter_8h_source.html">interpreter.h</a>.</p>
 
 </div>
 </div>
@@ -440,7 +481,7 @@ template&lt;typename T &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="interpreter_8h_source.html#l00199">199</a> of file <a class="el" href="interpreter_8h_source.html">interpreter.h</a>.</p>
+<p>Definition at line <a class="el" href="interpreter_8h_source.html#l00251">251</a> of file <a class="el" href="interpreter_8h_source.html">interpreter.h</a>.</p>
 
 </div>
 </div>
@@ -466,7 +507,35 @@ template&lt;typename T &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="interpreter_8h_source.html#l00203">203</a> of file <a class="el" href="interpreter_8h_source.html">interpreter.h</a>.</p>
+<p>Definition at line <a class="el" href="interpreter_8h_source.html#l00255">255</a> of file <a class="el" href="interpreter_8h_source.html">interpreter.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a428b5a4d3a8b864fbdb1e07c10c8af75"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void infact::Interpreter::SetIStreamBuilder </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classinfact_1_1_i_stream_builder.html">IStreamBuilder</a> *&#160;</td>
+          <td class="paramname"><em>istream_builder</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Sets the <a class="el" href="classinfact_1_1_i_stream_builder.html" title="An interface for classes that can build istreams for named files. ">IStreamBuilder</a> object, to be owned by this object. </p>
+
+<p>Definition at line <a class="el" href="interpreter_8h_source.html#l00232">232</a> of file <a class="el" href="interpreter_8h_source.html">interpreter.h</a>.</p>
 
 </div>
 </div>
@@ -477,7 +546,7 @@ template&lt;typename T &gt; </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Apr 21 2015 16:34:13 for InFact by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu May 7 2015 14:22:45 for InFact by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

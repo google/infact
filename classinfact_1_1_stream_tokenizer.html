@@ -147,6 +147,12 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:afaed5415a9cd640bfda043014bed5fa6"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classinfact_1_1_stream_tokenizer.html#afaed5415a9cd640bfda043014bed5fa6">line_number</a> () const </td></tr>
 <tr class="memdesc:afaed5415a9cd640bfda043014bed5fa6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the number of lines read from the underlying byte stream, where a line is any number of bytes followed by a newline character (i.e., this is ASCII-centric).  <a href="#afaed5415a9cd640bfda043014bed5fa6">More...</a><br/></td></tr>
 <tr class="separator:afaed5415a9cd640bfda043014bed5fa6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a294b2dece5460d24de37acc6338a1fe8"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classinfact_1_1_stream_tokenizer.html#a294b2dece5460d24de37acc6338a1fe8">line</a> ()</td></tr>
+<tr class="memdesc:a294b2dece5460d24de37acc6338a1fe8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a string consisting of the characters read so far of the current line containing the most recently returned token, or the empty string if no tokens have been read yet.  <a href="#a294b2dece5460d24de37acc6338a1fe8">More...</a><br/></td></tr>
+<tr class="separator:a294b2dece5460d24de37acc6338a1fe8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0f3bd51d5cccc2fafc0b0f407f0379f1"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classinfact_1_1_stream_tokenizer.html#a0f3bd51d5cccc2fafc0b0f407f0379f1">line_start</a> ()</td></tr>
+<tr class="memdesc:a0f3bd51d5cccc2fafc0b0f407f0379f1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the stream position of the current line in the underlying byte stream.  <a href="#a0f3bd51d5cccc2fafc0b0f407f0379f1">More...</a><br/></td></tr>
+<tr class="separator:a0f3bd51d5cccc2fafc0b0f407f0379f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac8de4792d7dadb993d3e96c54df2cbe6"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classinfact_1_1_stream_tokenizer.html#ac8de4792d7dadb993d3e96c54df2cbe6">HasNext</a> () const </td></tr>
 <tr class="memdesc:ac8de4792d7dadb993d3e96c54df2cbe6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns whether there is another token in the token stream.  <a href="#ac8de4792d7dadb993d3e96c54df2cbe6">More...</a><br/></td></tr>
 <tr class="separator:ac8de4792d7dadb993d3e96c54df2cbe6"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -154,6 +160,9 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a2d8c5ba3138d99c7a13fa49091885d0e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac72a1a4fd331f44b850d2600a68a5063"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classinfact_1_1_stream_tokenizer.html#ac72a1a4fd331f44b850d2600a68a5063">PeekPrev</a> () const </td></tr>
 <tr class="separator:ac72a1a4fd331f44b850d2600a68a5063"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4e3231b976ba931cadb2fe8a6625dd0c"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classinfact_1_1_stream_tokenizer.html#a4e3231b976ba931cadb2fe8a6625dd0c">PeekPrevTokenLineStart</a> () const </td></tr>
+<tr class="memdesc:a4e3231b976ba931cadb2fe8a6625dd0c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the stream position of the most recent line start of the previous token, or 0 if this stream is just about to return the first token.  <a href="#a4e3231b976ba931cadb2fe8a6625dd0c">More...</a><br/></td></tr>
+<tr class="separator:a4e3231b976ba931cadb2fe8a6625dd0c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad7c5c716ebfadf303e8d4371e6bb229b"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classinfact_1_1_stream_tokenizer.html#ad7c5c716ebfadf303e8d4371e6bb229b">PeekPrevTokenStart</a> () const </td></tr>
 <tr class="separator:ad7c5c716ebfadf303e8d4371e6bb229b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad4fe21722c3e34d4339f12691146b7a5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classinfact_1_1_stream_tokenizer.html#ac6e5b0b274a66a2a504ac4fd425c57b3">TokenType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classinfact_1_1_stream_tokenizer.html#ad4fe21722c3e34d4339f12691146b7a5">PeekPrevTokenType</a> () const </td></tr>
@@ -192,7 +201,7 @@ Static Public Member Functions</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>A simple class for tokenizing a stream of tokens for the formally specified language used to construct objects for the InFact framework. </p>
 
-<p>Definition at line <a class="el" href="stream-tokenizer_8h_source.html#l00089">89</a> of file <a class="el" href="stream-tokenizer_8h_source.html">stream-tokenizer.h</a>.</p>
+<p>Definition at line <a class="el" href="stream-tokenizer_8h_source.html#l00090">90</a> of file <a class="el" href="stream-tokenizer_8h_source.html">stream-tokenizer.h</a>.</p>
 </div><h2 class="groupheader">Member Enumeration Documentation</h2>
 <a class="anchor" id="ac6e5b0b274a66a2a504ac4fd425c57b3"></a>
 <div class="memitem">
@@ -221,7 +230,7 @@ Static Public Member Functions</h2></td></tr>
 </td></tr>
 </table>
 
-<p>Definition at line <a class="el" href="stream-tokenizer_8h_source.html#l00094">94</a> of file <a class="el" href="stream-tokenizer_8h_source.html">stream-tokenizer.h</a>.</p>
+<p>Definition at line <a class="el" href="stream-tokenizer_8h_source.html#l00095">95</a> of file <a class="el" href="stream-tokenizer_8h_source.html">stream-tokenizer.h</a>.</p>
 
 </div>
 </div>
@@ -267,7 +276,7 @@ Static Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="stream-tokenizer_8h_source.html#l00136">136</a> of file <a class="el" href="stream-tokenizer_8h_source.html">stream-tokenizer.h</a>.</p>
+<p>Definition at line <a class="el" href="stream-tokenizer_8h_source.html#l00139">139</a> of file <a class="el" href="stream-tokenizer_8h_source.html">stream-tokenizer.h</a>.</p>
 
 </div>
 </div>
@@ -312,7 +321,7 @@ Static Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="stream-tokenizer_8h_source.html#l00149">149</a> of file <a class="el" href="stream-tokenizer_8h_source.html">stream-tokenizer.h</a>.</p>
+<p>Definition at line <a class="el" href="stream-tokenizer_8h_source.html#l00151">151</a> of file <a class="el" href="stream-tokenizer_8h_source.html">stream-tokenizer.h</a>.</p>
 
 </div>
 </div>
@@ -339,7 +348,7 @@ Static Public Member Functions</h2></td></tr>
 
 <p>Destroys this instance. </p>
 
-<p>Definition at line <a class="el" href="stream-tokenizer_8h_source.html#l00163">163</a> of file <a class="el" href="stream-tokenizer_8h_source.html">stream-tokenizer.h</a>.</p>
+<p>Definition at line <a class="el" href="stream-tokenizer_8h_source.html#l00164">164</a> of file <a class="el" href="stream-tokenizer_8h_source.html">stream-tokenizer.h</a>.</p>
 
 </div>
 </div>
@@ -367,7 +376,7 @@ Static Public Member Functions</h2></td></tr>
 
 <p>Returns whether there is another token in the token stream. </p>
 
-<p>Definition at line <a class="el" href="stream-tokenizer_8h_source.html#l00186">186</a> of file <a class="el" href="stream-tokenizer_8h_source.html">stream-tokenizer.h</a>.</p>
+<p>Definition at line <a class="el" href="stream-tokenizer_8h_source.html#l00200">200</a> of file <a class="el" href="stream-tokenizer_8h_source.html">stream-tokenizer.h</a>.</p>
 
 </div>
 </div>
@@ -392,7 +401,26 @@ Static Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="stream-tokenizer_8h_source.html#l00188">188</a> of file <a class="el" href="stream-tokenizer_8h_source.html">stream-tokenizer.h</a>.</p>
+<p>Definition at line <a class="el" href="stream-tokenizer_8h_source.html#l00202">202</a> of file <a class="el" href="stream-tokenizer_8h_source.html">stream-tokenizer.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a294b2dece5460d24de37acc6338a1fe8"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">string infact::StreamTokenizer::line </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns a string consisting of the characters read so far of the current line containing the most recently returned token, or the empty string if no tokens have been read yet. </p>
+
+<p>Definition at line <a class="el" href="stream-tokenizer_8cc_source.html#l00193">193</a> of file <a class="el" href="stream-tokenizer_8cc_source.html">stream-tokenizer.cc</a>.</p>
 
 </div>
 </div>
@@ -419,7 +447,35 @@ Static Public Member Functions</h2></td></tr>
 
 <p>Returns the number of lines read from the underlying byte stream, where a line is any number of bytes followed by a newline character (i.e., this is ASCII-centric). </p>
 
-<p>Definition at line <a class="el" href="stream-tokenizer_8h_source.html#l00181">181</a> of file <a class="el" href="stream-tokenizer_8h_source.html">stream-tokenizer.h</a>.</p>
+<p>Definition at line <a class="el" href="stream-tokenizer_8h_source.html#l00182">182</a> of file <a class="el" href="stream-tokenizer_8h_source.html">stream-tokenizer.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a0f3bd51d5cccc2fafc0b0f407f0379f1"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t infact::StreamTokenizer::line_start </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Returns the stream position of the current line in the underlying byte stream. </p>
+<p>This value may be equal to the number of bytes read if the most recently consumed character is a newline and there are no more tokens in the stream. </p>
+
+<p>Definition at line <a class="el" href="stream-tokenizer_8h_source.html#l00195">195</a> of file <a class="el" href="stream-tokenizer_8h_source.html">stream-tokenizer.h</a>.</p>
 
 </div>
 </div>
@@ -446,7 +502,7 @@ Static Public Member Functions</h2></td></tr>
 
 <p>Returns the next token in the token stream. </p>
 
-<p>Definition at line <a class="el" href="stream-tokenizer_8h_source.html#l00203">203</a> of file <a class="el" href="stream-tokenizer_8h_source.html">stream-tokenizer.h</a>.</p>
+<p>Definition at line <a class="el" href="stream-tokenizer_8h_source.html#l00224">224</a> of file <a class="el" href="stream-tokenizer_8h_source.html">stream-tokenizer.h</a>.</p>
 
 </div>
 </div>
@@ -474,7 +530,7 @@ Static Public Member Functions</h2></td></tr>
 <p>Returns the next token that would be returned by the <a class="el" href="classinfact_1_1_stream_tokenizer.html#ac6827f00a3da760e23241e890becee0c">Next</a> method. </p>
 <p>The return value of this method is only valid when <a class="el" href="classinfact_1_1_stream_tokenizer.html#ac8de4792d7dadb993d3e96c54df2cbe6">HasNext</a> returns <code>true</code>. </p>
 
-<p>Definition at line <a class="el" href="stream-tokenizer_8h_source.html#l00271">271</a> of file <a class="el" href="stream-tokenizer_8h_source.html">stream-tokenizer.h</a>.</p>
+<p>Definition at line <a class="el" href="stream-tokenizer_8h_source.html#l00292">292</a> of file <a class="el" href="stream-tokenizer_8h_source.html">stream-tokenizer.h</a>.</p>
 
 </div>
 </div>
@@ -499,7 +555,34 @@ Static Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="stream-tokenizer_8h_source.html#l00190">190</a> of file <a class="el" href="stream-tokenizer_8h_source.html">stream-tokenizer.h</a>.</p>
+<p>Definition at line <a class="el" href="stream-tokenizer_8h_source.html#l00204">204</a> of file <a class="el" href="stream-tokenizer_8h_source.html">stream-tokenizer.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a4e3231b976ba931cadb2fe8a6625dd0c"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t infact::StreamTokenizer::PeekPrevTokenLineStart </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Returns the stream position of the most recent line start of the previous token, or 0 if this stream is just about to return the first token. </p>
+
+<p>Definition at line <a class="el" href="stream-tokenizer_8h_source.html#l00211">211</a> of file <a class="el" href="stream-tokenizer_8h_source.html">stream-tokenizer.h</a>.</p>
 
 </div>
 </div>
@@ -524,7 +607,7 @@ Static Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="stream-tokenizer_8h_source.html#l00194">194</a> of file <a class="el" href="stream-tokenizer_8h_source.html">stream-tokenizer.h</a>.</p>
+<p>Definition at line <a class="el" href="stream-tokenizer_8h_source.html#l00215">215</a> of file <a class="el" href="stream-tokenizer_8h_source.html">stream-tokenizer.h</a>.</p>
 
 </div>
 </div>
@@ -549,7 +632,7 @@ Static Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="stream-tokenizer_8h_source.html#l00198">198</a> of file <a class="el" href="stream-tokenizer_8h_source.html">stream-tokenizer.h</a>.</p>
+<p>Definition at line <a class="el" href="stream-tokenizer_8h_source.html#l00219">219</a> of file <a class="el" href="stream-tokenizer_8h_source.html">stream-tokenizer.h</a>.</p>
 
 </div>
 </div>
@@ -576,7 +659,7 @@ Static Public Member Functions</h2></td></tr>
 
 <p>Returns the line number of the first byte of the next token, or the current line number of the underlying stream if there is no next token. </p>
 
-<p>Definition at line <a class="el" href="stream-tokenizer_8h_source.html#l00264">264</a> of file <a class="el" href="stream-tokenizer_8h_source.html">stream-tokenizer.h</a>.</p>
+<p>Definition at line <a class="el" href="stream-tokenizer_8h_source.html#l00285">285</a> of file <a class="el" href="stream-tokenizer_8h_source.html">stream-tokenizer.h</a>.</p>
 
 </div>
 </div>
@@ -603,7 +686,7 @@ Static Public Member Functions</h2></td></tr>
 
 <p>Returns the next token&rsquo;s start position, or the byte position of the underlying byte stream if there is no next token. </p>
 
-<p>Definition at line <a class="el" href="stream-tokenizer_8h_source.html#l00251">251</a> of file <a class="el" href="stream-tokenizer_8h_source.html">stream-tokenizer.h</a>.</p>
+<p>Definition at line <a class="el" href="stream-tokenizer_8h_source.html#l00272">272</a> of file <a class="el" href="stream-tokenizer_8h_source.html">stream-tokenizer.h</a>.</p>
 
 </div>
 </div>
@@ -630,7 +713,7 @@ Static Public Member Functions</h2></td></tr>
 
 <p>Returns the type of the next token, or EOF_TYPE if there is no next token. </p>
 
-<p>Definition at line <a class="el" href="stream-tokenizer_8h_source.html#l00257">257</a> of file <a class="el" href="stream-tokenizer_8h_source.html">stream-tokenizer.h</a>.</p>
+<p>Definition at line <a class="el" href="stream-tokenizer_8h_source.html#l00278">278</a> of file <a class="el" href="stream-tokenizer_8h_source.html">stream-tokenizer.h</a>.</p>
 
 </div>
 </div>
@@ -657,7 +740,7 @@ Static Public Member Functions</h2></td></tr>
 
 <p>A synonym for Rewind(1). </p>
 
-<p>Definition at line <a class="el" href="stream-tokenizer_8h_source.html#l00245">245</a> of file <a class="el" href="stream-tokenizer_8h_source.html">stream-tokenizer.h</a>.</p>
+<p>Definition at line <a class="el" href="stream-tokenizer_8h_source.html#l00266">266</a> of file <a class="el" href="stream-tokenizer_8h_source.html">stream-tokenizer.h</a>.</p>
 
 </div>
 </div>
@@ -685,7 +768,7 @@ Static Public Member Functions</h2></td></tr>
 <p>Rewinds this token stream to the beginning. </p>
 <p>If the underlying stream has no tokens, this is a no-op. </p>
 
-<p>Definition at line <a class="el" href="stream-tokenizer_8h_source.html#l00228">228</a> of file <a class="el" href="stream-tokenizer_8h_source.html">stream-tokenizer.h</a>.</p>
+<p>Definition at line <a class="el" href="stream-tokenizer_8h_source.html#l00249">249</a> of file <a class="el" href="stream-tokenizer_8h_source.html">stream-tokenizer.h</a>.</p>
 
 </div>
 </div>
@@ -714,7 +797,7 @@ Static Public Member Functions</h2></td></tr>
 <p>Rewinds this token stream by the specified number of tokens. </p>
 <p>If the specified number of tokens is greater than the number of tokens read so far, invoking this method will be functionally equivalent to invoking the no-argument <a class="el" href="classinfact_1_1_stream_tokenizer.html#ab67fe58983f7d9c2afb917bb70b4d8dd" title="Rewinds this token stream to the beginning. ">Rewind()</a> method. </p>
 
-<p>Definition at line <a class="el" href="stream-tokenizer_8h_source.html#l00236">236</a> of file <a class="el" href="stream-tokenizer_8h_source.html">stream-tokenizer.h</a>.</p>
+<p>Definition at line <a class="el" href="stream-tokenizer_8h_source.html#l00257">257</a> of file <a class="el" href="stream-tokenizer_8h_source.html">stream-tokenizer.h</a>.</p>
 
 </div>
 </div>
@@ -743,7 +826,7 @@ Static Public Member Functions</h2></td></tr>
 <p>Sets the set of &ldquo;reserved words&rdquo; used by this stream tokenizer. </p>
 <p>Should be invoked just after construction time. </p>
 
-<p>Definition at line <a class="el" href="stream-tokenizer_8h_source.html#l00158">158</a> of file <a class="el" href="stream-tokenizer_8h_source.html">stream-tokenizer.h</a>.</p>
+<p>Definition at line <a class="el" href="stream-tokenizer_8h_source.html#l00159">159</a> of file <a class="el" href="stream-tokenizer_8h_source.html">stream-tokenizer.h</a>.</p>
 
 </div>
 </div>
@@ -770,7 +853,7 @@ Static Public Member Functions</h2></td></tr>
 
 <p>Returns the entire sequence of characters read so far by this stream tokenizer as a newly constructed string object. </p>
 
-<p>Definition at line <a class="el" href="stream-tokenizer_8h_source.html#l00169">169</a> of file <a class="el" href="stream-tokenizer_8h_source.html">stream-tokenizer.h</a>.</p>
+<p>Definition at line <a class="el" href="stream-tokenizer_8h_source.html#l00170">170</a> of file <a class="el" href="stream-tokenizer_8h_source.html">stream-tokenizer.h</a>.</p>
 
 </div>
 </div>
@@ -797,7 +880,7 @@ Static Public Member Functions</h2></td></tr>
 
 <p>Returns the number of bytes read from the underlying byte stream just after scanning the most recent token, or 0 if this stream is just about to return the first token. </p>
 
-<p>Definition at line <a class="el" href="stream-tokenizer_8h_source.html#l00174">174</a> of file <a class="el" href="stream-tokenizer_8h_source.html">stream-tokenizer.h</a>.</p>
+<p>Definition at line <a class="el" href="stream-tokenizer_8h_source.html#l00175">175</a> of file <a class="el" href="stream-tokenizer_8h_source.html">stream-tokenizer.h</a>.</p>
 
 </div>
 </div>
@@ -825,7 +908,7 @@ Static Public Member Functions</h2></td></tr>
 
 <p>Returns a string type name for the specified TokenType constant. </p>
 
-<p>Definition at line <a class="el" href="stream-tokenizer_8h_source.html#l00104">104</a> of file <a class="el" href="stream-tokenizer_8h_source.html">stream-tokenizer.h</a>.</p>
+<p>Definition at line <a class="el" href="stream-tokenizer_8h_source.html#l00105">105</a> of file <a class="el" href="stream-tokenizer_8h_source.html">stream-tokenizer.h</a>.</p>
 
 </div>
 </div>
@@ -836,7 +919,7 @@ Static Public Member Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Apr 21 2015 16:34:13 for InFact by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu May 7 2015 14:22:45 for InFact by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

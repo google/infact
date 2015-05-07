@@ -135,144 +135,170 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;  ++num_read_;</div>
 <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;  <span class="keywordflow">if</span> (c == <span class="charliteral">&#39;\n&#39;</span>) {</div>
 <div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    ++line_number_;</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;  }</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;}</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="keywordtype">bool</span></div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;StreamTokenizer::ReadChar(<span class="keywordtype">char</span> *c) {</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;  (*c) = is_.get();</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;  <span class="keywordflow">if</span> (!is_.good()) {</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    eof_reached_ = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;  } <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    ConsumeChar(*c);</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;  }</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;}</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="keywordtype">bool</span></div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;StreamTokenizer::GetNext(Token *next) {</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;  <span class="keywordflow">if</span> (!is_.good()) {</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    eof_reached_ = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;  }</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;  <span class="comment">// Get first character of next token.</span></div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;  <span class="keywordtype">char</span> c;</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;  <span class="keywordtype">bool</span> is_whitespace = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;  <span class="keywordflow">while</span> (is_whitespace) {</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    <span class="keywordflow">if</span> (!ReadChar(&amp;c)) {</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;      <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    }</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    is_whitespace = isspace(c);</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    <span class="comment">// If we find a comment character, then read to the end of the line.</span></div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    <span class="keywordflow">if</span> (!is_whitespace &amp;&amp; c == <span class="charliteral">&#39;/&#39;</span> &amp;&amp; is_.peek() == <span class="charliteral">&#39;/&#39;</span>) {</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;      <span class="keywordflow">while</span> (c != <span class="charliteral">&#39;\n&#39;</span>) {</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;        <span class="keywordflow">if</span> (!ReadChar(&amp;c)) {</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;          <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;        }</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;      }</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;      is_whitespace = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    }</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;  }</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;  <span class="comment">// In case we&#39;re successful in reading the next token, we fill in</span></div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;  <span class="comment">// the two stream state data available now.</span></div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;  next-&gt;start = num_read_ - 1;</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;  next-&gt;line_number = line_number_;</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;  <span class="keywordtype">bool</span> next_tok_complete = <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;  next-&gt;tok.clear();</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;  <span class="keywordflow">if</span> (ReservedChar(c)) {</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;    next-&gt;tok += c;</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;    next_tok_complete = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;    next-&gt;type = <a class="code" href="classinfact_1_1_stream_tokenizer.html#ac6e5b0b274a66a2a504ac4fd425c57b3a68d8e01c0b3e418c30e2fed7d565d71a">RESERVED_CHAR</a>;</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;  } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (c == <span class="charliteral">&#39;&quot;&#39;</span>) {</div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;    <span class="comment">// We&#39;ve got a string literal, so keep reading characters,</span></div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;    <span class="comment">// until hitting a non-escaped double quote.</span></div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    streampos string_literal_start_pos = num_read_ - 1;</div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;    <span class="keywordtype">bool</span> found_closing_quote = <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;    <span class="keywordflow">while</span> (is_.good()) {</div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;      <span class="keywordtype">bool</span> success = ReadChar(&amp;c);</div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;      <span class="keywordflow">if</span> (success) {</div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;        <span class="keywordflow">if</span> (c == <span class="charliteral">&#39;&quot;&#39;</span>) {</div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;          found_closing_quote = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;          <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;        } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (c == <span class="charliteral">&#39;\\&#39;</span>) {</div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;          success = ReadChar(&amp;c);</div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;        }</div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;      }</div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;      <span class="keywordflow">if</span> (success) {</div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;        next-&gt;tok += c;</div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;      }</div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;    }</div>
-<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;    <span class="keywordflow">if</span> (!found_closing_quote) {</div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;      ostringstream err_ss;</div>
-<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;      err_ss &lt;&lt; <span class="stringliteral">&quot;StreamTokenizer: error: could not find closing &quot;</span></div>
-<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;             &lt;&lt; <span class="stringliteral">&quot;double quote for string literal beginning at stream index &quot;</span></div>
-<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;             &lt;&lt; string_literal_start_pos</div>
-<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;             &lt;&lt; <span class="stringliteral">&quot;; partial string literal read: \&quot;&quot;</span></div>
-<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;             &lt;&lt; next-&gt;tok;</div>
-<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;      <a class="code" href="namespaceinfact.html#a746fb382cf3fd6cf656f40669d90372c">Error</a>(err_ss.str());</div>
-<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;    }</div>
-<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;    next_tok_complete = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;    next-&gt;type = <a class="code" href="classinfact_1_1_stream_tokenizer.html#ac6e5b0b274a66a2a504ac4fd425c57b3adf5d994582c00a0d2bca91e6d3505409">STRING</a>;</div>
-<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;  } <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;    <span class="comment">// This is a number, a reserved word or C++ identifier token, so</span></div>
-<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;    <span class="comment">// add first character; the remainder of the token will be handled</span></div>
-<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;    <span class="comment">// in the next block.</span></div>
-<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;    next-&gt;tok += c;</div>
-<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;    next-&gt;type = (c == <span class="charliteral">&#39;-&#39;</span> || (c &gt;= <span class="charliteral">&#39;0&#39;</span> &amp;&amp; c &lt;= <span class="charliteral">&#39;9&#39;</span>)) ? <a class="code" href="classinfact_1_1_stream_tokenizer.html#ac6e5b0b274a66a2a504ac4fd425c57b3adbb02ac8845cd4a289387df4bf554aea">NUMBER</a> : <a class="code" href="classinfact_1_1_stream_tokenizer.html#ac6e5b0b274a66a2a504ac4fd425c57b3a61f308d29c6dd30996fcb120b6344e41">IDENTIFIER</a>;</div>
-<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;  }</div>
-<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;  <span class="keywordflow">if</span> (!next_tok_complete) {</div>
-<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;    <span class="comment">// The current token is a number, a reserved word or C++</span></div>
-<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;    <span class="comment">// identifier, so we keep reading characters until hitting a</span></div>
-<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;    <span class="comment">// &quot;reserved character&quot;, a whitespace character or EOF.</span></div>
-<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;    <span class="keywordtype">bool</span> done = <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;    <span class="keywordflow">while</span> (!done &amp;&amp; is_.good()) {</div>
-<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;      <span class="comment">// We don&#39;t call ReadChar below because the next character might</span></div>
-<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;      <span class="comment">// tell us that the current token has ended (i.e., if it&#39;s a</span></div>
-<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;      <span class="comment">// reserved character, a double quote or a whitespace</span></div>
-<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;      <span class="comment">// character).</span></div>
-<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;      <span class="keywordtype">int</span> peek = is_.peek();</div>
-<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;      <span class="keywordflow">if</span> (peek != EOF) {</div>
-<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;        <span class="keywordtype">char</span> next_char = <span class="keyword">static_cast&lt;</span><span class="keywordtype">char</span><span class="keyword">&gt;</span>(peek);</div>
-<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;        <span class="keywordflow">if</span> (ReservedChar(next_char) || next_char == <span class="charliteral">&#39;&quot;&#39;</span> || isspace(next_char)) {</div>
-<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;          <span class="comment">// Now that we&#39;ve finished reading something that is not a</span></div>
-<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;          <span class="comment">// string literal, change its type to be RESERVED_WORD if it</span></div>
-<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;          <span class="comment">// exactly matches something in the set of reserved words.</span></div>
-<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;          <span class="keywordflow">if</span> (reserved_words_.count(next-&gt;tok) != 0) {</div>
-<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;            next-&gt;type = <a class="code" href="classinfact_1_1_stream_tokenizer.html#ac6e5b0b274a66a2a504ac4fd425c57b3a1c9eaa574c618f243aa51efe253d3118">RESERVED_WORD</a>;</div>
-<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;          }</div>
-<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;          done = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;        } <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;          ReadChar(&amp;c);</div>
-<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;          next-&gt;tok += c;</div>
-<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;        }</div>
-<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;      } <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;        eof_reached_ = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;      }</div>
-<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;    }</div>
-<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;  }</div>
-<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;  <span class="comment">// We&#39;re about to return a successfully read token, so we make sure to record</span></div>
-<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;  <span class="comment">// the stream position at this point in the Token object.</span></div>
-<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;  next-&gt;curr_pos = num_read_;</div>
-<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;</div>
-<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;  <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;}</div>
-<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;</div>
-<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;}  <span class="comment">// namespace infact</span></div>
-<div class="ttc" id="classinfact_1_1_stream_tokenizer_html_ac6e5b0b274a66a2a504ac4fd425c57b3a1c9eaa574c618f243aa51efe253d3118"><div class="ttname"><a href="classinfact_1_1_stream_tokenizer.html#ac6e5b0b274a66a2a504ac4fd425c57b3a1c9eaa574c618f243aa51efe253d3118">infact::StreamTokenizer::RESERVED_WORD</a></div><div class="ttdef"><b>Definition:</b> <a href="stream-tokenizer_8h_source.html#l00097">stream-tokenizer.h:97</a></div></div>
-<div class="ttc" id="classinfact_1_1_stream_tokenizer_html_ac6e5b0b274a66a2a504ac4fd425c57b3a61f308d29c6dd30996fcb120b6344e41"><div class="ttname"><a href="classinfact_1_1_stream_tokenizer.html#ac6e5b0b274a66a2a504ac4fd425c57b3a61f308d29c6dd30996fcb120b6344e41">infact::StreamTokenizer::IDENTIFIER</a></div><div class="ttdef"><b>Definition:</b> <a href="stream-tokenizer_8h_source.html#l00100">stream-tokenizer.h:100</a></div></div>
-<div class="ttc" id="classinfact_1_1_stream_tokenizer_html_ac6e5b0b274a66a2a504ac4fd425c57b3adbb02ac8845cd4a289387df4bf554aea"><div class="ttname"><a href="classinfact_1_1_stream_tokenizer.html#ac6e5b0b274a66a2a504ac4fd425c57b3adbb02ac8845cd4a289387df4bf554aea">infact::StreamTokenizer::NUMBER</a></div><div class="ttdef"><b>Definition:</b> <a href="stream-tokenizer_8h_source.html#l00099">stream-tokenizer.h:99</a></div></div>
-<div class="ttc" id="classinfact_1_1_stream_tokenizer_html_ac6e5b0b274a66a2a504ac4fd425c57b3a68d8e01c0b3e418c30e2fed7d565d71a"><div class="ttname"><a href="classinfact_1_1_stream_tokenizer.html#ac6e5b0b274a66a2a504ac4fd425c57b3a68d8e01c0b3e418c30e2fed7d565d71a">infact::StreamTokenizer::RESERVED_CHAR</a></div><div class="ttdef"><b>Definition:</b> <a href="stream-tokenizer_8h_source.html#l00096">stream-tokenizer.h:96</a></div></div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    line_start_pos_ = num_read_;</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;  }</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;}</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="keywordtype">bool</span></div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;StreamTokenizer::ReadChar(<span class="keywordtype">char</span> *c) {</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;  (*c) = is_.get();</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;  <span class="keywordflow">if</span> (!is_.good()) {</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    eof_reached_ = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;  } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    ConsumeChar(*c);</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;  }</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;}</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="keywordtype">bool</span></div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;StreamTokenizer::GetNext(Token *next) {</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;  <span class="keywordflow">if</span> (!is_.good()) {</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    eof_reached_ = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;  }</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;  <span class="comment">// Get first character of next token.</span></div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;  <span class="keywordtype">char</span> c;</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;  <span class="keywordtype">bool</span> is_whitespace = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;  <span class="keywordflow">while</span> (is_whitespace) {</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    <span class="keywordflow">if</span> (!ReadChar(&amp;c)) {</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;      <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    }</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    is_whitespace = isspace(c);</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    <span class="comment">// If we find a comment character, then read to the end of the line.</span></div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    <span class="keywordflow">if</span> (!is_whitespace &amp;&amp; c == <span class="charliteral">&#39;/&#39;</span> &amp;&amp; is_.peek() == <span class="charliteral">&#39;/&#39;</span>) {</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;      <span class="keywordflow">while</span> (c != <span class="charliteral">&#39;\n&#39;</span>) {</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;        <span class="keywordflow">if</span> (!ReadChar(&amp;c)) {</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;          <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;        }</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;      }</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;      is_whitespace = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    }</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;  }</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;  <span class="comment">// In case we&#39;re successful in reading the next token, we fill in</span></div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;  <span class="comment">// the two stream state data available now.</span></div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;  next-&gt;start = num_read_ - 1;</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;  next-&gt;line_number = line_number_;</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;  next-&gt;line_start_pos = line_start_pos_;</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;  <span class="keywordtype">bool</span> next_tok_complete = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;  next-&gt;tok.clear();</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;  <span class="keywordflow">if</span> (ReservedChar(c)) {</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;    next-&gt;tok += c;</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;    next_tok_complete = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;    next-&gt;type = <a class="code" href="classinfact_1_1_stream_tokenizer.html#ac6e5b0b274a66a2a504ac4fd425c57b3a68d8e01c0b3e418c30e2fed7d565d71a">RESERVED_CHAR</a>;</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;  } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (c == <span class="charliteral">&#39;&quot;&#39;</span>) {</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    <span class="comment">// We&#39;ve got a string literal, so keep reading characters,</span></div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;    <span class="comment">// until hitting a non-escaped double quote.</span></div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;    streampos string_literal_start_pos = num_read_ - 1;</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;    <span class="keywordtype">bool</span> found_closing_quote = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;    <span class="keywordflow">while</span> (is_.good()) {</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;      <span class="keywordtype">bool</span> success = ReadChar(&amp;c);</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;      <span class="keywordflow">if</span> (success) {</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;        <span class="keywordflow">if</span> (c == <span class="charliteral">&#39;&quot;&#39;</span>) {</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;          found_closing_quote = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;          <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;        } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (c == <span class="charliteral">&#39;\\&#39;</span>) {</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;          success = ReadChar(&amp;c);</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;        }</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;      }</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;      <span class="keywordflow">if</span> (success) {</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;        next-&gt;tok += c;</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;      }</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;    }</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;    <span class="keywordflow">if</span> (!found_closing_quote) {</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;      ostringstream err_ss;</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;      err_ss &lt;&lt; <span class="stringliteral">&quot;StreamTokenizer: error: could not find closing &quot;</span></div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;             &lt;&lt; <span class="stringliteral">&quot;double quote for string literal beginning at stream index &quot;</span></div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;             &lt;&lt; string_literal_start_pos</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;             &lt;&lt; <span class="stringliteral">&quot;; partial string literal read: \&quot;&quot;</span></div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;             &lt;&lt; next-&gt;tok;</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;      <a class="code" href="namespaceinfact.html#a746fb382cf3fd6cf656f40669d90372c">Error</a>(err_ss.str());</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;    }</div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;    next_tok_complete = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;    next-&gt;type = <a class="code" href="classinfact_1_1_stream_tokenizer.html#ac6e5b0b274a66a2a504ac4fd425c57b3adf5d994582c00a0d2bca91e6d3505409">STRING</a>;</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;  } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;    <span class="comment">// This is a number, a reserved word or C++ identifier token, so</span></div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;    <span class="comment">// add first character; the remainder of the token will be handled</span></div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;    <span class="comment">// in the next block.</span></div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;    next-&gt;tok += c;</div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;    next-&gt;type = (c == <span class="charliteral">&#39;-&#39;</span> || (c &gt;= <span class="charliteral">&#39;0&#39;</span> &amp;&amp; c &lt;= <span class="charliteral">&#39;9&#39;</span>)) ? <a class="code" href="classinfact_1_1_stream_tokenizer.html#ac6e5b0b274a66a2a504ac4fd425c57b3adbb02ac8845cd4a289387df4bf554aea">NUMBER</a> : <a class="code" href="classinfact_1_1_stream_tokenizer.html#ac6e5b0b274a66a2a504ac4fd425c57b3a61f308d29c6dd30996fcb120b6344e41">IDENTIFIER</a>;</div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;  }</div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;  <span class="keywordflow">if</span> (!next_tok_complete) {</div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;    <span class="comment">// The current token is a number, a reserved word or C++</span></div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;    <span class="comment">// identifier, so we keep reading characters until hitting a</span></div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;    <span class="comment">// &quot;reserved character&quot;, a whitespace character or EOF.</span></div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;    <span class="keywordtype">bool</span> done = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;    <span class="keywordflow">while</span> (!done &amp;&amp; is_.good()) {</div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;      <span class="comment">// We don&#39;t call ReadChar below because the next character might</span></div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;      <span class="comment">// tell us that the current token has ended (i.e., if it&#39;s a</span></div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;      <span class="comment">// reserved character, a double quote or a whitespace</span></div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;      <span class="comment">// character).</span></div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;      <span class="keywordtype">int</span> peek = is_.peek();</div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;      <span class="keywordflow">if</span> (peek != EOF) {</div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;        <span class="keywordtype">char</span> next_char = <span class="keyword">static_cast&lt;</span><span class="keywordtype">char</span><span class="keyword">&gt;</span>(peek);</div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;        <span class="keywordflow">if</span> (ReservedChar(next_char) || next_char == <span class="charliteral">&#39;&quot;&#39;</span> || isspace(next_char)) {</div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;          <span class="comment">// Now that we&#39;ve finished reading something that is not a</span></div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;          <span class="comment">// string literal, change its type to be RESERVED_WORD if it</span></div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;          <span class="comment">// exactly matches something in the set of reserved words.</span></div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;          <span class="keywordflow">if</span> (reserved_words_.count(next-&gt;tok) != 0) {</div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;            next-&gt;type = <a class="code" href="classinfact_1_1_stream_tokenizer.html#ac6e5b0b274a66a2a504ac4fd425c57b3a1c9eaa574c618f243aa51efe253d3118">RESERVED_WORD</a>;</div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;          }</div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;          done = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;        } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;          ReadChar(&amp;c);</div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;          next-&gt;tok += c;</div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;        }</div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;      } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;        eof_reached_ = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;      }</div>
+<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;    }</div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;  }</div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;  <span class="comment">// We&#39;re about to return a successfully read token, so we make sure to record</span></div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;  <span class="comment">// the stream position at this point in the Token object.</span></div>
+<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;  next-&gt;curr_pos = num_read_;</div>
+<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;</div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;  <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;}</div>
+<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;</div>
+<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;<span class="keyword">namespace </span>{</div>
+<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;</div>
+<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;<span class="keywordtype">string</span> getline(<span class="keyword">const</span> <span class="keywordtype">string</span> &amp;str, <span class="keywordtype">size_t</span> pos) {</div>
+<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;  <span class="keywordtype">string</span> curr_line;</div>
+<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;  <span class="keywordflow">for</span> (; pos &lt; str.length() &amp;&amp; str[pos] != <span class="charliteral">&#39;\n&#39;</span>; ++pos) {</div>
+<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;    curr_line += str[pos];</div>
+<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;  }</div>
+<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;  <span class="keywordflow">return</span> curr_line;</div>
+<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;}</div>
+<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;</div>
+<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;}</div>
+<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;</div>
+<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;<span class="keywordtype">string</span></div>
+<div class="line"><a name="l00193"></a><span class="lineno"><a class="line" href="classinfact_1_1_stream_tokenizer.html#a294b2dece5460d24de37acc6338a1fe8">  193</a></span>&#160;<a class="code" href="classinfact_1_1_stream_tokenizer.html#a294b2dece5460d24de37acc6338a1fe8">StreamTokenizer::line</a>() {</div>
+<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;  <span class="keywordflow">if</span> (<a class="code" href="classinfact_1_1_stream_tokenizer.html#a2d8c5ba3138d99c7a13fa49091885d0e">HasPrev</a>()) {</div>
+<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;    <span class="keywordflow">return</span> getline(<a class="code" href="classinfact_1_1_stream_tokenizer.html#a3790d1692c84c79af738a9ade303cbd7">str</a>(), token_[next_token_idx_ - 1].line_start_pos);</div>
+<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;  } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;    <span class="keywordflow">return</span> <span class="stringliteral">&quot;&quot;</span>;</div>
+<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;  }</div>
+<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;}</div>
+<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;</div>
+<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;}  <span class="comment">// namespace infact</span></div>
+<div class="ttc" id="classinfact_1_1_stream_tokenizer_html_ac6e5b0b274a66a2a504ac4fd425c57b3a1c9eaa574c618f243aa51efe253d3118"><div class="ttname"><a href="classinfact_1_1_stream_tokenizer.html#ac6e5b0b274a66a2a504ac4fd425c57b3a1c9eaa574c618f243aa51efe253d3118">infact::StreamTokenizer::RESERVED_WORD</a></div><div class="ttdef"><b>Definition:</b> <a href="stream-tokenizer_8h_source.html#l00098">stream-tokenizer.h:98</a></div></div>
+<div class="ttc" id="classinfact_1_1_stream_tokenizer_html_ac6e5b0b274a66a2a504ac4fd425c57b3a61f308d29c6dd30996fcb120b6344e41"><div class="ttname"><a href="classinfact_1_1_stream_tokenizer.html#ac6e5b0b274a66a2a504ac4fd425c57b3a61f308d29c6dd30996fcb120b6344e41">infact::StreamTokenizer::IDENTIFIER</a></div><div class="ttdef"><b>Definition:</b> <a href="stream-tokenizer_8h_source.html#l00101">stream-tokenizer.h:101</a></div></div>
+<div class="ttc" id="classinfact_1_1_stream_tokenizer_html_ac6e5b0b274a66a2a504ac4fd425c57b3adbb02ac8845cd4a289387df4bf554aea"><div class="ttname"><a href="classinfact_1_1_stream_tokenizer.html#ac6e5b0b274a66a2a504ac4fd425c57b3adbb02ac8845cd4a289387df4bf554aea">infact::StreamTokenizer::NUMBER</a></div><div class="ttdef"><b>Definition:</b> <a href="stream-tokenizer_8h_source.html#l00100">stream-tokenizer.h:100</a></div></div>
+<div class="ttc" id="classinfact_1_1_stream_tokenizer_html_ac6e5b0b274a66a2a504ac4fd425c57b3a68d8e01c0b3e418c30e2fed7d565d71a"><div class="ttname"><a href="classinfact_1_1_stream_tokenizer.html#ac6e5b0b274a66a2a504ac4fd425c57b3a68d8e01c0b3e418c30e2fed7d565d71a">infact::StreamTokenizer::RESERVED_CHAR</a></div><div class="ttdef"><b>Definition:</b> <a href="stream-tokenizer_8h_source.html#l00097">stream-tokenizer.h:97</a></div></div>
+<div class="ttc" id="classinfact_1_1_stream_tokenizer_html_a3790d1692c84c79af738a9ade303cbd7"><div class="ttname"><a href="classinfact_1_1_stream_tokenizer.html#a3790d1692c84c79af738a9ade303cbd7">infact::StreamTokenizer::str</a></div><div class="ttdeci">string str()</div><div class="ttdoc">Returns the entire sequence of characters read so far by this stream tokenizer as a newly constructed...</div><div class="ttdef"><b>Definition:</b> <a href="stream-tokenizer_8h_source.html#l00170">stream-tokenizer.h:170</a></div></div>
 <div class="ttc" id="stream-tokenizer_8h_html"><div class="ttname"><a href="stream-tokenizer_8h.html">stream-tokenizer.h</a></div><div class="ttdoc">Provides the StreamTokenizer  class. </div></div>
+<div class="ttc" id="classinfact_1_1_stream_tokenizer_html_a2d8c5ba3138d99c7a13fa49091885d0e"><div class="ttname"><a href="classinfact_1_1_stream_tokenizer.html#a2d8c5ba3138d99c7a13fa49091885d0e">infact::StreamTokenizer::HasPrev</a></div><div class="ttdeci">bool HasPrev() const </div><div class="ttdef"><b>Definition:</b> <a href="stream-tokenizer_8h_source.html#l00202">stream-tokenizer.h:202</a></div></div>
 <div class="ttc" id="namespaceinfact_html_a746fb382cf3fd6cf656f40669d90372c"><div class="ttname"><a href="namespaceinfact.html#a746fb382cf3fd6cf656f40669d90372c">infact::Error</a></div><div class="ttdeci">void Error(const std::string &amp;message)</div><div class="ttdoc">Reports an error encountered during parsing and/or construction of an object. </div><div class="ttdef"><b>Definition:</b> <a href="error_8cc_source.html#l00047">error.cc:47</a></div></div>
-<div class="ttc" id="classinfact_1_1_stream_tokenizer_html_ac6e5b0b274a66a2a504ac4fd425c57b3adf5d994582c00a0d2bca91e6d3505409"><div class="ttname"><a href="classinfact_1_1_stream_tokenizer.html#ac6e5b0b274a66a2a504ac4fd425c57b3adf5d994582c00a0d2bca91e6d3505409">infact::StreamTokenizer::STRING</a></div><div class="ttdef"><b>Definition:</b> <a href="stream-tokenizer_8h_source.html#l00098">stream-tokenizer.h:98</a></div></div>
+<div class="ttc" id="classinfact_1_1_stream_tokenizer_html_a294b2dece5460d24de37acc6338a1fe8"><div class="ttname"><a href="classinfact_1_1_stream_tokenizer.html#a294b2dece5460d24de37acc6338a1fe8">infact::StreamTokenizer::line</a></div><div class="ttdeci">string line()</div><div class="ttdoc">Returns a string consisting of the characters read so far of the current line containing the most rec...</div><div class="ttdef"><b>Definition:</b> <a href="stream-tokenizer_8cc_source.html#l00193">stream-tokenizer.cc:193</a></div></div>
+<div class="ttc" id="classinfact_1_1_stream_tokenizer_html_ac6e5b0b274a66a2a504ac4fd425c57b3adf5d994582c00a0d2bca91e6d3505409"><div class="ttname"><a href="classinfact_1_1_stream_tokenizer.html#ac6e5b0b274a66a2a504ac4fd425c57b3adf5d994582c00a0d2bca91e6d3505409">infact::StreamTokenizer::STRING</a></div><div class="ttdef"><b>Definition:</b> <a href="stream-tokenizer_8h_source.html#l00099">stream-tokenizer.h:99</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Apr 21 2015 16:34:13 for InFact by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu May 7 2015 14:22:44 for InFact by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

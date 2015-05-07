@@ -2,6 +2,7 @@ var searchData=
 [
   ['peek',['Peek',['../classinfact_1_1_stream_tokenizer.html#a61ec5de244a34de264e5b18e4809d753',1,'infact::StreamTokenizer']]],
   ['peekprev',['PeekPrev',['../classinfact_1_1_stream_tokenizer.html#ac72a1a4fd331f44b850d2600a68a5063',1,'infact::StreamTokenizer']]],
+  ['peekprevtokenlinestart',['PeekPrevTokenLineStart',['../classinfact_1_1_stream_tokenizer.html#a4e3231b976ba931cadb2fe8a6625dd0c',1,'infact::StreamTokenizer']]],
   ['peekprevtokenstart',['PeekPrevTokenStart',['../classinfact_1_1_stream_tokenizer.html#ad7c5c716ebfadf303e8d4371e6bb229b',1,'infact::StreamTokenizer']]],
   ['peekprevtokentype',['PeekPrevTokenType',['../classinfact_1_1_stream_tokenizer.html#ad4fe21722c3e34d4339f12691146b7a5',1,'infact::StreamTokenizer']]],
   ['peektokenlinenumber',['PeekTokenLineNumber',['../classinfact_1_1_stream_tokenizer.html#a70c11e357a41f13d3c8e916fab290145',1,'infact::StreamTokenizer']]],
