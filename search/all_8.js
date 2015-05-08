@@ -22,7 +22,7 @@ var searchData=
   ['initializer_3c_20string_20_3e',['Initializer&lt; string &gt;',['../classinfact_1_1_initializer_3_01string_01_4.html',1,'infact']]],
   ['initializers',['Initializers',['../classinfact_1_1_initializers.html#a60c906676bec66dc2162991bb2756a38',1,'infact::Initializers']]],
   ['initializers',['Initializers',['../classinfact_1_1_initializers.html',1,'infact']]],
-  ['interpreter',['Interpreter',['../classinfact_1_1_interpreter.html#ae1eba88a0c9df9e0069f20ef5f44d2db',1,'infact::Interpreter::Interpreter(int debug=0)'],['../classinfact_1_1_interpreter.html#a4c283a42da4bbb23db373a1a0d391d0e',1,'infact::Interpreter::Interpreter(IStreamBuilder *istream_builder, int debug=0)']]],
+  ['interpreter',['Interpreter',['../classinfact_1_1_interpreter.html#ae1eba88a0c9df9e0069f20ef5f44d2db',1,'infact::Interpreter::Interpreter(int debug=0)'],['../classinfact_1_1_interpreter.html#a6bae24d43bd17e608802cfa04a16dbcb',1,'infact::Interpreter::Interpreter(unique_ptr&lt; IStreamBuilder &gt; istream_builder, int debug=0)']]],
   ['interpreter',['Interpreter',['../classinfact_1_1_interpreter.html',1,'infact']]],
   ['interpreter_2dtest_2ecc',['interpreter-test.cc',['../interpreter-test_8cc.html',1,'']]],
   ['interpreter_2ecc',['interpreter.cc',['../interpreter_8cc.html',1,'']]],
