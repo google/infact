@@ -118,7 +118,7 @@ EnvironmentImpl::ReadAndSet(const string &varname, StreamTokenizer &st,
   } else if (st.PeekTokenType() == StreamTokenizer::RESERVED_CHAR ||
              (st.PeekTokenType() == StreamTokenizer::RESERVED_WORD &&
               st.Peek() != "true" && st.Peek() != "false" &&
-	      st.Peek() != "nullptr" && st.Peek() != "NULL")) {
+              st.Peek() != "nullptr" && st.Peek() != "NULL")) {
     ostringstream err_ss;
     err_ss << "Environment: error: expected literal or Factory-constructible "
 	   << "type but found token \"" << st.Peek() << "\" of type "

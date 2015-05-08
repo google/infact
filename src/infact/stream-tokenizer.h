@@ -233,7 +233,7 @@ class StreamTokenizer {
     if (!eof_reached_ && next_token_idx_ + 1 == token_.size()) {
       Token next;
       if (GetNext(&next)) {
-	token_.push_back(next);
+        token_.push_back(next);
       }
     }
     // Ensure that we only advance if we haven't already reached token_.size().

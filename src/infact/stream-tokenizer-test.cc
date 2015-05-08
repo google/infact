@@ -53,9 +53,9 @@ main(int argc, char **argv) {
     size_t line_number = st1.PeekTokenLineNumber();
     cout << "token: \"" << st1.Next() << "\""
          << "; type=" << StreamTokenizer::TypeName(type)
-	 << "; start=" << start
-	 << "; line=" << line_number
-	 << endl;
+         << "; start=" << start
+         << "; line=" << line_number
+         << endl;
     cout << "chars so far: '" << st1.str() << "'" << endl;
   }
   cerr << "Done." << endl;
@@ -68,9 +68,9 @@ main(int argc, char **argv) {
     size_t line_number = st1.PeekTokenLineNumber();
     cout << "token: \"" << st1.Next() << "\""
          << "; type=" << StreamTokenizer::TypeName(type)
-	 << "; start=" << start
-	 << "; line=" << line_number
-	 << endl;
+         << "; start=" << start
+         << "; line=" << line_number
+         << endl;
     cout << "chars so far: '" << st1.str() << "'" << endl;
   }
 
@@ -82,9 +82,9 @@ main(int argc, char **argv) {
     size_t line_number = st1.PeekTokenLineNumber();
     cout << "token: \"" << st1.Next() << "\""
          << "; type=" << StreamTokenizer::TypeName(type)
-	 << "; start=" << start
-	 << "; line=" << line_number
-	 << endl;
+         << "; start=" << start
+         << "; line=" << line_number
+         << endl;
     cout << "chars so far: '" << st1.str() << "'" << endl;
   }
 
@@ -96,9 +96,9 @@ main(int argc, char **argv) {
     size_t line_number = st1.PeekTokenLineNumber();
     cout << "token: \"" << st1.Next() << "\""
          << "; type=" << StreamTokenizer::TypeName(type)
-	 << "; start=" << start
-	 << "; line=" << line_number
-	 << endl;
+         << "; start=" << start
+         << "; line=" << line_number
+         << endl;
     cout << "chars so far: '" << st1.str() << "'" << endl;
   }
 

@@ -76,6 +76,17 @@ Interpreter::CanReadFile(const string &f1, const string &f2,
   }
 }
 
+bool
+Interpreter::HasCycle(const string &filename,
+                      const vector<string> &filenames) const {
+  for (const string &f : filenames) {
+    if (filename == f) {
+      return true;
+    }
+  }
+  return false;
+}
+
 void
 Interpreter::Eval(const string &filename) {
   if (!CanReadFile(filename)) {
@@ -94,7 +105,7 @@ void
 Interpreter::EvalFile(const string &filename) {
   filenames_.push_back(filename);
   unique_ptr<istream> file =
-      std::move(istream_builder_->Build(curr_filename().c_str()));
+      std::move(istream_builder_->Build(curr_filename()));
   Eval(*file);
   filenames_.pop_back();
 }
@@ -125,12 +136,13 @@ Interpreter::Import(StreamTokenizer &st) {
   // absolute, we try to get the dirname of current file, if it
   // exists, and create a relative path, which takes precedence
   // over a path relative to the current working directory.
+  bool relative = false;
   if (!IsAbsolute(original_import_filename)) {
-    string dirname = "";
     size_t slash_pos = curr_filename().rfind('/');
     if (slash_pos != string::npos) {
-      dirname = curr_filename().substr(0, slash_pos);
+      string dirname = curr_filename().substr(0, slash_pos);
       relative_import_filename = dirname + '/' + original_import_filename;
+      relative = true;
     }
   }
 
@@ -139,8 +151,11 @@ Interpreter::Import(StreamTokenizer &st) {
                    &import_filename)) {
     ostringstream err_ss;
     err_ss << "infact::Interpreter: " << filestack(st, st.tellg())
-           << "error: cannot read file \"" << import_filename << "\" "
-           << "(or file does not exist)\n";
+           << "error: cannot read file \"";
+    if (relative) {
+      err_ss << relative_import_filename << "\" or \"";
+    }
+    err_ss << original_import_filename << "\" (or file does not exist)\n";
     Error(err_ss.str());
   } else {
     if (debug_ >= 1) {
@@ -149,6 +164,14 @@ Interpreter::Import(StreamTokenizer &st) {
                 << original_import_filename << "\" and found that \""
                 << import_filename << "\" exists and is readable\n";
     }
+  }
+
+  if (HasCycle(import_filename, filenames_)) {
+    ostringstream err_ss;
+    err_ss << "infact::Interpreter: " << filestack(st, st.tellg())
+           << "attempted import of file \"" << import_filename << "\" "
+           << "from file \"" << curr_filename() << "\" introduces cycle";
+    Error(err_ss.str());
   }
 
   // Finally, evaluate file using the private EvalFile method.  The imported

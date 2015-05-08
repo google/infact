@@ -215,22 +215,23 @@ class Interpreter {
   /// wrapped \link infact::Environment Environment \endlink will
   /// also have the specified debug level.
   Interpreter(int debug = 0) :
-      Interpreter(new DefaultIStreamBuilder(), debug) { }
+      Interpreter(unique_ptr<IStreamBuilder>(new DefaultIStreamBuilder()),
+                  debug) { }
 
   /// Constructs a new instance with the specified IStreamBuilder and
   /// debug level.  The wrapped \link infact::Environment Environment
   /// \endlink will also have the specified debug level.
-  Interpreter(IStreamBuilder *istream_builder, int debug = 0) :
+  Interpreter(unique_ptr<IStreamBuilder> istream_builder, int debug = 0) :
       env_(new EnvironmentImpl(debug)),
-      istream_builder_(istream_builder),
+      istream_builder_(std::move(istream_builder)),
       debug_(debug) { }
 
   /// Destroys this interpreter.
   virtual ~Interpreter() = default;
 
   /// Sets the IStreamBuilder object, to be owned by this object.
-  void SetIStreamBuilder(IStreamBuilder *istream_builder) {
-    istream_builder_.reset(istream_builder);
+  void SetIStreamBuilder(unique_ptr<IStreamBuilder> istream_builder) {
+    istream_builder_ = std::move(istream_builder);
   }
 
   /// Evaluates the statements in the specified text file.
@@ -256,7 +257,7 @@ class Interpreter {
     env_->PrintFactories(os);
   }
 
-  /// The base case for the GetMany method defined below.
+  /// The base case for the variadic template method GetMany defined below.
   bool GetMany() { return true; }
 
   /// Retrieves values for many variables, specified as a sequence of
@@ -344,6 +345,8 @@ class Interpreter {
   /// \return whether either \c f1 or \c f2 are readable and the
   ///         output parameter \c filename has been set
   bool CanReadFile(const string &f1, const string &f2, string *filename) const;
+
+  bool HasCycle(const string &filename, const vector<string> &filenames) const;
 
   /// Evaluates the expressions contained the named file.
   void EvalFile(const string &filename);
