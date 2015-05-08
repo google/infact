@@ -346,6 +346,8 @@ class Interpreter {
   ///         output parameter \c filename has been set
   bool CanReadFile(const string &f1, const string &f2, string *filename) const;
 
+  /// Returns whether \c filename introduces a cycle in the specified
+  /// stack of \c filenames.  Used for determining file import cycles.
   bool HasCycle(const string &filename, const vector<string> &filenames) const;
 
   /// Evaluates the expressions contained the named file.
