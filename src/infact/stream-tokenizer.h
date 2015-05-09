@@ -205,6 +205,10 @@ class StreamTokenizer {
     return HasPrev() ? token_[next_token_idx_ - 1].tok : "";
   }
 
+  size_t PeekPrevTokenLineNumber() const {
+    return HasPrev() ? token_[next_token_idx_ - 1].line_number : 0;
+  }
+
   /// Returns the stream position of the most recent line start of the
   /// previous token, or 0 if this stream is just about to return the
   /// first token.

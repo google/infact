@@ -276,8 +276,11 @@ Interpreter::Eval(StreamTokenizer &st) {
 string
 Interpreter::filestack(StreamTokenizer &st, size_t pos) const {
   ostringstream message;
+  size_t line_pos = (st.PeekPrevTokenLineStart() <= pos ?
+                     pos - st.PeekPrevTokenLineStart() : pos);
   message << "in file \"" << curr_filename() << "\" "
-          << "(stream pos: " << pos << ")\n";
+          << "(line: " << st.PeekPrevTokenLineNumber() + 1
+          << "; line pos: " << line_pos << "; stream pos: " << pos << "):\n";
   auto it = filenames_.rbegin();
   if (it != filenames_.rend()) {
     ++it;
@@ -287,13 +290,14 @@ Interpreter::filestack(StreamTokenizer &st, size_t pos) const {
     message << "\timported from \"" << filename << "\"\n";
   }
   string line = st.line();
-  message << "here:\n" << line << "\n";
+  message << "here:\n"
+          << line << "\n";
   if (st.PeekPrevTokenLineStart() <= pos) {
-    for (int i = pos - st.PeekPrevTokenLineStart(); i > 0; --i) {
+    for (int i = line_pos; i > 0; --i) {
       message << " ";
     }
-    message << "^\n";
   }
+  message << "^\n";
   return message.str();
 }
 
