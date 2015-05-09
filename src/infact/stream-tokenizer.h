@@ -199,12 +199,17 @@ class StreamTokenizer {
   /// Returns whether there is another token in the token stream.
   bool HasNext() const { return next_token_idx_ < token_.size(); }
 
+  /// Returns whether there is a previous token in the stream.
   bool HasPrev() const { return next_token_idx_ > 0; }
 
+  /// Returns the previous token, or the empty string if there is no
+  /// previous token.
   string PeekPrev() const {
     return HasPrev() ? token_[next_token_idx_ - 1].tok : "";
   }
 
+  /// Returns the line number of the previous token, or 0 if there is no
+  /// previous token.
   size_t PeekPrevTokenLineNumber() const {
     return HasPrev() ? token_[next_token_idx_ - 1].line_number : 0;
   }
@@ -216,10 +221,14 @@ class StreamTokenizer {
     return HasPrev() ? token_[next_token_idx_ - 1].line_start_pos : 0;
   }
 
+  /// Returns the stream position of the first byte of the previous
+  /// token, or 0 if there is no previous token.
   size_t PeekPrevTokenStart() const {
     return HasPrev() ? token_[next_token_idx_ - 1].start : 0;
   }
 
+  /// Returns the type of the previous token, or EOF_TYPE if there
+  /// is no previous token.
   TokenType PeekPrevTokenType() const {
     return HasPrev() ? token_[next_token_idx_ - 1].type : EOF_TYPE;
   }
