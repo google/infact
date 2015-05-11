@@ -58,7 +58,7 @@ Interpreter::IsAbsolute(const string &filename) const {
 
 bool
 Interpreter::CanReadFile(const string &filename) const {
-  unique_ptr<istream> file = std::move(istream_builder_->Build(filename));
+  unique_ptr<istream> file = istream_builder_->Build(filename);
   return file->good();
 }
 
