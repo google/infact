@@ -165,7 +165,7 @@ StreamTokenizer::GetNext(Token *next) {
           next->tok += c;
         }
       } else {
-	eof_reached_ = true;
+        eof_reached_ = true;
       }
     }
   }

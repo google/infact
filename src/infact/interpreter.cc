@@ -104,8 +104,7 @@ Interpreter::Eval(const string &filename) {
 void
 Interpreter::EvalFile(const string &filename) {
   filenames_.push_back(filename);
-  unique_ptr<istream> file =
-      std::move(istream_builder_->Build(curr_filename()));
+  unique_ptr<istream> file = istream_builder_->Build(curr_filename());
   Eval(*file);
   filenames_.pop_back();
 }
