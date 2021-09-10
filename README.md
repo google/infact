@@ -29,9 +29,9 @@ is a simple recursive-descent parser with a single token of
 look-ahead, with the entire library implemented with fewer than 1000
 C++ statements. The inspiration was the
 [BeanShell library](http://www.beanshell.org/) for Java, which
-provides a very convenient mechanism for configuration of any Java
+provides a very convenient mechanism for the configuration of any Java
 project. Similarly, InFact can be used as an effective configuration
-mechansim for C++ projects. See
+mechanism for C++ projects. See
 [the ReFr project](https://github.com/google/refr) for an example,
 especially
 [the default configuration file](https://github.com/google/refr/blob/master/src/reranker/config/default.infact).
